@@ -12,739 +12,778 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis For Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+
+  <!-- Three.js (ES Modules via Import Maps) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 
 <body>
+  <!-- 3D Canvas Background -->
+  <canvas id="webgl-canvas"></canvas>
+  <div id="main-container">
 
-  <!-- NAV -->
-  <nav class="nav" id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">M</span>
-        <span class="logo-text">MarsCart</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#platform">Platform</a></li>
-        <li><a href="#roles">Roles</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#analytics">Analytics</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#blog">Blog</a></li>
-      </ul>
-      <div class="nav-cta">
-        <div class="pricing-label">Starting at <strong>₹4,999/mo</strong></div>
-        <a href="contact.html" class="btn btn-primary">Purchase Now</a>
+    <!-- NAV -->
+    <nav class="nav" id="navbar">
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <span class="logo-icon">M</span>
+          <span class="logo-text">MarsCart</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#roles">Roles</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#analytics">Analytics</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+          <div class="pricing-label">Starting at <strong>₹4,999/mo</strong></div>
+          <a href="contact.html" class="btn btn-primary">Purchase Now</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#platform">Platform</a>
-      <a href="#roles">Roles</a>
-      <a href="#features">Features</a>
-      <a href="#analytics">Analytics</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#blog">Blog</a>
-      <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">View Pricing</a>
-    </div>
-  </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#platform">Platform</a>
+        <a href="#roles">Roles</a>
+        <a href="#features">Features</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#blog">Blog</a>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">View Pricing</a>
+      </div>
+    </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Now with AI-powered inventory forecasting
-      </div>
-      <h1 class="hero-headline">The Smartest Way to Run<br /><span class="highlight">Your Retail Business</span>
-      </h1>
-      <p class="hero-sub">POS • Billing • Inventory • Ecommerce. Built for brands that demand excellence.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary btn-lg" id="hero-start-btn">Get Started →</a>
-        <div class="hero-price-wrap">
-          <span class="price-from">Plans Starting At</span>
-          <span class="price-big">₹4,999<small>/mo</small></span>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num">2,400+</span><span class="stat-label">Merchants</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">₹1,500Cr+</span><span class="stat-label">Processed</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">99.9%</span><span class="stat-label">Uptime</span></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="dashboard-frame">
-        <div class="dashboard-bar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="url-bar">app.marscartretail.com/dashboard</span>
-        </div>
-        <div class="dashboard-body">
-          <div class="db-sidebar">
-            <div class="db-logo">M</div>
-            <nav class="db-nav">
-              <a class="db-nav-item active">Dashboard</a>
-              <a class="db-nav-item">POS</a>
-              <a class="db-nav-item">E-commerce</a>
-              <a class="db-nav-item">Inventory</a>
-              <a class="db-nav-item">Sales</a>
-              <a class="db-nav-item">Customers</a>
-              <a class="db-nav-item">Analytics</a>
-            </nav>
-          </div>
-          <div class="db-main">
-            <div class="db-header">
-              <div>
-                <div class="db-title">Welcome back, Sarah!</div>
-                <div class="db-subtitle">Modern Retail Dashboard · Last 30 days</div>
-              </div>
-            </div>
-            <div class="db-metrics">
-              <div class="metric-card accent">
-                <div class="metric-label">Total Revenue</div>
-                <div class="metric-val">₹6,90,000</div>
-                <div class="metric-change up">↑ 14.2%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Sales Today</div>
-                <div class="metric-val">₹32,500</div>
-                <div class="metric-change up">↑ 8.1%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">New Orders</div>
-                <div class="metric-val">112</div>
-                <div class="metric-change up">↑ 9.5%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Avg. Order</div>
-                <div class="metric-val">₹4,999</div>
-                <div class="metric-change down">↓ 2.3%</div>
-              </div>
-            </div>
-            <div class="db-chart-area">
-              <div class="chart-title">Revenue Performance</div>
-              <div class="chart-bars">
-                <div class="bar" style="height:40%"></div>
-                <div class="bar" style="height:55%"></div>
-                <div class="bar" style="height:45%"></div>
-                <div class="bar" style="height:70%"></div>
-                <div class="bar" style="height:60%"></div>
-                <div class="bar" style="height:80%"></div>
-                <div class="bar accent-bar" style="height:95%"></div>
-              </div>
-            </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge" data-i18n="heroTag">Now with AI-powered inventory forecasting</div>
+        <h1 class="hero-headline">
+          <span data-i18n="heroTitle">The Smartest Way to Run</span> <br /><span class="highlight"
+            data-i18n="heroHighlight">Your Retail Business</span>
+        </h1>
+        <p class="hero-sub" data-i18n="heroSub">
+          POS • Billing • Inventory • Ecommerce. Built for brands that demand excellence.
+        </p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary btn-lg" id="cta-trial-btn" data-i18n="ctaStart">Get Started
+            →</a>
+          <div class="hero-price-wrap">
+            <span class="price-from" data-i18n="ctaSlogan">Plans Starting At</span>
+            <span class="price-big">₹4,999<small>/mo</small></span>
           </div>
         </div>
-      </div>
-      <div class="floating-card card-1">
-        <div class="fc-icon">🛍️</div>
-        <div>
-          <div class="fc-title">New Order</div>
-          <div class="fc-sub">Aria Silk Dress · ₹18,500</div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">2,400+</span><span class="stat-label">Merchants</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">₹1,500Cr+</span><span class="stat-label">Processed</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">99.9%</span><span class="stat-label">Uptime</span></div>
         </div>
       </div>
-      <div class="floating-card card-2">
-        <div class="fc-icon">📦</div>
-        <div>
-          <div class="fc-title">Low Stock Alert</div>
-          <div class="fc-sub">Cashmere Blouse · 3 left</div>
+      <div class="hero-visual">
+        <div class="dashboard-frame">
+          <div class="dashboard-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="url-bar">app.marscartretail.com/dashboard</span>
+          </div>
+          <div class="dashboard-body">
+            <div class="db-sidebar">
+              <div class="db-logo">M</div>
+              <nav class="db-nav">
+                <a class="db-nav-item active">Dashboard</a>
+                <a class="db-nav-item">POS</a>
+                <a class="db-nav-item">E-commerce</a>
+                <a class="db-nav-item">Inventory</a>
+                <a class="db-nav-item">Sales</a>
+                <a class="db-nav-item">Customers</a>
+                <a class="db-nav-item">Analytics</a>
+              </nav>
+            </div>
+            <div class="db-main">
+              <div class="db-header">
+                <div>
+                  <div class="db-title">Welcome back, Sarah!</div>
+                  <div class="db-subtitle">Modern Retail Dashboard · Last 30 days</div>
+                </div>
+              </div>
+              <div class="db-metrics">
+                <div class="metric-card accent">
+                  <div class="metric-label">Total Revenue</div>
+                  <div class="metric-val">₹6,90,000</div>
+                  <div class="metric-change up">↑ 14.2%</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Sales Today</div>
+                  <div class="metric-val">₹32,500</div>
+                  <div class="metric-change up">↑ 8.1%</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">New Orders</div>
+                  <div class="metric-val">112</div>
+                  <div class="metric-change up">↑ 9.5%</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Avg. Order</div>
+                  <div class="metric-val">₹4,999</div>
+                  <div class="metric-change down">↓ 2.3%</div>
+                </div>
+              </div>
+              <div class="db-chart-area">
+                <div class="chart-title">Revenue Performance</div>
+                <div class="chart-bars">
+                  <div class="bar" style="height:40%"></div>
+                  <div class="bar" style="height:55%"></div>
+                  <div class="bar" style="height:45%"></div>
+                  <div class="bar" style="height:70%"></div>
+                  <div class="bar" style="height:60%"></div>
+                  <div class="bar" style="height:80%"></div>
+                  <div class="bar accent-bar" style="height:95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card card-1">
+          <div class="fc-icon">🛍️</div>
+          <div>
+            <div class="fc-title">New Order</div>
+            <div class="fc-sub">Aria Silk Dress · ₹18,500</div>
+          </div>
+        </div>
+        <div class="floating-card card-2">
+          <div class="fc-icon">📦</div>
+          <div>
+            <div class="fc-title">Low Stock Alert</div>
+            <div class="fc-sub">Cashmere Blouse · 3 left</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LOGOS MARQUEE -->
-  <section class="logos-section">
-    <p class="logos-label">Trusted by boutiques in 12 countries</p>
-    <div class="marquee-wrap">
-      <div class="marquee-track">
-        <span class="brand-name">Maison Éclat</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Velour Studio</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">The Label Co.</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Satin & Silk</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">NordHaus</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Petal Atelier</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Luxe Lane</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Maison Éclat</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Velour Studio</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">The Label Co.</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Satin & Silk</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">NordHaus</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Petal Atelier</span>
-        <span class="brand-sep">·</span>
-        <span class="brand-name">Luxe Lane</span>
+    <!-- LOGOS MARQUEE -->
+    <section class="logos-section">
+      <p class="logos-label">Trusted by boutiques in 12 countries</p>
+      <div class="marquee-wrap">
+        <div class="marquee-track">
+          <span class="brand-name">Maison Éclat</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Velour Studio</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">The Label Co.</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Satin & Silk</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">NordHaus</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Petal Atelier</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Luxe Lane</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Maison Éclat</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Velour Studio</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">The Label Co.</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Satin & Silk</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">NordHaus</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Petal Atelier</span>
+          <span class="brand-sep">·</span>
+          <span class="brand-name">Luxe Lane</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PLATFORM OVERVIEW -->
-  <section class="section" id="platform">
-    <div class="container">
-      <div class="section-label">Platform Overview</div>
-      <h2 class="section-title">One platform.<br />Every retail tool you need.</h2>
-      <p class="section-sub">MarsCart replaces your fragmented stack with a single, unified ecosystem — purpose-built
-        for
-        modern retail.</p>
-      <div class="modules-grid">
-        <div class="module-card" id="mod-pos">
-          <div class="module-icon">🖥️</div>
-          <div class="module-name">MarsCart POS</div>
-          <div class="module-desc">Fast, intuitive point-of-sale for in-store checkout. Handle cash, card, and UPI
-            payments with ease.</div>
-        </div>
-        <div class="module-card" id="mod-inventory">
-          <div class="module-icon">📦</div>
-          <div class="module-name">Inventory Management</div>
-          <div class="module-desc">Track stock across branches in real-time. Get low-stock alerts and automate reorders.
+    <!-- PLATFORM OVERVIEW -->
+    <section class="section" id="platform">
+      <div class="container">
+        <div class="section-label">Platform Overview</div>
+        <h2 class="section-title">One platform.<br />Every retail tool you need.</h2>
+        <p class="section-sub">MarsCart replaces your fragmented stack with a single, unified ecosystem — purpose-built
+          for
+          modern retail.</p>
+        <div class="modules-grid">
+          <div class="module-card" id="mod-pos">
+            <div class="module-icon">🖥️</div>
+            <div class="module-name">MarsCart POS</div>
+            <div class="module-desc">Fast, intuitive point-of-sale for in-store checkout. Handle cash, card, and UPI
+              payments with ease.</div>
+          </div>
+          <div class="module-card" id="mod-inventory">
+            <div class="module-icon">📦</div>
+            <div class="module-name">Inventory Management</div>
+            <div class="module-desc">Track stock across branches in real-time. Get low-stock alerts and automate
+              reorders.
+            </div>
+          </div>
+          <div class="module-card" id="mod-ecom">
+            <div class="module-icon">🛒</div>
+            <div class="module-name">E-commerce Storefront</div>
+            <div class="module-desc">A beautiful online shop synced instantly with your physical inventory and product
+              catalog.</div>
+          </div>
+          <div class="module-card" id="mod-analytics">
+            <div class="module-icon">📊</div>
+            <div class="module-name">Sales Analytics</div>
+            <div class="module-desc">Deep insights into revenue, products, and customer behavior. Make data-driven
+              decisions.</div>
+          </div>
+          <div class="module-card" id="mod-branch">
+            <div class="module-icon">🏪</div>
+            <div class="module-name">Branch Management</div>
+            <div class="module-desc">Manage multiple store locations, staff assignments, and branch-level analytics from
+              one console.</div>
+          </div>
+          <div class="module-card" id="mod-customer">
+            <div class="module-icon">👤</div>
+            <div class="module-name">Customer Accounts</div>
+            <div class="module-desc">Personalized shopping profiles, order history, wishlists, and custom measurements
+              for
+              every customer.</div>
           </div>
         </div>
-        <div class="module-card" id="mod-ecom">
-          <div class="module-icon">🛒</div>
-          <div class="module-name">E-commerce Storefront</div>
-          <div class="module-desc">A beautiful online shop synced instantly with your physical inventory and product
-            catalog.</div>
-        </div>
-        <div class="module-card" id="mod-analytics">
-          <div class="module-icon">📊</div>
-          <div class="module-name">Sales Analytics</div>
-          <div class="module-desc">Deep insights into revenue, products, and customer behavior. Make data-driven
-            decisions.</div>
-        </div>
-        <div class="module-card" id="mod-branch">
-          <div class="module-icon">🏪</div>
-          <div class="module-name">Branch Management</div>
-          <div class="module-desc">Manage multiple store locations, staff assignments, and branch-level analytics from
-            one console.</div>
-        </div>
-        <div class="module-card" id="mod-customer">
-          <div class="module-icon">👤</div>
-          <div class="module-name">Customer Accounts</div>
-          <div class="module-desc">Personalized shopping profiles, order history, wishlists, and custom measurements for
-            every customer.</div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ROLE-BASED PLATFORM -->
-  <section class="section section-dark" id="roles">
-    <div class="container">
-      <div class="section-label light">Role-Based Access</div>
-      <h2 class="section-title light">Built for every person<br />in your retail operation.</h2>
-      <p class="section-sub light">Five distinct roles with tailored dashboards, permissions, and tools — so everyone
-        works with exactly what they need.</p>
-      <div class="roles-tabs">
-        <button class="role-tab active" data-role="company" id="tab-company">Company Admin</button>
-        <button class="role-tab" data-role="branch" id="tab-branch">Branch Admin</button>
-        <button class="role-tab" data-role="cashier" id="tab-cashier">Cashier</button>
-        <button class="role-tab" data-role="customer" id="tab-customer">Customer</button>
-      </div>
-      <div class="roles-content">
-        <div class="role-panel active" data-role="company">
-          <div class="role-info">
-            <div class="role-badge">Company Admin</div>
-            <h3>Manage your retail brand</h3>
-            <p>Company Admins control their entire business — branches, staff, product catalog, and company-wide
-              settings — all from a central management hub.</p>
-            <ul class="role-features">
-              <li>✓ Manage branches & locations</li>
-              <li>✓ Staff accounts & permissions</li>
-              <li>✓ Product catalog & collections</li>
-              <li>✓ Brand & theme customization</li>
-              <li>✓ Company-wide analytics</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard">
-              <div class="mini-header">Brand Dashboard — Company Admin</div>
-              <div class="mini-stats">
-                <div class="mini-stat">
-                  <div class="ms-val">6</div>
-                  <div class="ms-label">Branches</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">840</div>
-                  <div class="ms-label">Products</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">42</div>
-                  <div class="ms-label">Staff</div>
-                </div>
-              </div>
-              <div class="mini-list">
-                <div class="mini-list-item"><span class="mli-name">New Delhi Flagship</span><span
-                    class="mli-status active-tag">Open</span></div>
-                <div class="mini-list-item"><span class="mli-name">Branch 2 · Mumbai</span><span
-                    class="mli-status active-tag">Open</span></div>
-                <div class="mini-list-item"><span class="mli-name">Branch 3 · Bangalore</span><span
-                    class="mli-status trial-tag">Opening Soon</span></div>
-              </div>
-            </div>
-          </div>
+    <!-- ROLE-BASED PLATFORM -->
+    <section class="section section-dark" id="roles">
+      <div class="container">
+        <div class="section-label light">Role-Based Access</div>
+        <h2 class="section-title light">Built for every person<br />in your retail operation.</h2>
+        <p class="section-sub light">Five distinct roles with tailored dashboards, permissions, and tools — so everyone
+          works with exactly what they need.</p>
+        <div class="roles-tabs">
+          <button class="role-tab active" data-role="company" id="tab-company">Company Admin</button>
+          <button class="role-tab" data-role="branch" id="tab-branch">Branch Admin</button>
+          <button class="role-tab" data-role="cashier" id="tab-cashier">Cashier</button>
+          <button class="role-tab" data-role="customer" id="tab-customer">Customer</button>
         </div>
-        <div class="role-panel" data-role="branch">
-          <div class="role-info">
-            <div class="role-badge">Branch Admin</div>
-            <h3>Run your store with precision</h3>
-            <p>Branch Admins manage their specific store location — handling local inventory, monitoring cashier
-              performance, and tracking branch-level sales analytics in real time.</p>
-            <ul class="role-features">
-              <li>✓ Local inventory management</li>
-              <li>✓ Staff scheduling & tracking</li>
-              <li>✓ Branch sales & analytics</li>
-              <li>✓ Invoice & receipt management</li>
-              <li>✓ Stock transfer requests</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard">
-              <div class="mini-header">Branch Dashboard — Dubai Mall</div>
-              <div class="mini-stats">
-                <div class="mini-stat">
-                  <div class="ms-val">$12,440</div>
-                  <div class="ms-label">Today's Sales</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">89</div>
-                  <div class="ms-label">Transactions</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">6</div>
-                  <div class="ms-label">Staff On Duty</div>
-                </div>
-              </div>
-              <div class="mini-list">
-                <div class="mini-list-item"><span class="mli-name">Aria Silk Dress</span><span
-                    class="mli-status trial-tag">Low Stock (3)</span></div>
-                <div class="mini-list-item"><span class="mli-name">Cashmere Blouse</span><span
-                    class="mli-status active-tag">In Stock (48)</span></div>
-                <div class="mini-list-item"><span class="mli-name">Linen Trouser</span><span
-                    class="mli-status active-tag">In Stock (21)</span></div>
-              </div>
+        <div class="roles-content">
+          <div class="role-panel active" data-role="company">
+            <div class="role-info">
+              <div class="role-badge">Company Admin</div>
+              <h3>Manage your retail brand</h3>
+              <p>Company Admins control their entire business — branches, staff, product catalog, and company-wide
+                settings — all from a central management hub.</p>
+              <ul class="role-features">
+                <li>✓ Manage branches & locations</li>
+                <li>✓ Staff accounts & permissions</li>
+                <li>✓ Product catalog & collections</li>
+                <li>✓ Brand & theme customization</li>
+                <li>✓ Company-wide analytics</li>
+              </ul>
             </div>
-          </div>
-        </div>
-        <div class="role-panel" data-role="cashier">
-          <div class="role-info">
-            <div class="role-badge">Cashier</div>
-            <h3>Fast, seamless checkout</h3>
-            <p>Cashiers use an intuitive POS interface to process in-store sales, generate invoices, apply discounts,
-              and handle returns — all without friction.</p>
-            <ul class="role-features">
-              <li>✓ Instant product search & scan</li>
-              <li>✓ Multi-payment methods</li>
-              <li>✓ Discount & promo codes</li>
-              <li>✓ Invoice & receipt generation</li>
-              <li>✓ Return & exchange handling</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard pos-ui">
-              <div class="mini-header">POS Terminal</div>
-              <div class="pos-items">
-                <div class="pos-item"><span>Aria Silk Dress × 1</span><span>$249</span></div>
-                <div class="pos-item"><span>Wool Scarf × 2</span><span>$110</span></div>
-                <div class="pos-item"><span>Leather Tote × 1</span><span>$195</span></div>
-              </div>
-              <div class="pos-total">
-                <div class="pos-row"><span>Subtotal</span><span>$554</span></div>
-                <div class="pos-row"><span>Discount (10%)</span><span>-$55.40</span></div>
-                <div class="pos-row total-row"><span>Total</span><span>$498.60</span></div>
-              </div>
-              <div class="pos-btn">Charge $498.60</div>
-            </div>
-          </div>
-        </div>
-        <div class="role-panel" data-role="customer">
-          <div class="role-info">
-            <div class="role-badge">Customer</div>
-            <h3>A delightful shopping experience</h3>
-            <p>Customers enjoy a beautifully curated online boutique — browsing collections, saving wishlists, placing
-              orders, and tracking deliveries effortlessly.</p>
-            <ul class="role-features">
-              <li>✓ Personalized product discovery</li>
-              <li>✓ Collections & wishlists</li>
-              <li>✓ Secure checkout & payment</li>
-              <li>✓ Order tracking & history</li>
-              <li>✓ Custom measurements profile</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard store-ui">
-              <div class="store-nav">
-                <span class="store-brand">AURA</span>
-                <span class="store-links">Shop · Collections · About</span>
-                <span class="store-icons">♡ 🛒</span>
-              </div>
-              <div class="store-grid">
-                <div class="store-product">
-                  <div class="product-img p1"></div>
-                  <div class="product-info">
-                    <div class="pname">Aria Silk Dress</div>
-                    <div class="pprice">$249</div>
+            <div class="role-visual">
+              <div class="mini-dashboard">
+                <div class="mini-header">Brand Dashboard — Company Admin</div>
+                <div class="mini-stats">
+                  <div class="mini-stat">
+                    <div class="ms-val">6</div>
+                    <div class="ms-label">Branches</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="ms-val">840</div>
+                    <div class="ms-label">Products</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="ms-val">42</div>
+                    <div class="ms-label">Staff</div>
                   </div>
                 </div>
-                <div class="store-product">
-                  <div class="product-img p2"></div>
-                  <div class="product-info">
-                    <div class="pname">Luna Blouse</div>
-                    <div class="pprice">$110</div>
-                  </div>
-                </div>
-                <div class="store-product">
-                  <div class="product-img p3"></div>
-                  <div class="product-info">
-                    <div class="pname">Kai Blazer</div>
-                    <div class="pprice">$295</div>
-                  </div>
+                <div class="mini-list">
+                  <div class="mini-list-item"><span class="mli-name">New Delhi Flagship</span><span
+                      class="mli-status active-tag">Open</span></div>
+                  <div class="mini-list-item"><span class="mli-name">Branch 2 · Mumbai</span><span
+                      class="mli-status active-tag">Open</span></div>
+                  <div class="mini-list-item"><span class="mli-name">Branch 3 · Bangalore</span><span
+                      class="mli-status trial-tag">Opening Soon</span></div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CUSTOMER JOURNEY -->
-  <section class="section" id="shopping">
-    <div class="container">
-      <div class="section-label">Customer Experience</div>
-      <h2 class="section-title">A shopping journey<br />customers will love.</h2>
-      <p class="section-sub">From first browse to final delivery — MarsCart powers a beautifully seamless e-commerce
-        experience for boutique shoppers.</p>
-      <div class="journey-flow">
-        <div class="journey-step" id="js-1">
-          <div class="journey-num">01</div>
-          <div class="journey-icon">🔍</div>
-          <div class="journey-title">Browse Products</div>
-          <div class="journey-desc">Shop by category, collection, or style. Curated discovery with powerful filters.
+          <div class="role-panel" data-role="branch">
+            <div class="role-info">
+              <div class="role-badge">Branch Admin</div>
+              <h3>Run your store with precision</h3>
+              <p>Branch Admins manage their specific store location — handling local inventory, monitoring cashier
+                performance, and tracking branch-level sales analytics in real time.</p>
+              <ul class="role-features">
+                <li>✓ Local inventory management</li>
+                <li>✓ Staff scheduling & tracking</li>
+                <li>✓ Branch sales & analytics</li>
+                <li>✓ Invoice & receipt management</li>
+                <li>✓ Stock transfer requests</li>
+              </ul>
+            </div>
+            <div class="role-visual">
+              <div class="mini-dashboard">
+                <div class="mini-header">Branch Dashboard — Dubai Mall</div>
+                <div class="mini-stats">
+                  <div class="mini-stat">
+                    <div class="ms-val">$12,440</div>
+                    <div class="ms-label">Today's Sales</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="ms-val">89</div>
+                    <div class="ms-label">Transactions</div>
+                  </div>
+                  <div class="mini-stat">
+                    <div class="ms-val">6</div>
+                    <div class="ms-label">Staff On Duty</div>
+                  </div>
+                </div>
+                <div class="mini-list">
+                  <div class="mini-list-item"><span class="mli-name">Aria Silk Dress</span><span
+                      class="mli-status trial-tag">Low Stock (3)</span></div>
+                  <div class="mini-list-item"><span class="mli-name">Cashmere Blouse</span><span
+                      class="mli-status active-tag">In Stock (48)</span></div>
+                  <div class="mini-list-item"><span class="mli-name">Linen Trouser</span><span
+                      class="mli-status active-tag">In Stock (21)</span></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="journey-arrow">→</div>
-        <div class="journey-step" id="js-2">
-          <div class="journey-num">02</div>
-          <div class="journey-icon">♡</div>
-          <div class="journey-title">Save to Wishlist</div>
-          <div class="journey-desc">Bookmark favorites and get notified when items go on sale or restock.</div>
-        </div>
-        <div class="journey-arrow">→</div>
-        <div class="journey-step" id="js-3">
-          <div class="journey-num">03</div>
-          <div class="journey-icon">💳</div>
-          <div class="journey-title">Checkout</div>
-          <div class="journey-desc">Secure, fast checkout with multiple payment options and saved addresses.</div>
-        </div>
-        <div class="journey-arrow">→</div>
-        <div class="journey-step" id="js-4">
-          <div class="journey-num">04</div>
-          <div class="journey-icon">📦</div>
-          <div class="journey-title">Track Orders</div>
-          <div class="journey-desc">Real-time order tracking, delivery updates, and full order history.</div>
-        </div>
-      </div>
-      <div class="storefront-preview">
-        <div class="sf-header">
-          <span class="sf-brand">AURA BOUTIQUE</span>
-          <div class="sf-nav-links">
-            <span>New Arrivals</span><span>Shop</span><span>Collections</span><span>About</span>
+          <div class="role-panel" data-role="cashier">
+            <div class="role-info">
+              <div class="role-badge">Cashier</div>
+              <h3>Fast, seamless checkout</h3>
+              <p>Cashiers use an intuitive POS interface to process in-store sales, generate invoices, apply discounts,
+                and handle returns — all without friction.</p>
+              <ul class="role-features">
+                <li>✓ Instant product search & scan</li>
+                <li>✓ Multi-payment methods</li>
+                <li>✓ Discount & promo codes</li>
+                <li>✓ Invoice & receipt generation</li>
+                <li>✓ Return & exchange handling</li>
+              </ul>
+            </div>
+            <div class="role-visual">
+              <div class="mini-dashboard pos-ui">
+                <div class="mini-header">POS Terminal</div>
+                <div class="pos-items">
+                  <div class="pos-item"><span>Aria Silk Dress × 1</span><span>$249</span></div>
+                  <div class="pos-item"><span>Wool Scarf × 2</span><span>$110</span></div>
+                  <div class="pos-item"><span>Leather Tote × 1</span><span>$195</span></div>
+                </div>
+                <div class="pos-total">
+                  <div class="pos-row"><span>Subtotal</span><span>$554</span></div>
+                  <div class="pos-row"><span>Discount (10%)</span><span>-$55.40</span></div>
+                  <div class="pos-row total-row"><span>Total</span><span>$498.60</span></div>
+                </div>
+                <div class="pos-btn">Charge $498.60</div>
+              </div>
+            </div>
           </div>
-          <div class="sf-actions">
-            <span>🔍</span><span>♡ 3</span><span>🛒 2</span>
-          </div>
-        </div>
-        <div class="sf-hero-banner">
-          <div class="sfh-text">
-            <div class="sfh-sub">Spring Collection 2026</div>
-            <div class="sfh-title">Effortless Elegance</div>
-            <button class="sfh-btn">Shop Now</button>
-          </div>
-        </div>
-        <div class="sf-products">
-          <div class="sf-product">
-            <div class="sfp-img sfp1"></div>
-            <div class="sfp-name">Aria Silk Dress</div>
-            <div class="sfp-price">$249</div>
-          </div>
-          <div class="sf-product">
-            <div class="sfp-img sfp2"></div>
-            <div class="sfp-name">Luna Blouse</div>
-            <div class="sfp-price">$110</div>
-          </div>
-          <div class="sf-product">
-            <div class="sfp-img sfp3"></div>
-            <div class="sfp-name">Mira Trousers</div>
-            <div class="sfp-price">$165</div>
-          </div>
-          <div class="sf-product">
-            <div class="sfp-img sfp4"></div>
-            <div class="sfp-name">Kai Blazer</div>
-            <div class="sfp-price">$295</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="section section-offwhite" id="features">
-    <div class="container">
-      <div class="section-label">Business Management</div>
-      <h2 class="section-title">Powerful tools for<br />every retail challenge.</h2>
-      <p class="section-sub">Everything you need to run a modern boutique operation — without the complexity.</p>
-      <div class="features-bento">
-        <div class="bento-card bento-wide" id="feat-inventory">
-          <div class="bento-icon">📦</div>
-          <div class="bento-title">Multi-Branch Inventory</div>
-          <div class="bento-desc">Track stock levels across all your store locations in real-time. Low-stock alerts,
-            transfer requests, and automatic sync between your POS and online store.</div>
-          <div class="inventory-visual">
-            <div class="inv-row header-row"><span>Product</span><span>Dubai</span><span>Abu
-                Dhabi</span><span>Riyadh</span></div>
-            <div class="inv-row"><span>Aria Silk Dress</span><span class="inv-ok">48</span><span
-                class="inv-low">3</span><span class="inv-ok">22</span></div>
-            <div class="inv-row"><span>Luna Blouse</span><span class="inv-ok">31</span><span
-                class="inv-ok">17</span><span class="inv-warn">8</span></div>
-            <div class="inv-row"><span>Wool Scarf</span><span class="inv-ok">120</span><span
-                class="inv-ok">65</span><span class="inv-ok">44</span></div>
-          </div>
-        </div>
-        <div class="bento-card" id="feat-catalog">
-          <div class="bento-icon">🗂️</div>
-          <div class="bento-title">Product Catalog</div>
-          <div class="bento-desc">Manage your full product lineup with variants, collections, pricing, and rich media —
-            all in one catalog.</div>
-        </div>
-        <div class="bento-card" id="feat-invoice">
-          <div class="bento-icon">🧾</div>
-          <div class="bento-title">Invoice Generation</div>
-          <div class="bento-desc">Auto-generate professional PDF invoices for every sale. Email directly to customers
-            with one click.</div>
-        </div>
-        <div class="bento-card" id="feat-staff">
-          <div class="bento-icon">👥</div>
-          <div class="bento-title">Staff & Permissions</div>
-          <div class="bento-desc">Create role-based staff accounts. Control exactly what each team member can view,
-            edit, or process.</div>
-        </div>
-        <div class="bento-card" id="feat-theme">
-          <div class="bento-icon">🎨</div>
-          <div class="bento-title">Theme Customization</div>
-          <div class="bento-desc">Customize your online storefront with your brand colors, fonts, and layout — no coding
-            required.</div>
-        </div>
-        <div class="bento-card bento-wide" id="feat-branch">
-          <div class="bento-icon">🏪</div>
-          <div class="bento-title">Multi-Branch Retail</div>
-          <div class="bento-desc">Open and manage multiple physical locations under one brand umbrella. Each branch has
-            its own admin, inventory, and reporting — with company-wide oversight.</div>
-          <div class="branch-visual">
-            <div class="branch-node main"><span>HQ</span></div>
-            <div class="branch-lines">
-              <div class="branch-node sub"><span>Dubai Mall</span></div>
-              <div class="branch-node sub"><span>Abu Dhabi</span></div>
-              <div class="branch-node sub"><span>Riyadh</span></div>
+          <div class="role-panel" data-role="customer">
+            <div class="role-info">
+              <div class="role-badge">Customer</div>
+              <h3>A delightful shopping experience</h3>
+              <p>Customers enjoy a beautifully curated online boutique — browsing collections, saving wishlists, placing
+                orders, and tracking deliveries effortlessly.</p>
+              <ul class="role-features">
+                <li>✓ Personalized product discovery</li>
+                <li>✓ Collections & wishlists</li>
+                <li>✓ Secure checkout & payment</li>
+                <li>✓ Order tracking & history</li>
+                <li>✓ Custom measurements profile</li>
+              </ul>
+            </div>
+            <div class="role-visual">
+              <div class="mini-dashboard store-ui">
+                <div class="store-nav">
+                  <span class="store-brand">AURA</span>
+                  <span class="store-links">Shop · Collections · About</span>
+                  <span class="store-icons">♡ 🛒</span>
+                </div>
+                <div class="store-grid">
+                  <div class="store-product">
+                    <div class="product-img p1"></div>
+                    <div class="product-info">
+                      <div class="pname">Aria Silk Dress</div>
+                      <div class="pprice">$249</div>
+                    </div>
+                  </div>
+                  <div class="store-product">
+                    <div class="product-img p2"></div>
+                    <div class="product-info">
+                      <div class="pname">Luna Blouse</div>
+                      <div class="pprice">$110</div>
+                    </div>
+                  </div>
+                  <div class="store-product">
+                    <div class="product-img p3"></div>
+                    <div class="product-info">
+                      <div class="pname">Kai Blazer</div>
+                      <div class="pprice">$295</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ANALYTICS -->
-  <section class="section section-dark" id="analytics">
-    <div class="container">
-      <div class="section-label light">Analytics Dashboard</div>
-      <h2 class="section-title light">Data that drives<br />smarter decisions.</h2>
-      <p class="section-sub light">Real-time insights into your sales, products, branches, and customers — visualized
-        beautifully.</p>
-      <div class="analytics-layout">
-        <div class="analytics-sidebar">
-          <div class="analytics-metric" id="am-1">
-            <div class="am-label">Total Revenue</div>
-            <div class="am-value">$4.1M</div>
-            <div class="am-change up">↑ 13.5%</div>
-          </div>
-          <div class="analytics-metric" id="am-2">
-            <div class="am-label">Active Customers</div>
-            <div class="am-value">8,900</div>
-            <div class="am-change up">↑ 8%</div>
-          </div>
-          <div class="analytics-metric" id="am-3">
-            <div class="am-label">New Customers</div>
-            <div class="am-value">1,240</div>
-            <div class="am-change up">↑ 15%</div>
-          </div>
-          <div class="analytics-metric" id="am-4">
-            <div class="am-label">Conversion Rate</div>
-            <div class="am-value">3.6%</div>
-            <div class="am-change up">↑ 2.1%</div>
-          </div>
-        </div>
-        <div class="analytics-main">
-          <div class="chart-card" id="chart-sales">
-            <div class="chart-card-title">Monthly Revenue</div>
-            <div class="line-chart">
-              <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D0E84D" stop-opacity="0.4" />
-                    <stop offset="100%" stop-color="#D0E84D" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <path d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5"
-                  fill="none" stroke="#D0E84D" stroke-width="2.5" stroke-linecap="round" />
-                <path
-                  d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5 L400,120 L0,120Z"
-                  fill="url(#grad)" />
-                <circle cx="280" cy="20" r="4" fill="#D0E84D" />
-              </svg>
+    <!-- CUSTOMER JOURNEY -->
+    <section class="section" id="shopping">
+      <div class="container">
+        <div class="section-label">Customer Experience</div>
+        <h2 class="section-title">A shopping journey<br />customers will love.</h2>
+        <p class="section-sub">From first browse to final delivery — MarsCart powers a beautifully seamless e-commerce
+          experience for boutique shoppers.</p>
+        <div class="journey-flow">
+          <div class="journey-step" id="js-1">
+            <div class="journey-num">01</div>
+            <div class="journey-icon">🔍</div>
+            <div class="journey-title">Browse Products</div>
+            <div class="journey-desc">Shop by category, collection, or style. Curated discovery with powerful filters.
             </div>
           </div>
-          <div class="chart-card" id="chart-branch">
-            <div class="chart-card-title">Branch Performance</div>
-            <div class="bar-chart-h">
-              <div class="bch-row"><span class="bch-label">Dubai Mall</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:88%"></div>
-                </div><span class="bch-val">$1.8M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Abu Dhabi</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:65%"></div>
-                </div><span class="bch-val">$1.2M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Riyadh</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:45%"></div>
-                </div><span class="bch-val">$0.9M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Online</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:55%"></div>
-                </div><span class="bch-val">$1.1M</span>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step" id="js-2">
+            <div class="journey-num">02</div>
+            <div class="journey-icon">♡</div>
+            <div class="journey-title">Save to Wishlist</div>
+            <div class="journey-desc">Bookmark favorites and get notified when items go on sale or restock.</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step" id="js-3">
+            <div class="journey-num">03</div>
+            <div class="journey-icon">💳</div>
+            <div class="journey-title">Checkout</div>
+            <div class="journey-desc">Secure, fast checkout with multiple payment options and saved addresses.</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step" id="js-4">
+            <div class="journey-num">04</div>
+            <div class="journey-icon">📦</div>
+            <div class="journey-title">Track Orders</div>
+            <div class="journey-desc">Real-time order tracking, delivery updates, and full order history.</div>
+          </div>
+        </div>
+        <div class="storefront-preview">
+          <div class="sf-header">
+            <span class="sf-brand">AURA BOUTIQUE</span>
+            <div class="sf-nav-links">
+              <span>New Arrivals</span><span>Shop</span><span>Collections</span><span>About</span>
+            </div>
+            <div class="sf-actions">
+              <span>🔍</span><span>♡ 3</span><span>🛒 2</span>
+            </div>
+          </div>
+          <div class="sf-hero-banner">
+            <div class="sfh-text">
+              <div class="sfh-sub">Spring Collection 2026</div>
+              <div class="sfh-title">Effortless Elegance</div>
+              <button class="sfh-btn">Shop Now</button>
+            </div>
+          </div>
+          <div class="sf-products">
+            <div class="sf-product">
+              <div class="sfp-img sfp1"></div>
+              <div class="sfp-name">Aria Silk Dress</div>
+              <div class="sfp-price">$249</div>
+            </div>
+            <div class="sf-product">
+              <div class="sfp-img sfp2"></div>
+              <div class="sfp-name">Luna Blouse</div>
+              <div class="sfp-price">$110</div>
+            </div>
+            <div class="sf-product">
+              <div class="sfp-img sfp3"></div>
+              <div class="sfp-name">Mira Trousers</div>
+              <div class="sfp-price">$165</div>
+            </div>
+            <div class="sf-product">
+              <div class="sfp-img sfp4"></div>
+              <div class="sfp-name">Kai Blazer</div>
+              <div class="sfp-price">$295</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section section-offwhite" id="features">
+      <div class="container">
+        <div class="section-label">Business Management</div>
+        <h2 class="section-title">Powerful tools for<br />every retail challenge.</h2>
+        <p class="section-sub">Everything you need to run a modern boutique operation — without the complexity.</p>
+        <div class="features-bento">
+          <div class="bento-card bento-wide" id="feat-inventory">
+            <div class="bento-icon">📦</div>
+            <div class="bento-title">Multi-Branch Inventory</div>
+            <div class="bento-desc">Track stock levels across all your store locations in real-time. Low-stock alerts,
+              transfer requests, and automatic sync between your POS and online store.</div>
+            <div class="inventory-visual">
+              <div class="inv-row header-row"><span>Product</span><span>Dubai</span><span>Abu
+                  Dhabi</span><span>Riyadh</span></div>
+              <div class="inv-row"><span>Aria Silk Dress</span><span class="inv-ok">48</span><span
+                  class="inv-low">3</span><span class="inv-ok">22</span></div>
+              <div class="inv-row"><span>Luna Blouse</span><span class="inv-ok">31</span><span
+                  class="inv-ok">17</span><span class="inv-warn">8</span></div>
+              <div class="inv-row"><span>Wool Scarf</span><span class="inv-ok">120</span><span
+                  class="inv-ok">65</span><span class="inv-ok">44</span></div>
+            </div>
+          </div>
+          <div class="bento-card" id="feat-catalog">
+            <div class="bento-icon">🗂️</div>
+            <div class="bento-title">Product Catalog</div>
+            <div class="bento-desc">Manage your full product lineup with variants, collections, pricing, and rich media
+              —
+              all in one catalog.</div>
+          </div>
+          <div class="bento-card" id="feat-invoice">
+            <div class="bento-icon">🧾</div>
+            <div class="bento-title">Invoice Generation</div>
+            <div class="bento-desc">Auto-generate professional PDF invoices for every sale. Email directly to customers
+              with one click.</div>
+          </div>
+          <div class="bento-card" id="feat-staff">
+            <div class="bento-icon">👥</div>
+            <div class="bento-title">Staff & Permissions</div>
+            <div class="bento-desc">Create role-based staff accounts. Control exactly what each team member can view,
+              edit, or process.</div>
+          </div>
+          <div class="bento-card" id="feat-theme">
+            <div class="bento-icon">🎨</div>
+            <div class="bento-title">Theme Customization</div>
+            <div class="bento-desc">Customize your online storefront with your brand colors, fonts, and layout — no
+              coding
+              required.</div>
+          </div>
+          <div class="bento-card bento-wide" id="feat-branch">
+            <div class="bento-icon">🏪</div>
+            <div class="bento-title">Multi-Branch Retail</div>
+            <div class="bento-desc">Open and manage multiple physical locations under one brand umbrella. Each branch
+              has
+              its own admin, inventory, and reporting — with company-wide oversight.</div>
+            <div class="branch-visual">
+              <div class="branch-node main"><span>HQ</span></div>
+              <div class="branch-lines">
+                <div class="branch-node sub"><span>Dubai Mall</span></div>
+                <div class="branch-node sub"><span>Abu Dhabi</span></div>
+                <div class="branch-node sub"><span>Riyadh</span></div>
               </div>
             </div>
           </div>
-          <div class="chart-card chart-full" id="chart-products">
-            <div class="chart-card-title">Top Products</div>
-            <table class="products-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Product</th>
-                  <th>Revenue</th>
-                  <th>Units</th>
-                  <th>Growth</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Aria Silk Dress</td>
-                  <td>$84,200</td>
-                  <td>338</td>
-                  <td class="up">↑ 22%</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Cashmere Blouse</td>
-                  <td>$68,500</td>
-                  <td>274</td>
-                  <td class="up">↑ 18%</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Kai Tailored Blazer</td>
-                  <td>$55,000</td>
-                  <td>186</td>
-                  <td class="up">↑ 12%</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Luna Silk Blouse</td>
-                  <td>$42,900</td>
-                  <td>390</td>
-                  <td class="down">↓ 3%</td>
-                </tr>
-              </tbody>
-            </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="section section-dark" id="analytics">
+      <div class="container">
+        <div class="section-label light">Analytics Dashboard</div>
+        <h2 class="section-title light">Data that drives<br />smarter decisions.</h2>
+        <p class="section-sub light">Real-time insights into your sales, products, branches, and customers — visualized
+          beautifully.</p>
+        <div class="analytics-layout">
+          <div class="analytics-sidebar">
+            <div class="analytics-metric" id="am-1">
+              <div class="am-label">Total Revenue</div>
+              <div class="am-value">$4.1M</div>
+              <div class="am-change up">↑ 13.5%</div>
+            </div>
+            <div class="analytics-metric" id="am-2">
+              <div class="am-label">Active Customers</div>
+              <div class="am-value">8,900</div>
+              <div class="am-change up">↑ 8%</div>
+            </div>
+            <div class="analytics-metric" id="am-3">
+              <div class="am-label">New Customers</div>
+              <div class="am-value">1,240</div>
+              <div class="am-change up">↑ 15%</div>
+            </div>
+            <div class="analytics-metric" id="am-4">
+              <div class="am-label">Conversion Rate</div>
+              <div class="am-value">3.6%</div>
+              <div class="am-change up">↑ 2.1%</div>
+            </div>
+          </div>
+          <div class="analytics-main">
+            <div class="chart-card" id="chart-sales">
+              <div class="chart-card-title">Monthly Revenue</div>
+              <div class="line-chart">
+                <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#D0E84D" stop-opacity="0.4" />
+                      <stop offset="100%" stop-color="#D0E84D" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5"
+                    fill="none" stroke="#D0E84D" stroke-width="2.5" stroke-linecap="round" />
+                  <path
+                    d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5 L400,120 L0,120Z"
+                    fill="url(#grad)" />
+                  <circle cx="280" cy="20" r="4" fill="#D0E84D" />
+                </svg>
+              </div>
+            </div>
+            <div class="chart-card" id="chart-branch">
+              <div class="chart-card-title">Branch Performance</div>
+              <div class="bar-chart-h">
+                <div class="bch-row"><span class="bch-label">Dubai Mall</span>
+                  <div class="bch-bar-wrap">
+                    <div class="bch-bar" style="width:88%"></div>
+                  </div><span class="bch-val">$1.8M</span>
+                </div>
+                <div class="bch-row"><span class="bch-label">Abu Dhabi</span>
+                  <div class="bch-bar-wrap">
+                    <div class="bch-bar" style="width:65%"></div>
+                  </div><span class="bch-val">$1.2M</span>
+                </div>
+                <div class="bch-row"><span class="bch-label">Riyadh</span>
+                  <div class="bch-bar-wrap">
+                    <div class="bch-bar" style="width:45%"></div>
+                  </div><span class="bch-val">$0.9M</span>
+                </div>
+                <div class="bch-row"><span class="bch-label">Online</span>
+                  <div class="bch-bar-wrap">
+                    <div class="bch-bar" style="width:55%"></div>
+                  </div><span class="bch-val">$1.1M</span>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card chart-full" id="chart-products">
+              <div class="chart-card-title">Top Products</div>
+              <table class="products-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Revenue</th>
+                    <th>Units</th>
+                    <th>Growth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Aria Silk Dress</td>
+                    <td>$84,200</td>
+                    <td>338</td>
+                    <td class="up">↑ 22%</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Cashmere Blouse</td>
+                    <td>$68,500</td>
+                    <td>274</td>
+                    <td class="up">↑ 18%</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Kai Tailored Blazer</td>
+                    <td>$55,000</td>
+                    <td>186</td>
+                    <td class="up">↑ 12%</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Luna Silk Blouse</td>
+                    <td>$42,900</td>
+                    <td>390</td>
+                    <td class="down">↓ 3%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="section" id="tech">
+      <div class="container container-narrow">
+        <div class="section-label light">E-commerce</div>
+        <h2 class="section-title">Turn browsers into buyers.</h2>
+        <p class="section-sub">A beautiful, fast storefront that syncs directly with your physical inventory.</p>
+
+        <!-- Floating 3D Context Card (GSAP Triggered) -->
+        <div class="floating-buy-card" id="floating-buy">
+          <div class="fbc-info">
+            <h3>Modern Luxury Chair</h3>
+            <p>In Stock • Ships Today</p>
+          </div>
+          <button class="btn btn-primary btn-sm open-cart-btn">Add to Cart</button>
+        </div>
+
+      </div>
+  </div>
+  <div class="journey-flow">
+
+
+    <div class="tech-card" id="tech-firebase">
+      <div class="tech-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#FF6F00" />
+          <path d="M8 24l5-14 3 6 2-4 6 12H8z" fill="white" fill-opacity="0.9" />
+        </svg>
+      </div>
+      <div class="tech-name">Firebase</div>
+      <div class="tech-role">Backend & Auth</div>
+      <div class="tech-desc">Firestore real-time database and Firebase Authentication for instant sync and secure
+        user management.</div>
     </div>
-  </section>
-
-  <!-- TECH STACK -->
-  <section class="section" id="tech">
-    <div class="container">
-      <div class="section-label">Technology</div>
-      <h2 class="section-title">Built on a modern,<br />cloud-native stack.</h2>
-      <p class="section-sub">Enterprise-grade infrastructure designed for performance, security, and infinite scale.</p>
-      <div class="tech-grid">
-
-
-        <div class="tech-card" id="tech-firebase">
-          <div class="tech-icon-wrap">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="#FF6F00" />
-              <path d="M8 24l5-14 3 6 2-4 6 12H8z" fill="white" fill-opacity="0.9" />
-            </svg>
-          </div>
-          <div class="tech-name">Firebase</div>
-          <div class="tech-role">Backend & Auth</div>
-          <div class="tech-desc">Firestore real-time database and Firebase Authentication for instant sync and secure
-            user management.</div>
-        </div>
-        <div class="tech-card" id="tech-genkit">
-          <div class="tech-icon-wrap">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="#4285F4" />
-              <path d="M16 8l2 5h5l-4 3 1.5 5L16 18l-4.5 3 1.5-5-4-3h5z" fill="white" />
-            </svg>
-          </div>
-          <div class="tech-name">Google Genkit</div>
-          <div class="tech-role">AI Integration</div>
-          <div class="tech-desc">AI-powered inventory forecasting, product recommendations, and smart analytics driven
-            by Google's LLMs.</div>
-        </div>
-        <div class="tech-card" id="tech-cloud">
-          <div class="tech-icon-wrap">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="#34A853" />
-              <path d="M10 22a4 4 0 010-8 5 5 0 019.9 1H21a3 3 0 010 6H10z" fill="white" />
-            </svg>
-          </div>
-          <div class="tech-name">Google Cloud</div>
-          <div class="tech-role">Deployment & Scale</div>
-          <div class="tech-desc">Cloud-native deployment with global CDN, auto-scaling, and 99.9% uptime SLA for
-            enterprise reliability.</div>
-        </div>
-
+    <div class="tech-card" id="tech-genkit">
+      <div class="tech-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#4285F4" />
+          <path d="M16 8l2 5h5l-4 3 1.5 5L16 18l-4.5 3 1.5-5-4-3h5z" fill="white" />
+        </svg>
       </div>
-      <div class="tech-badges">
-        <div class="tech-badge">🔒 SOC 2 Ready</div>
-        <div class="tech-badge">🌍 Global CDN</div>
-        <div class="tech-badge">⚡ &lt;200ms Response</div>
-        <div class="tech-badge">🔄 Real-time Sync</div>
-        <div class="tech-badge">📈 Auto-scaling</div>
-      </div>
+      <div class="tech-name">Google Genkit</div>
+      <div class="tech-role">AI Integration</div>
+      <div class="tech-desc">AI-powered inventory forecasting, product recommendations, and smart analytics driven
+        by Google's LLMs.</div>
     </div>
+    <div class="tech-card" id="tech-cloud">
+      <div class="tech-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#34A853" />
+          <path d="M10 22a4 4 0 010-8 5 5 0 019.9 1H21a3 3 0 010 6H10z" fill="white" />
+        </svg>
+      </div>
+      <div class="tech-name">Google Cloud</div>
+      <div class="tech-role">Deployment & Scale</div>
+      <div class="tech-desc">Cloud-native deployment with global CDN, auto-scaling, and 99.9% uptime SLA for
+        enterprise reliability.</div>
+    </div>
+
+  </div>
+  <div class="tech-badges">
+    <div class="tech-badge">🔒 SOC 2 Ready</div>
+    <div class="tech-badge">🌍 Global CDN</div>
+    <div class="tech-badge">⚡ &lt;200ms Response</div>
+    <div class="tech-badge">🔄 Real-time Sync</div>
+    <div class="tech-badge">📈 Auto-scaling</div>
+  </div>
+  </div>
   </section>
 
   <!-- SECURITY -->
@@ -826,7 +865,8 @@
         <div class="security-row">
           <div class="sec-info">
             <h3 class="sec-title">Privacy Compliance</h3>
-            <p class="sec-desc">Global retail requires global compliance. MarsCart is built to honor the strictest data
+            <p class="sec-desc">Global retail requires global compliance. MarsCart is built to honor the strictest
+              data
               protection laws, keeping your brand safe in every market.</p>
             <div class="sec-points">
               <div class="sec-point">Full GDPR and CCPA alignment out of the box</div>
@@ -947,11 +987,13 @@
           </div>
           <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="review-title">&ldquo;Completely transformed how we run our stores.&rdquo;</p>
-          <p class="review-body">We used to manage inventory on spreadsheets and our POS on a separate legacy system. It
+          <p class="review-body">We used to manage inventory on spreadsheets and our POS on a separate legacy system.
+            It
             was a nightmare &mdash; especially across our two branches. After switching to MarsCart, everything became
             one
             seamless flow. Our cashiers love the POS interface, and I personally check the analytics dashboard every
-            morning from my phone. The multi-branch stock tracking alone has saved us thousands of dirhams in overstock.
+            morning from my phone. The multi-branch stock tracking alone has saved us thousands of dirhams in
+            overstock.
           </p>
           <div class="review-meta"><span class="review-date">February 2026</span><span class="review-helpful">&#128077;
               47 found this helpful</span></div>
@@ -972,7 +1014,8 @@
             MarsCart's
             theme customization let us match our brand identity perfectly &mdash; the same fonts, colors, and feel we
             use in our physical store. Our online revenue grew 38% in the first three months, partly because the
-            checkout experience is so smooth. Customers actually compliment us on the website experience during in-store
+            checkout experience is so smooth. Customers actually compliment us on the website experience during
+            in-store
             visits.</p>
           <div class="review-meta"><span class="review-date">January 2026</span><span class="review-helpful">&#128077;
               39 found this helpful</span></div>
@@ -990,7 +1033,8 @@
           <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="review-title">&ldquo;Branch management has never been this easy.&rdquo;</p>
           <p class="review-body">Managing our flagship store in Accra Central plus our new Kumasi branch was getting
-            chaotic. With MarsCart, I can monitor both stores' inventory levels, daily sales, and staff performance from
+            chaotic. With MarsCart, I can monitor both stores' inventory levels, daily sales, and staff performance
+            from
             one dashboard. The stock transfer feature is a lifesaver &mdash; when one branch is low, I request a
             transfer in two taps. The analytics per branch have helped us understand what each location's customer
             demographic actually wants to buy.</p>
@@ -1009,7 +1053,8 @@
           </div>
           <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="review-title">&ldquo;The POS is insanely fast. My customers notice.&rdquo;</p>
-          <p class="review-body">As a cashier, I'm on the POS terminal all day. MarsCart makes my job feel effortless. I
+          <p class="review-body">As a cashier, I'm on the POS terminal all day. MarsCart makes my job feel effortless.
+            I
             can scan a product, apply a member discount, and process a split payment in under 30 seconds. The invoice
             generation is automatic and the returns process is actually intuitive &mdash; something I've never said
             about any retail software before. My manager always mentions how the checkout queue is shorter since we
@@ -1051,8 +1096,10 @@
           <p class="review-title">&ldquo;Rock-solid platform with outstanding support team.&rdquo;</p>
           <p class="review-body">We've been on MarsCart for 8 months across our three Scandinavian locations. The
             platform
-            itself is very stable &mdash; we haven't had a single outage during business hours. The analytics have given
-            our leadership team clearer visibility into which product categories are performing and which aren't. My one
+            itself is very stable &mdash; we haven't had a single outage during business hours. The analytics have
+            given
+            our leadership team clearer visibility into which product categories are performing and which aren't. My
+            one
             suggestion would be even more advanced reporting filters, but I'm told that's on the roadmap. The support
             team responds incredibly fast and actually understands retail.</p>
           <div class="review-meta"><span class="review-date">October 2025</span><span class="review-helpful">&#128077;
@@ -1085,7 +1132,8 @@
             <h3 class="blog-title">How to Stop Losing Money on Dead Stock: A Boutique Owner's Complete Guide to Smart
               Inventory</h3>
             <p class="blog-excerpt">Dead stock is the silent killer of boutique margins. In this guide, we break down
-              exactly how to use real-time inventory data, sell-through rates, and AI-powered demand forecasting to keep
+              exactly how to use real-time inventory data, sell-through rates, and AI-powered demand forecasting to
+              keep
               your shelves fresh and your cash flow healthy. We interviewed 12 boutique owners who cut their overstock
               by 40% in under 6 months.</p>
             <div class="blog-tags"><span class="blog-tag">Inventory</span><span class="blog-tag">Cash Flow</span><span
@@ -1106,7 +1154,8 @@
               <span class="blog-date">February 18, 2026</span>
               <span class="blog-read">6 min read</span>
             </div>
-            <h3 class="blog-title">5 Reasons Your Boutique's Online Store Is Underperforming (And How to Fix Them)</h3>
+            <h3 class="blog-title">5 Reasons Your Boutique's Online Store Is Underperforming (And How to Fix Them)
+            </h3>
             <p class="blog-excerpt">A stunning product doesn't sell itself online. From slow page loads to checkout
               friction and poor mobile UX, discover the five most common mistakes boutique brands make on their
               e-commerce stores &mdash; and exactly how to fix each one.</p>
@@ -1127,10 +1176,12 @@
               <span class="blog-date">February 5, 2026</span>
               <span class="blog-read">10 min read</span>
             </div>
-            <h3 class="blog-title">Expanding from 1 to 3 Boutique Locations: What Worked, What Didn't, and What We Wish
+            <h3 class="blog-title">Expanding from 1 to 3 Boutique Locations: What Worked, What Didn't, and What We
+              Wish
               We Knew</h3>
             <p class="blog-excerpt">Opening a second or third retail location is one of the most exciting &mdash; and
-              risky &mdash; things a boutique owner can do. We sat down with three brands who scaled from a single store
+              risky &mdash; things a boutique owner can do. We sat down with three brands who scaled from a single
+              store
               to multi-branch operations and asked them to be brutally honest about the process: staffing, inventory
               splitting, brand consistency, and choosing the right tech stack.</p>
             <div class="blog-tags"><span class="blog-tag">Multi-Branch</span><span class="blog-tag">Growth</span><span
@@ -1139,7 +1190,8 @@
           </div>
         </div>
       </div>
-      <div class="blog-footer"><a href="#" class="btn btn-outline-light btn-lg" id="blog-view-all-btn">View All Articles
+      <div class="blog-footer"><a href="#" class="btn btn-outline-light btn-lg" id="blog-view-all-btn">View All
+          Articles
           &rarr;</a></div>
     </div>
   </section>
@@ -1211,9 +1263,13 @@
         <span>Built with ❤️ for modern retail.</span>
       </div>
     </div>
-  </footer>
+    </section>
+    </div> <!-- End main-container -->
 
-  <script src="app.js"></script>
+    <script src="app.js"></script>
+    <script type="module" src="3d-scene.js"></script>
+    <script src="locale.js"></script>
+  <script src="floating-logic.js"></script>
 </body>
 
 </html>
