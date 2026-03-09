@@ -105,60 +105,45 @@ class MarsCartTent {
     setupGSAPScroll() {
         if (!this.tent || typeof gsap === 'undefined') return;
 
-        // Main scroll timeline for the Scrollytelling format
-        const tl = gsap.timeline({
+        // 1. Continuous Rotation linked to the entire page scroll
+        gsap.to(this.tent.rotation, {
             scrollTrigger: {
-                trigger: '#main-container',
+                trigger: 'body', // The whole body
                 start: 'top top',
                 end: 'bottom bottom',
-                scrub: 1, // Smoothly follows scrollbar
-            }
+                scrub: 1.5, // Super smooth scrubbing
+            },
+            y: Math.PI * 2, // 360 degree spin as you scroll down
+            ease: "none"
         });
 
-        /* 
-          The Sections:
-          1 (0 - 25%): Front View (Book a Demo) -> Rotate 90 deg right
-          2 (25 - 50%): Right Wall (Features) -> Rotate 90 deg back
-          3 (50 - 75%): Back Wall (Pricing) -> Rotate 90 deg left
-          4 (75 - 100%): Left Wall (Branches) -> Rotate front and ZOOM
-        */
+        // 2. Final Zoom when reaching the very last specific section
+        const ctaElement = document.querySelector('#cta');
+        if (ctaElement) {
+            gsap.to(this.camera.position, {
+                scrollTrigger: {
+                    trigger: '#cta',
+                    start: 'top 90%', // When top of CTA enters viewport
+                    end: 'bottom bottom', // When bottom of CTA hits bottom of viewport
+                    scrub: 1.5
+                },
+                z: 2.5, // Move deep in near the table
+                y: this.tent.userData.baseY + 3.0, // Lower to specific table height
+                ease: "power2.inOut"
+            });
 
-        // Stage 1 -> 2: Rotate to right wall
-        tl.to(this.tent.rotation, {
-            y: Math.PI / 2, // 90 deg
-            ease: "power1.inOut"
-        }, 0);
-
-        // Stage 2 -> 3: Rotate to back wall
-        tl.to(this.tent.rotation, {
-            y: Math.PI, // 180 deg
-            ease: "power1.inOut"
-        }, "<1"); // chain right after previous
-
-        // Stage 3 -> 4: Rotate to left wall
-        tl.to(this.tent.rotation, {
-            y: Math.PI * 1.5, // 270 deg
-            ease: "power1.inOut"
-        }, "<1");
-
-        // Stage 4 -> 5 (Final): Rotate back to front, ZOOM camera down to table level
-        // Note: We move the *camera* here, not the tent, to simulate a fly-in
-        tl.to(this.tent.rotation, {
-            y: Math.PI * 2, // 360 deg back to front
-            ease: "power2.inOut"
-        }, "<1");
-
-        tl.to(this.camera.position, {
-            z: 2.5, // Move deep in near the table
-            y: this.tent.userData.baseY + 2.5, // Lower to specific table height
-            ease: "power2.inOut"
-        }, "<"); // running simultaneous with the final rotation
-
-        // Turn on internal glow light during the zoom
-        tl.to(this.tableLight, {
-            intensity: 3.5,
-            ease: "power2.in"
-        }, "<");
+            // Turn on internal glow light during the zoom
+            gsap.to(this.tableLight, {
+                scrollTrigger: {
+                    trigger: '#cta',
+                    start: 'top 90%',
+                    end: 'bottom bottom',
+                    scrub: 1.5
+                },
+                intensity: 4.5,
+                ease: "power2.in"
+            });
+        }
     }
 
     setupLenis() {

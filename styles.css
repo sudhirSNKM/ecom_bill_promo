@@ -41,7 +41,7 @@ a {
 
 .section-dark {
   background-color: transparent !important;
-  color: var(--white);
+  color: var(--black) !important;
   border-bottom: none;
 }
 
