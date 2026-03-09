@@ -1,8 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 
 /* ============================================================
    MARSCART — Tent Scrollytelling
@@ -16,9 +13,9 @@ class MarsCartTent {
         this.scene = new THREE.Scene();
 
         // Setup Camera
-        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         // Initial position looking at the front of the tent
-        this.camera.position.set(0, 0, 10);
+        this.camera.position.set(0, 0, 15);
 
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
@@ -30,7 +27,6 @@ class MarsCartTent {
 
         this.tent = null;
 
-        this.setupPostProcessing();
         this.setupLighting();
         this.loadTentModel();
 
@@ -42,31 +38,14 @@ class MarsCartTent {
         this.tick();
     }
 
-    setupPostProcessing() {
-        this.composer = new EffectComposer(this.renderer);
-        const renderPass = new RenderPass(this.scene, this.camera);
-        // Clear background to be transparent so HTML shows through
-        renderPass.clearColor = new THREE.Color(0, 0, 0);
-        renderPass.clearAlpha = 0;
-        this.composer.addPass(renderPass);
-
-        // Setup Depth of Field (BokehPass)
-        this.bokehPass = new BokehPass(this.scene, this.camera, {
-            focus: 1.0,  // Initial focus distance
-            aperture: 0, // 0 means no blur initially
-            maxblur: 0.01,
-            width: window.innerWidth,
-            height: window.innerHeight
-        });
-        this.composer.addPass(this.bokehPass);
-    }
-
     setupLighting() {
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+        // Soft white ambient light for the whole base
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
         this.scene.add(ambientLight);
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
-        dirLight.position.set(5, 5, 5);
+        // Main directional sun to give the ridges shadow & depth
+        const dirLight = new THREE.DirectionalLight(0xfffdfa, 3.5);
+        dirLight.position.set(10, 15, 10);
         this.scene.add(dirLight);
 
         // Soft PointLight inside the tent (for the final zoom to table)
@@ -100,9 +79,21 @@ class MarsCartTent {
             });
 
             // Center and scale the tent somewhat appropriately
-            this.tent.position.set(0, -1.5, 0);
-            // Adjust scale depending on how big the raw GLB is (using 1 for now)
-            this.tent.scale.set(1, 1, 1);
+            const box = new THREE.Box3().setFromObject(this.tent);
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const targetSize = 10; // We want it to be roughly 10 units wide
+            const scale = targetSize / maxDim;
+
+            this.tent.scale.set(scale, scale, scale);
+
+            // Recompute box after scaling to center it
+            const newBox = new THREE.Box3().setFromObject(this.tent);
+            const center = newBox.getCenter(new THREE.Vector3());
+
+            // Adjust to bottom alignment (y = min)
+            this.tent.userData.baseY = -(newBox.min.y) - 2.5;
+            this.tent.position.set(-center.x, this.tent.userData.baseY, -center.z);
 
             this.scene.add(this.tent);
 
@@ -150,7 +141,7 @@ class MarsCartTent {
             ease: "power1.inOut"
         }, "<1");
 
-        // Stage 4 -> 5 (Final): Rotate back to front, ZOOM camera down to table level, Trigger Bokeh
+        // Stage 4 -> 5 (Final): Rotate back to front, ZOOM camera down to table level
         // Note: We move the *camera* here, not the tent, to simulate a fly-in
         tl.to(this.tent.rotation, {
             y: Math.PI * 2, // 360 deg back to front
@@ -158,8 +149,8 @@ class MarsCartTent {
         }, "<1");
 
         tl.to(this.camera.position, {
-            z: 2.5, // Move deep in
-            y: 0.5, // Lower to table height
+            z: 2.5, // Move deep in near the table
+            y: this.tent.userData.baseY + 2.5, // Lower to specific table height
             ease: "power2.inOut"
         }, "<"); // running simultaneous with the final rotation
 
@@ -167,18 +158,6 @@ class MarsCartTent {
         tl.to(this.tableLight, {
             intensity: 3.5,
             ease: "power2.in"
-        }, "<");
-
-        // Turn on the Depth of Field blur (aperture) for cinematic effect on the background
-        tl.to(this.bokehPass.uniforms.aperture, {
-            value: 0.005, // Introduce blur
-            ease: "power2.inOut"
-        }, "<");
-
-        // Focus distance stays sharp near the table (e.g., 2 units away)
-        tl.to(this.bokehPass.uniforms.focus, {
-            value: 2.0,
-            ease: "power2.inOut"
         }, "<");
     }
 
@@ -208,20 +187,19 @@ class MarsCartTent {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.composer.setSize(window.innerWidth, window.innerHeight);
     }
 
     tick() {
         requestAnimationFrame(this.tick.bind(this));
 
         // Floating Idle Animation
-        if (this.tent) {
+        if (this.tent && this.tent.userData.baseY !== undefined) {
             const elapsedTime = this.clock.getElapsedTime();
-            this.tent.position.y = -1.5 + Math.sin(elapsedTime * 1.5) * 0.03;
+            this.tent.position.y = this.tent.userData.baseY + Math.sin(elapsedTime * 1.5) * 0.05;
         }
 
-        // Use Composer instead of standard render for Bokeh depth of field
-        this.composer.render();
+        // Standard render
+        this.renderer.render(this.scene, this.camera);
     }
 }
 
