@@ -1,18 +1,24 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 
 /* ============================================================
-   MARSCART — 3D Scene / Role-Based State Manager
+   MARSCART — Tent Scrollytelling
    ============================================================ */
 
-class MarsCart3D {
+class MarsCartTent {
     constructor() {
         this.canvas = document.querySelector('#webgl-canvas');
         if (!this.canvas) return;
 
         this.scene = new THREE.Scene();
+
+        // Setup Camera
         this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-        this.camera.position.set(0, 0, 5);
+        // Initial position looking at the front of the tent
+        this.camera.position.set(0, 0, 10);
 
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
@@ -22,174 +28,158 @@ class MarsCart3D {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        this.activeModel = null;
-        this.models = {};
+        this.tent = null;
 
-        // Mouse Pos for Parallax
-        this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-
-        this.receiptParams = { progress: 0 };
-
+        this.setupPostProcessing();
         this.setupLighting();
-        this.initMockModels();
+        this.loadTentModel();
 
-        // We start by assuming Customer role for the landing page
-        this.loadRoleModel('customer');
-
-        this.setupGSAPScroll();
         this.setupLenis();
 
         window.addEventListener('resize', this.onResize.bind(this));
-        window.addEventListener('mousemove', this.onMouseMove.bind(this));
 
-        // Start loop
         this.clock = new THREE.Clock();
         this.tick();
+    }
+
+    setupPostProcessing() {
+        this.composer = new EffectComposer(this.renderer);
+        const renderPass = new RenderPass(this.scene, this.camera);
+        // Clear background to be transparent so HTML shows through
+        renderPass.clearColor = new THREE.Color(0, 0, 0);
+        renderPass.clearAlpha = 0;
+        this.composer.addPass(renderPass);
+
+        // Setup Depth of Field (BokehPass)
+        this.bokehPass = new BokehPass(this.scene, this.camera, {
+            focus: 1.0,  // Initial focus distance
+            aperture: 0, // 0 means no blur initially
+            maxblur: 0.01,
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+        this.composer.addPass(this.bokehPass);
     }
 
     setupLighting() {
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
         this.scene.add(ambientLight);
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
-        dirLight.position.set(2, 5, 3);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        dirLight.position.set(5, 5, 5);
         this.scene.add(dirLight);
 
-        const fillLight = new THREE.DirectionalLight(0xD0E84D, 0.8);
-        fillLight.position.set(-2, 0, -3);
-        this.scene.add(fillLight);
+        // Soft PointLight inside the tent (for the final zoom to table)
+        this.tableLight = new THREE.PointLight(0xfffae6, 0); // intensity 0 initially
+        this.tableLight.position.set(0, 0.5, 0); // Position roughly above the table
+        this.scene.add(this.tableLight);
     }
 
-    /* 
-     Since we don't have actual .glb files provided yet, 
-     we generate procedural mockups to demonstrate the Role-Based logic 
-    */
-    initMockModels() {
-        // 1. Customer Luxury Model (Smooth, High Polish)
-        const luxuryGeo = new THREE.TorusKnotGeometry(0.8, 0.25, 128, 32);
-        const luxuryMat = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            roughness: 0.1,
-            metalness: 0.8
+    loadTentModel() {
+        const loader = new GLTFLoader();
+
+        loader.load('assets/uploads_files_5882300_Promotional_Tent.glb', (gltf) => {
+            this.tent = gltf.scene;
+
+            // Enhance materials
+            this.tent.traverse((child) => {
+                if (child.isMesh) {
+                    // Check if this looks like the canopy fabric
+                    if (child.name.toLowerCase().includes('canvas') || child.name.toLowerCase().includes('fabric') || child.name.toLowerCase().includes('tent')) {
+                        const oldMat = child.material;
+                        child.material = new THREE.MeshPhysicalMaterial({
+                            color: 0x1e3a8a, // Deep blue sheen
+                            metalness: 0.1,
+                            roughness: 0.4,
+                            clearcoat: 0.2, // Gives it that synthetic canopy reflectivity
+                            clearcoatRoughness: 0.3,
+                        });
+                        if (oldMat.map) child.material.map = oldMat.map;
+                    }
+                }
+            });
+
+            // Center and scale the tent somewhat appropriately
+            this.tent.position.set(0, -1.5, 0);
+            // Adjust scale depending on how big the raw GLB is (using 1 for now)
+            this.tent.scale.set(1, 1, 1);
+
+            this.scene.add(this.tent);
+
+            // Once model is loaded, we can setup the GSAP timeline
+            this.setupGSAPScroll();
         });
-        this.models['customer'] = new THREE.Mesh(luxuryGeo, luxuryMat);
-
-        // 2. Branch Technical Model (Wireframe / Exploded Feel)
-        const techGeo = new THREE.IcosahedronGeometry(1.2, 1);
-        const techMat = new THREE.MeshBasicMaterial({
-            color: 0xD0E84D,
-            wireframe: true
-        });
-        this.models['branch'] = new THREE.Mesh(techGeo, techMat);
-
-        // 3. Admin Heatmap Model (Low Poly, Colored)
-        const adminGeo = new THREE.BoxGeometry(1.5, 1.5, 1.5);
-        const adminMat = new THREE.MeshNormalMaterial();
-        this.models['admin'] = new THREE.Mesh(adminGeo, adminMat);
-
-        // 4. FinTech Receipt Model (Canvas Texture)
-        this.createReceiptModel();
-    }
-
-    createReceiptModel() {
-        const canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 1024;
-        const ctx = canvas.getContext('2d');
-
-        // Draw Receipt Background
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, 512, 1024);
-
-        // Draw Text
-        ctx.fillStyle = '#111111';
-        ctx.font = 'bold 60px Inter';
-        ctx.textAlign = 'center';
-        ctx.fillText('MarsCart Receipt', 256, 120);
-
-        ctx.font = 'normal 40px Inter';
-        ctx.textAlign = 'left';
-        ctx.fillText('Item: Luxury Chair', 40, 300);
-        ctx.fillText('Tax (18%): ₹4,499', 40, 400);
-
-        ctx.fillStyle = '#D0E84D'; // Lime
-        ctx.fillRect(40, 500, 432, 100);
-        ctx.fillStyle = '#111111';
-        ctx.font = 'bold 50px Inter';
-        ctx.fillText('TOTAL:  ₹29,498', 60, 565);
-
-        const texture = new THREE.CanvasTexture(canvas);
-        const geo = new THREE.PlaneGeometry(1.5, 3);
-        const mat = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-
-        this.receiptMesh = new THREE.Mesh(geo, mat);
-        this.receiptMesh.rotation.set(-0.2, 0.4, 0.1);
-        this.receiptMesh.position.set(0, -6, -2); // Start hidden below
-        this.scene.add(this.receiptMesh);
-    }
-
-    loadRoleModel(role) {
-        if (this.activeModel) {
-            this.scene.remove(this.activeModel);
-        }
-
-        this.activeModel = this.models[role] || this.models['customer'];
-        this.activeModel.rotation.set(0, 0, 0);
-        this.activeModel.position.set(1.5, 0, 0); // Position it on right side for hero
-
-        this.scene.add(this.activeModel);
-
-        // Re-bind scroll trigger animation for the new model
-        this.setupGSAPScroll();
     }
 
     setupGSAPScroll() {
-        if (!this.activeModel || typeof gsap === 'undefined') return;
+        if (!this.tent || typeof gsap === 'undefined') return;
 
-        // Clear old ScrollTriggers if switching models
-        ScrollTrigger.getAll().forEach(t => t.kill());
-
-        // Main scroll timeline for the 3D Object
+        // Main scroll timeline for the Scrollytelling format
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '#main-container',
                 start: 'top top',
                 end: 'bottom bottom',
-                scrub: 1 // smooth scrubbing
+                scrub: 1, // Smoothly follows scrollbar
             }
         });
 
-        // Animate rotation & position based on scroll depth
-        tl.to(this.activeModel.rotation, {
-            y: Math.PI * 4,
-            x: Math.PI * 0.5,
-            ease: "none"
+        /* 
+          The Sections:
+          1 (0 - 25%): Front View (Book a Demo) -> Rotate 90 deg right
+          2 (25 - 50%): Right Wall (Features) -> Rotate 90 deg back
+          3 (50 - 75%): Back Wall (Pricing) -> Rotate 90 deg left
+          4 (75 - 100%): Left Wall (Branches) -> Rotate front and ZOOM
+        */
+
+        // Stage 1 -> 2: Rotate to right wall
+        tl.to(this.tent.rotation, {
+            y: Math.PI / 2, // 90 deg
+            ease: "power1.inOut"
         }, 0);
 
-        // Move model across screen as we scroll down
-        tl.to(this.activeModel.position, {
-            y: -2,
-            x: -1.5,
-            ease: "none"
-        }, 0);
+        // Stage 2 -> 3: Rotate to back wall
+        tl.to(this.tent.rotation, {
+            y: Math.PI, // 180 deg
+            ease: "power1.inOut"
+        }, "<1"); // chain right after previous
 
-        // FinTech Billing Animation:
-        // When hitting the 'shopping' section, shrink chair, slide in receipt
-        ScrollTrigger.create({
-            trigger: '#shopping',
-            start: 'top center',
-            end: 'bottom bottom',
-            scrub: true,
-            onUpdate: (self) => {
-                // Shrink active model
-                const s = 1 - (self.progress * 0.8);
-                this.activeModel.scale.set(s, s, s);
+        // Stage 3 -> 4: Rotate to left wall
+        tl.to(this.tent.rotation, {
+            y: Math.PI * 1.5, // 270 deg
+            ease: "power1.inOut"
+        }, "<1");
 
-                // Fly in receipt
-                this.receiptMesh.position.y = -6 + (self.progress * 6);
-                this.receiptMesh.rotation.y = 0.4 - (self.progress * 0.4);
-            }
-        });
+        // Stage 4 -> 5 (Final): Rotate back to front, ZOOM camera down to table level, Trigger Bokeh
+        // Note: We move the *camera* here, not the tent, to simulate a fly-in
+        tl.to(this.tent.rotation, {
+            y: Math.PI * 2, // 360 deg back to front
+            ease: "power2.inOut"
+        }, "<1");
+
+        tl.to(this.camera.position, {
+            z: 2.5, // Move deep in
+            y: 0.5, // Lower to table height
+            ease: "power2.inOut"
+        }, "<"); // running simultaneous with the final rotation
+
+        // Turn on internal glow light during the zoom
+        tl.to(this.tableLight, {
+            intensity: 3.5,
+            ease: "power2.in"
+        }, "<");
+
+        // Turn on the Depth of Field blur (aperture) for cinematic effect on the background
+        tl.to(this.bokehPass.uniforms.aperture, {
+            value: 0.005, // Introduce blur
+            ease: "power2.inOut"
+        }, "<");
+
+        // Focus distance stays sharp near the table (e.g., 2 units away)
+        tl.to(this.bokehPass.uniforms.focus, {
+            value: 2.0,
+            ease: "power2.inOut"
+        }, "<");
     }
 
     setupLenis() {
@@ -197,8 +187,6 @@ class MarsCart3D {
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                direction: 'vertical',
-                gestureDirection: 'vertical',
                 smooth: true,
             });
 
@@ -208,7 +196,6 @@ class MarsCart3D {
             }
             requestAnimationFrame(raf);
 
-            // Sync GSAP ScrollTrigger with Lenis
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => {
                 lenis.raf(time * 1000);
@@ -221,36 +208,23 @@ class MarsCart3D {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    }
-
-    onMouseMove(e) {
-        // Map mouse position to -1 to 1 space
-        this.mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+        this.composer.setSize(window.innerWidth, window.innerHeight);
     }
 
     tick() {
         requestAnimationFrame(this.tick.bind(this));
 
-        if (this.activeModel) {
-            // Idle float animation
+        // Floating Idle Animation
+        if (this.tent) {
             const elapsedTime = this.clock.getElapsedTime();
-            this.activeModel.position.y += Math.sin(elapsedTime * 2) * 0.001;
-
-            // Mouse Parallax (Ease towards target)
-            this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
-            this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
-
-            this.activeModel.rotation.x += this.mouse.y * 0.01;
-            this.activeModel.rotation.y += this.mouse.x * 0.01;
+            this.tent.position.y = -1.5 + Math.sin(elapsedTime * 1.5) * 0.03;
         }
 
-        this.renderer.render(this.scene, this.camera);
+        // Use Composer instead of standard render for Bokeh depth of field
+        this.composer.render();
     }
 }
 
-// Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
-    window.marsCart3D = new MarsCart3D();
+    window.marsCartTent = new MarsCartTent();
 });
