@@ -1,5 +1,5 @@
 /* ============================================================
-   ZENITH — Enhanced Animation System
+   MARSCART — Enhanced Animation System
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -440,6 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log('%cZenith Platform', 'font-size:24px;font-weight:900;color:#D0E84D;background:#0a0a0a;padding:8px 16px;border-radius:6px;');
+    console.log('%cMarsCart Platform', 'font-size:24px;font-weight:900;color:#D0E84D;background:#0a0a0a;padding:8px 16px;border-radius:6px;');
     console.log('%cThe Operating System for Modern Boutique Retail', 'color:#888;font-size:12px;');
 });

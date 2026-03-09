@@ -4,8 +4,8 @@
    <nav class="s-nav" id="sNav">
     <div class="s-nav-inner">
       <a href="index.html" class="s-logo">
-        <div class="s-logo-icon">Z</div>
-        <span>Zenith</span>
+        <div class="s-logo-icon">M</div>
+        <span>MarsCart</span>
       </a>
       <div class="s-nav-links" id="sNavLinks">
         <a href="index.html#platform">Platform</a>
@@ -35,10 +35,10 @@
       <div class="s-footer-top">
         <div class="s-footer-brand">
           <div class="s-footer-logo">
-            <div class="s-footer-logo-icon">Z</div>
-            <span>Zenith</span>
+            <div class="s-footer-logo-icon">M</div>
+            <span>MarsCart</span>
           </div>
-          <p>The operating system for modern boutique retail. Built for brands that demand excellence.</p>
+          <p>POS • Billing • Inventory • Ecommerce. Built for brands that demand excellence.</p>
         </div>
         <div class="s-footer-links">
           <div class="s-footer-col">
@@ -74,8 +74,8 @@
         </div>
       </div>
       <div class="s-footer-bottom">
-        <span>© 2026 Zenith. All rights reserved.</span>
-        <span>Built with ❤️ for boutique retail.</span>
+        <span>© 2026 MarsCart. All rights reserved.</span>
+        <span>Built with ❤️ for modern retail.</span>
       </div>
     </div>
   </footer>`;
