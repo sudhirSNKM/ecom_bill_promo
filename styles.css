@@ -16,6 +16,7 @@ a {
   width: 100vw;
   height: 100vh;
   z-index: 0;
+  /* Stays securely in the background */
   pointer-events: none;
 }
 
@@ -28,21 +29,53 @@ a {
 #main-container {
   position: relative;
   z-index: 10;
+  overflow-x: hidden;
 }
 
-/* Make existing solid sections transparent so tent is visible */
+/* Transparent Backgrounds - Noomo Labs Style */
+body {
+  background-color: var(--offwhite) !important;
+  color: var(--black);
+  margin: 0;
+}
+
+.noomo-huge-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18vw;
+  font-weight: 900;
+  color: var(--black);
+  white-space: nowrap;
+  letter-spacing: -0.05em;
+  z-index: 1;
+  /* Sits behind the 3D model if it was possible, or just huge behind the content */
+  pointer-events: none;
+  opacity: 1;
+}
+
 .section,
 .hero,
 .section-offwhite,
 .logos-section {
   background-color: transparent !important;
-  border-bottom: none;
+  border-bottom: none !important;
+  position: relative;
+  z-index: 2;
+  /* Content floats above the massive typography overlay */
+  min-height: 100vh;
+  /* space out sections massively so tent rotations have time */
 }
 
+/* Force dark sections into transparent light text */
 .section-dark {
   background-color: transparent !important;
   color: var(--black) !important;
-  border-bottom: none;
+  border-bottom: none !important;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
 }
 
 /* GLOBAL KILL-SWITCH for GSAP takeover */
@@ -2849,4 +2882,54 @@ body {
   .blog-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.metric-card,
+.dashboard-frame,
+.feature-card,
+.review-card,
+.am-card,
+.chart-card,
+.pricing-card,
+.form-input {
+  /* Flatten all cards to be completely translucent panes */
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--black) !important;
+  box-shadow: none !important;
+}
+
+.feature-title,
+.review-text,
+.am-value,
+.chart-card-title,
+.form-label,
+.pricing-name,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--black) !important;
+}
+
+/* Fix Hero Box that's normally dark */
+.hero-badge {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--black) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.hero-box {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Invert Logo colors */
+.logo-icon {
+  background: #000;
+  color: var(--lime);
 }

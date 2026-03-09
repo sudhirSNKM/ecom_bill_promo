@@ -60,23 +60,7 @@ class MarsCartTent {
         loader.load('assets/uploads_files_5882300_Promotional_Tent.glb', (gltf) => {
             this.tent = gltf.scene;
 
-            // Enhance materials
-            this.tent.traverse((child) => {
-                if (child.isMesh) {
-                    // Check if this looks like the canopy fabric
-                    if (child.name.toLowerCase().includes('canvas') || child.name.toLowerCase().includes('fabric') || child.name.toLowerCase().includes('tent')) {
-                        const oldMat = child.material;
-                        child.material = new THREE.MeshPhysicalMaterial({
-                            color: 0x1e3a8a, // Deep blue sheen
-                            metalness: 0.1,
-                            roughness: 0.4,
-                            clearcoat: 0.2, // Gives it that synthetic canopy reflectivity
-                            clearcoatRoughness: 0.3,
-                        });
-                        if (oldMat.map) child.material.map = oldMat.map;
-                    }
-                }
-            });
+            // No material overrides to keep the glTF original materials and colors
 
             // Center and scale the tent somewhat appropriately
             const box = new THREE.Box3().setFromObject(this.tent);
