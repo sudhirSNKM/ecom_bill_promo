@@ -41,6 +41,23 @@
 
 html {
   scroll-behavior: smooth;
+  --nav-height: 80px;
+}
+
+/* Scroll reveal classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.parallax-target {
+  transition: transform 0.1s linear;
 }
 
 body {
@@ -128,27 +145,31 @@ body {
 /* ---- NAV ---- */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 16px;
+  left: 24px;
+  right: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
   z-index: 1000;
-  background: rgba(242, 242, 242, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid transparent;
-  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav.scrolled {
-  border-bottom-color: var(--gray-200);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  top: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 64px;
+  padding: 0 16px 0 24px;
+  height: 60px;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -208,8 +229,18 @@ body {
 .nav-cta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   flex-shrink: 0;
+}
+
+.pricing-label {
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+.pricing-label strong {
+  color: var(--black);
+  font-weight: 800;
 }
 
 .hamburger {
@@ -353,9 +384,36 @@ body {
 
 .hero-actions {
   display: flex;
-  gap: 14px;
+  align-items: center;
+  gap: 24px;
   flex-wrap: wrap;
   margin-bottom: 48px;
+}
+
+.hero-price-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-from {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.price-big {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--lime);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.price-big small {
+  font-size: 14px;
+  opacity: 0.6;
 }
 
 .hero-stats {

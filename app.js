@@ -261,26 +261,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Hero stats
-    new IntersectionObserver((entries) => {
+    new IntersectionObserver((entries, observer) => {
         entries.forEach(e => {
             if (!e.isIntersecting) return;
-            countUp(e.target.querySelector('#hero-stat-0') || e.target.querySelectorAll('.stat-num')[0], 2400, '', '+', false);
-            countUp(e.target.querySelector('#hero-stat-1') || e.target.querySelectorAll('.stat-num')[1], 180, '$', 'M+', false);
-            countUp(e.target.querySelector('#hero-stat-2') || e.target.querySelectorAll('.stat-num')[2], 99.9, '', '%', true);
-            this.unobserve(e.target);
+            countUp(e.target.querySelectorAll('.stat-num')[0], 2400, '', '+', false);
+            countUp(e.target.querySelectorAll('.stat-num')[1], 1500, '₹', 'Cr+', false);
+            countUp(e.target.querySelectorAll('.stat-num')[2], 99.9, '', '%', true);
+            observer.unobserve(e.target);
         });
     }, { threshold: 0.5 }).observe(document.querySelector('.hero-stats') || document.body);
 
     // Analytics section metrics
     const analyticsSection = document.getElementById('analytics');
-    new IntersectionObserver((entries) => {
+    new IntersectionObserver((entries, observer) => {
         entries.forEach(e => {
             if (!e.isIntersecting) return;
-            countUp(document.querySelector('#am-1 .am-value'), 4.1, '$', 'M', true);
+            countUp(document.querySelector('#am-1 .am-value'), 35, '₹', 'Cr', true);
             countUp(document.querySelector('#am-2 .am-value'), 8900, '', '', false);
             countUp(document.querySelector('#am-3 .am-value'), 1240, '', '', false);
             countUp(document.querySelector('#am-4 .am-value'), 3.6, '', '%', true);
-            this.unobserve(e.target);
+            observer.unobserve(e.target);
         });
     }, { threshold: 0.3 }).observe(analyticsSection || document.body);
 
@@ -441,5 +441,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log('%cMarsCart Platform', 'font-size:24px;font-weight:900;color:#D0E84D;background:#0a0a0a;padding:8px 16px;border-radius:6px;');
-    console.log('%cThe Operating System for Modern Boutique Retail', 'color:#888;font-size:12px;');
+    console.log('%cPOS • Billing • Inventory • Ecommerce', 'color:#888;font-size:12px;');
 });

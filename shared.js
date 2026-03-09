@@ -15,13 +15,11 @@
         <a href="index.html#reviews">Reviews</a>
         <a href="blog.html">Blog</a>
         <div class="s-nav-cta-mobile">
-          <a href="#" class="btn-sm btn-ghost-sm">Sign In</a>
-          <a href="contact.html" class="btn-sm btn-primary-sm">Start Free Trial</a>
+          <a href="contact.html" class="btn-sm btn-primary-sm">View Pricing</a>
         </div>
       </div>
       <div class="s-nav-cta">
-        <a href="#" class="btn-sm btn-ghost-sm">Sign In</a>
-        <a href="contact.html" class="btn-sm btn-primary-sm">Start Free Trial</a>
+        <a href="contact.html" class="btn-sm btn-primary-sm">View Pricing</a>
       </div>
       <div class="s-hamburger" id="sHamburger">
         <span></span><span></span><span></span>
