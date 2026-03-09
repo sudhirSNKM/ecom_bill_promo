@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>E-commerce — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .plat-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .plat-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .plat-hero h1 {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .plat-hero h1 span {
+            color: var(--lime);
+        }
+
+        .plat-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .store-mock {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .store-mock-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .store-mock-logo {
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .store-mock-links {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        .store-mock-icons {
+            font-size: 14px;
+        }
+
+        .store-mock-banner {
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sbanner-text {
+            color: var(--white);
+        }
+
+        .sbanner-sub {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .sbanner-title {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .sbanner-btn {
+            background: var(--lime);
+            color: var(--black);
+            padding: 5px 14px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .store-mock-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .smp {
+            padding: 14px;
+            border-right: 1px solid var(--gray-100);
+        }
+
+        .smp:last-child {
+            border-right: none;
+        }
+
+        .smp-img {
+            height: 70px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .smp-name {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .smp-price {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .smp-badge {
+            font-size: 8px;
+            background: rgba(208, 232, 77, 0.2);
+            color: #4a6200;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 3px;
+        }
+
+        .feats {
+            padding: 80px 0;
+        }
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feat-card {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            border-color: var(--lime);
+            box-shadow: 0 12px 40px rgba(208, 232, 77, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feat-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feat-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .feat-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .integrations {
+            background: var(--dark-bg);
+            padding: 80px 0;
+        }
+
+        .int-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .int-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .int-card:hover {
+            border-color: rgba(208, 232, 77, 0.3);
+        }
+
+        .int-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .int-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .int-type {
+            font-size: 11px;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        @media(max-width:768px) {
+
+            .plat-hero-inner,
+            .feat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .int-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="plat-hero">
+            <div class="s-container">
+                <div class="plat-hero-inner">
+                    <div>
+                        <div class="page-hero-label"
+                            style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                            Platform · E-commerce</div>
+                        <h1>Your boutique,<br /><span>beautifully online.</span></h1>
+                        <p>A stunning, fully managed e-commerce storefront — pre-synced with your POS and inventory —
+                            that your customers will love shopping on.</p>
+                        <div style="display:flex;gap:12px;"><a href="contact.html" class="btn-sm btn-primary-sm"
+                                style="padding:12px 24px;font-size:14px;">See a Live Demo</a><a href="docs.html"
+                                class="btn-sm btn-ghost-sm"
+                                style="padding:12px 24px;font-size:14px;color:#aaa;border-color:#333;">View Docs →</a>
+                        </div>
+                    </div>
+                    <div class="store-mock">
+                        <div class="store-mock-nav">
+                            <div class="store-mock-logo">MAISON ÉCLAT</div>
+                            <div class="store-mock-links"><span>New In</span><span>Collections</span><span>Sale</span>
+                            </div>
+                            <div class="store-mock-icons">🔍 🛒</div>
+                        </div>
+                        <div class="store-mock-banner">
+                            <div class="sbanner-text">
+                                <div class="sbanner-sub">New Arrivals · Spring 2026</div>
+                                <div class="sbanner-title">Effortless Luxury</div><a class="sbanner-btn" href="#">Shop
+                                    Now →</a>
+                            </div>
+                        </div>
+                        <div class="store-mock-products">
+                            <div class="smp">
+                                <div class="smp-img" style="background:url('product_dress.png') center/cover no-repeat">
+                                </div>
+                                <div class="smp-name">Silk Wrap Dress</div>
+                                <div class="smp-price">AED 590</div>
+                            </div>
+                            <div class="smp">
+                                <div class="smp-img"
+                                    style="background:url('product_blouse.png') center/cover no-repeat"></div>
+                                <div class="smp-name">Satin Blouse</div>
+                                <div class="smp-price">AED 340</div>
+                                <div class="smp-badge">New In</div>
+                            </div>
+                            <div class="smp">
+                                <div class="smp-img"
+                                    style="background:url('product_blazer.png') center/cover no-repeat"></div>
+                                <div class="smp-name">Tailored Blazer</div>
+                                <div class="smp-price">AED 780</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feats">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">A storefront
+                        your customers will love</h2>
+                    <p style="font-size:16px;color:var(--gray-500);max-width:500px;margin:0 auto;">From discovery to
+                        checkout to delivery — Zenith handles the entire online shopping experience.</p>
+                </div>
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-icon">🎨</div>
+                        <div class="feat-title">Brand-First Design</div>
+                        <div class="feat-desc">Choose from premium templates built for fashion retail. Customize colors,
+                            fonts, and layouts without writing a single line of code.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🔄</div>
+                        <div class="feat-title">Synced with Your POS</div>
+                        <div class="feat-desc">Every product, price, and stock level is synced in real time. When you
+                            sell a size in-store, the online store updates instantly.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">💳</div>
+                        <div class="feat-title">Frictionless Checkout</div>
+                        <div class="feat-desc">One-page checkout with Apple Pay, Google Pay, card, and buy-now-pay-later
+                            options. Average completion rate: 84%.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📦</div>
+                        <div class="feat-title">Order Management</div>
+                        <div class="feat-desc">All online orders flow into your Zenith dashboard alongside in-store
+                            sales. Pack, ship, and track from one place.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">👤</div>
+                        <div class="feat-title">Customer Accounts</div>
+                        <div class="feat-desc">Customers can save wishlists, track orders, and access their purchase
+                            history. Their in-store and online history are unified.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📱</div>
+                        <div class="feat-title">Mobile-First</div>
+                        <div class="feat-desc">Every storefront is perfectly optimized for mobile devices — where 73% of
+                            boutique online shoppers browse and buy.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="integrations">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:48px;">
+                    <h2
+                        style="font-size:32px;font-weight:900;letter-spacing:-1.2px;color:var(--white);margin-bottom:12px;">
+                        Connects with your existing tools</h2>
+                    <p style="font-size:15px;color:rgba(255,255,255,0.4);max-width:440px;margin:0 auto;">Plug Zenith
+                        into the shipping, payment, and marketing tools you already use.</p>
+                </div>
+                <div class="int-grid">
+                    <div class="int-card">
+                        <div class="int-icon">📦</div>
+                        <div class="int-name">Aramex</div>
+                        <div class="int-type">Shipping</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">🚚</div>
+                        <div class="int-name">DHL Express</div>
+                        <div class="int-type">Shipping</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">💳</div>
+                        <div class="int-name">Stripe</div>
+                        <div class="int-type">Payments</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">💰</div>
+                        <div class="int-name">Tabby</div>
+                        <div class="int-type">Buy Now Pay Later</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">📧</div>
+                        <div class="int-name">Klaviyo</div>
+                        <div class="int-type">Email Marketing</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">📱</div>
+                        <div class="int-name">WhatsApp</div>
+                        <div class="int-type">Customer Messaging</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">📊</div>
+                        <div class="int-name">Google Analytics</div>
+                        <div class="int-type">Analytics</div>
+                    </div>
+                    <div class="int-card">
+                        <div class="int-icon">⚡</div>
+                        <div class="int-name">Zapier</div>
+                        <div class="int-type">Automation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="background:var(--lime);padding:64px;text-align:center;">
+            <h2 style="font-size:32px;font-weight:900;letter-spacing:-1.2px;margin-bottom:12px;">Ready to take your
+                boutique online?</h2><a href="contact.html"
+                style="background:var(--black);color:var(--white);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;display:inline-block;text-decoration:none;">Book
+                a Demo →</a>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

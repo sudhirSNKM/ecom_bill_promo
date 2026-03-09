@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Careers — Zenith</title>
+    <meta name="description" content="Join the team building the operating system for modern boutique retail." />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .careers-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .careers-hero-title {
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 900;
+            letter-spacing: -3px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .careers-hero-title span {
+            color: var(--lime);
+        }
+
+        .careers-hero-sub {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .careers-hero-badges {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .perks-section {
+            padding: 80px 0;
+            background: var(--offwhite);
+        }
+
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .perk-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .perk-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .perk-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .perk-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .perk-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.65;
+        }
+
+        .jobs-section {
+            padding: 80px 0;
+        }
+
+        .jobs-filter {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .jobs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .job-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .job-item:hover {
+            border-color: var(--black);
+            transform: translateX(4px);
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .job-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+        }
+
+        .job-tag.eng {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .job-tag.design {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            border-color: rgba(236, 72, 153, 0.2);
+        }
+
+        .job-tag.biz {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+            border-color: rgba(251, 191, 36, 0.2);
+        }
+
+        .job-apply {
+            background: var(--black);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .job-apply:hover {
+            background: #333;
+        }
+
+        .culture-section {
+            background: var(--dark-bg);
+            padding: 80px 0;
+        }
+
+        .culture-title {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .culture-sub {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .culture-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .culture-card-num {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--lime);
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+        }
+
+        .culture-card-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media(max-width:768px) {
+
+            .perks-grid,
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+
+        <section class="careers-hero">
+            <div class="s-container">
+                <div class="page-hero-label" style="margin:0 auto 20px;">We're hiring</div>
+                <h1 class="careers-hero-title">Help us redefine<br /><span>boutique retail.</span></h1>
+                <p class="careers-hero-sub">We're a small, ambitious team building the tools that power thousands of
+                    boutiques worldwide. Come build with us.</p>
+                <div class="careers-hero-badges">
+                    <span class="s-badge s-badge-green">🌍 Remote-first</span>
+                    <span class="s-badge s-badge-lime">12 open roles</span>
+                    <span class="s-badge"
+                        style="background:rgba(255,255,255,0.08);color:#aaa;border:1px solid rgba(255,255,255,0.1);">Competitive
+                        equity</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="perks-section">
+            <div class="s-container">
+                <div class="perks-grid">
+                    <div class="perk-card">
+                        <div class="perk-icon">🌍</div>
+                        <div class="perk-title">Remote-first culture</div>
+                        <div class="perk-desc">Work from anywhere in the world. We have team members across 14 countries
+                            and we've built async-first workflows that actually work.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-icon">💰</div>
+                        <div class="perk-title">Competitive compensation</div>
+                        <div class="perk-desc">Top-of-market salaries plus meaningful equity. We believe the people
+                            building Zenith should own a real piece of it.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-icon">🏥</div>
+                        <div class="perk-title">Full health coverage</div>
+                        <div class="perk-desc">Comprehensive medical, dental, and vision coverage for you and your
+                            family. We cover 100% of premiums for employees.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-icon">📚</div>
+                        <div class="perk-title">Learning budget</div>
+                        <div class="perk-desc">$2,000 per year for courses, conferences, books, and anything that helps
+                            you grow. No approval process required.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-icon">🏖️</div>
+                        <div class="perk-title">Unlimited PTO</div>
+                        <div class="perk-desc">We actually mean it. Take the time you need. We track output, not hours,
+                            and our team takes an average of 22 days off per year.</div>
+                    </div>
+                    <div class="perk-card">
+                        <div class="perk-icon">🖥️</div>
+                        <div class="perk-title">Home office stipend</div>
+                        <div class="perk-desc">$1,500 to kit out your home office when you join, plus a $100/month
+                            co-working credit if you prefer a shared workspace.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="jobs-section">
+            <div class="s-container">
+                <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">Open Roles</h2>
+                <p style="font-size:16px;color:var(--gray-500);margin-bottom:40px;">All roles are remote-first unless
+                    noted otherwise.</p>
+                <div class="jobs-filter">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Engineering</button>
+                    <button class="filter-btn">Design</button>
+                    <button class="filter-btn">Business</button>
+                </div>
+                <div class="jobs-list">
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Senior Full-Stack Engineer</div>
+                            <div class="job-meta"><span class="job-tag eng">Engineering</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Senior Full-Stack Engineer"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Staff Mobile Engineer (React Native)</div>
+                            <div class="job-meta"><span class="job-tag eng">Engineering</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Staff Mobile Engineer"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Head of Platform Security</div>
+                            <div class="job-meta"><span class="job-tag eng">Engineering</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Head of Platform Security"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Senior Product Designer</div>
+                            <div class="job-meta"><span class="job-tag design">Design</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Senior Product Designer"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Brand Designer</div>
+                            <div class="job-meta"><span class="job-tag design">Design</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Brand Designer"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Enterprise Account Executive (MENA)</div>
+                            <div class="job-meta"><span class="job-tag biz">Business</span><span class="job-tag">Dubai /
+                                    Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a
+                            href="mailto:production@fortumars.com?subject=Application: Enterprise Account Executive MENA"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Customer Success Manager</div>
+                            <div class="job-meta"><span class="job-tag biz">Business</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Customer Success Manager"
+                            class="job-apply">Apply</a>
+                    </div>
+                    <div class="job-item">
+                        <div>
+                            <div class="job-title">Head of Marketing</div>
+                            <div class="job-meta"><span class="job-tag biz">Business</span><span
+                                    class="job-tag">Remote</span><span class="job-tag">Full-time</span></div>
+                        </div><a href="mailto:production@fortumars.com?subject=Application: Head of Marketing"
+                            class="job-apply">Apply</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="culture-section">
+            <div class="s-container">
+                <h2 class="culture-title">Life at Zenith</h2>
+                <p class="culture-sub">We're building a company where the best work of your career happens alongside
+                    people who care about craft as much as you do.</p>
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <div class="culture-card-num">14</div>
+                        <div class="culture-card-label">Countries our team works from</div>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-card-num">62</div>
+                        <div class="culture-card-label">Team members worldwide</div>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-card-num">4.8★</div>
+                        <div class="culture-card-label">Glassdoor rating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="shared.js"></script>
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

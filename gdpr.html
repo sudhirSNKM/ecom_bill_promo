@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GDPR — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 48px;
+            padding: 64px 0 80px;
+            align-items: start;
+        }
+
+        .legal-toc {
+            position: sticky;
+            top: 88px;
+            background: var(--offwhite);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-400);
+            margin-bottom: 14px;
+        }
+
+        .toc-link {
+            display: block;
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 5px 8px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            transition: var(--transition);
+        }
+
+        .toc-link:hover {
+            color: var(--black);
+            background: var(--gray-200);
+        }
+
+        .legal-content h1 {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 8px;
+        }
+
+        .legal-date {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+        }
+
+        .legal-content h2 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 40px 0 12px;
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .legal-content p,
+        li {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        .legal-content ul {
+            padding-left: 24px;
+            margin-bottom: 14px;
+        }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .right-card {
+            background: var(--offwhite);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+
+        .right-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .right-card-body {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        @media(max-width:768px) {
+
+            .legal-layout,
+            .rights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-toc {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <div style="background:var(--dark-bg);padding:60px 0 48px;">
+            <div class="s-container">
+                <div class="page-hero-label"
+                    style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                    Legal · EU Compliance</div>
+                <h1
+                    style="font-size:clamp(36px,4vw,56px);font-weight:900;letter-spacing:-2px;color:var(--white);line-height:1.05;">
+                    GDPR Compliance</h1>
+            </div>
+        </div>
+        <div class="s-container">
+            <div class="legal-layout">
+                <nav class="legal-toc">
+                    <div class="toc-title">Contents</div>
+                    <a class="toc-link" href="#overview">Overview</a>
+                    <a class="toc-link" href="#roles">Roles</a>
+                    <a class="toc-link" href="#lawful">Lawful Basis</a>
+                    <a class="toc-link" href="#rights">Your Rights</a>
+                    <a class="toc-link" href="#transfers">Data Transfers</a>
+                    <a class="toc-link" href="#dpa">Data Processing Agreement</a>
+                    <a class="toc-link" href="#dsar">Submit a DSAR</a>
+                </nav>
+                <div class="legal-content">
+                    <h1>GDPR Compliance</h1>
+                    <div class="legal-date">Last Updated: March 1, 2026</div>
+                    <p>Zenith is committed to full compliance with the European Union's General Data Protection
+                        Regulation (GDPR). This page explains how GDPR applies to your use of the Zenith platform and
+                        outlines the rights available to EU/EEA data subjects.</p>
+
+                    <h2 id="overview">Overview</h2>
+                    <p>The GDPR is a comprehensive EU data protection law that governs how organizations collect, use,
+                        and store personal data of individuals in the European Union and European Economic Area. Zenith
+                        processes personal data as both a Data Controller (for platform user accounts) and a Data
+                        Processor (for customer data managed by merchants using Zenith's e-commerce and POS features).
+                    </p>
+
+                    <h2 id="roles">Our Roles Under GDPR</h2>
+                    <p><strong>Data Controller:</strong> When you create an account on Zenith, we are the Data
+                        Controller of your personal information (name, email, billing details). We determine the
+                        purposes and means of processing your data.</p>
+                    <p><strong>Data Processor:</strong> When you use Zenith to manage your boutique customers' data
+                        (orders, wishlists, accounts), you are the Data Controller and Zenith acts as a Data Processor
+                        on your behalf.</p>
+
+                    <h2 id="lawful">Lawful Basis for Processing</h2>
+                    <ul>
+                        <li><strong>Contract:</strong> Processing your account information to deliver the platform
+                            service.</li>
+                        <li><strong>Legitimate Interests:</strong> Security monitoring, fraud prevention, and platform
+                            improvement.</li>
+                        <li><strong>Consent:</strong> Marketing communications (only where you have opted in).</li>
+                        <li><strong>Legal Obligation:</strong> Tax and financial records as required by applicable law.
+                        </li>
+                    </ul>
+
+                    <h2 id="rights">Your Rights Under GDPR</h2>
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-card-title">Right of Access (Art. 15)</div>
+                            <div class="right-card-body">Request a copy of all personal data we hold about you.</div>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-card-title">Right to Rectification (Art. 16)</div>
+                            <div class="right-card-body">Request correction of inaccurate or incomplete data.</div>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-card-title">Right to Erasure (Art. 17)</div>
+                            <div class="right-card-body">Request deletion of your personal data, subject to legal
+                                obligations.</div>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-card-title">Right to Portability (Art. 20)</div>
+                            <div class="right-card-body">Receive your data in a machine-readable format to transfer
+                                elsewhere.</div>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-card-title">Right to Restriction (Art. 18)</div>
+                            <div class="right-card-body">Request that we limit how we process your data in certain
+                                circumstances.</div>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-card-title">Right to Object (Art. 21)</div>
+                            <div class="right-card-body">Object to processing based on legitimate interests or for
+                                direct marketing.</div>
+                        </div>
+                    </div>
+
+                    <h2 id="transfers">International Data Transfers</h2>
+                    <p>Zenith processes data on Google Cloud infrastructure. For transfers of EU/EEA data outside the
+                        European Economic Area, we rely on Standard Contractual Clauses (SCCs) approved by the European
+                        Commission. We ensure equivalent data protection standards for all international transfers.</p>
+
+                    <h2 id="dpa">Data Processing Agreement (DPA)</h2>
+                    <p>If you are using Zenith to process the personal data of your customers (E-commerce, CRM
+                        features), you may require a Data Processing Agreement (DPA) between your organization and
+                        Zenith. Our standard DPA is available upon request. Contact us at <a
+                            href="mailto:production@fortumars.com"
+                            style="color:var(--black);font-weight:600;border-bottom:1px solid var(--lime)">production@fortumars.com</a>
+                        to request a signed DPA.</p>
+
+                    <h2 id="dsar">Submit a Data Subject Access Request</h2>
+                    <p>To exercise any of your GDPR rights, submit a Data Subject Access Request (DSAR) to <a
+                            href="mailto:production@fortumars.com"
+                            style="color:var(--black);font-weight:600;border-bottom:1px solid var(--lime)">production@fortumars.com</a>
+                        with the subject line "DSAR Request." We will respond within 30 days. If you are not satisfied
+                        with our response, you have the right to lodge a complaint with your relevant supervisory
+                        authority.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Multi-Branch — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .plat-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .plat-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .plat-hero h1 {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .plat-hero h1 span {
+            color: var(--lime);
+        }
+
+        .plat-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .branch-mock {
+            background: #111;
+            border: 1px solid #1e1e1e;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .bm-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .branch-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .branch-item {
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bi-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .bi-location {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .bi-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .bi-stat {
+            text-align: right;
+        }
+
+        .bi-stat-val {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--lime);
+        }
+
+        .bi-stat-label {
+            font-size: 9px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bi-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            margin-left: 12px;
+        }
+
+        .feats {
+            padding: 80px 0;
+        }
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feat-card {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            border-color: var(--lime);
+            box-shadow: 0 12px 40px rgba(208, 232, 77, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feat-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feat-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .feat-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .use-case-section {
+            background: var(--offwhite);
+            padding: 80px 0;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .uc-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            text-align: center;
+        }
+
+        .uc-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .uc-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .uc-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.65;
+        }
+
+        .testimonial-section {
+            background: var(--dark-bg);
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .test-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .test-stars {
+            color: var(--lime);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .test-body {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .test-author {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .test-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.7);
+            flex-shrink: 0;
+        }
+
+        .test-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .test-role {
+            font-size: 11px;
+            color: #555;
+        }
+
+        @media(max-width:768px) {
+
+            .plat-hero-inner,
+            .feat-grid,
+            .use-cases,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="plat-hero">
+            <div class="s-container">
+                <div class="plat-hero-inner">
+                    <div>
+                        <div class="page-hero-label"
+                            style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                            Platform · Multi-Branch</div>
+                        <h1>Run every branch<br /><span>from one screen.</span></h1>
+                        <p>Open new locations with confidence. Zenith gives you unified control over every branch's
+                            inventory, staff, sales, and analytics — without the complexity of separate systems.</p>
+                        <div style="display:flex;gap:12px;"><a href="contact.html" class="btn-sm btn-primary-sm"
+                                style="padding:12px 24px;font-size:14px;">Book a Demo</a><a href="docs.html"
+                                class="btn-sm btn-ghost-sm"
+                                style="padding:12px 24px;font-size:14px;color:#aaa;border-color:#333;">View Docs →</a>
+                        </div>
+                    </div>
+                    <div class="branch-mock">
+                        <div class="bm-header">Branch Overview — Maison Éclat</div>
+                        <div class="branch-list">
+                            <div class="branch-item">
+                                <div>
+                                    <div class="bi-name">Dubai Marina</div>
+                                    <div class="bi-location">🇦🇪 Dubai, UAE</div>
+                                </div>
+                                <div class="bi-stats">
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">$18.2K</div>
+                                        <div class="bi-stat-label">Revenue</div>
+                                    </div>
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">312</div>
+                                        <div class="bi-stat-label">Orders</div>
+                                    </div>
+                                </div>
+                                <div class="bi-status"></div>
+                            </div>
+                            <div class="branch-item">
+                                <div>
+                                    <div class="bi-name">DIFC Boutique</div>
+                                    <div class="bi-location">🇦🇪 Dubai, UAE</div>
+                                </div>
+                                <div class="bi-stats">
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">$14.6K</div>
+                                        <div class="bi-stat-label">Revenue</div>
+                                    </div>
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">241</div>
+                                        <div class="bi-stat-label">Orders</div>
+                                    </div>
+                                </div>
+                                <div class="bi-status"></div>
+                            </div>
+                            <div class="branch-item">
+                                <div>
+                                    <div class="bi-name">Riyadh Mall</div>
+                                    <div class="bi-location">🇸🇦 Riyadh, KSA</div>
+                                </div>
+                                <div class="bi-stats">
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">$9.8K</div>
+                                        <div class="bi-stat-label">Revenue</div>
+                                    </div>
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">178</div>
+                                        <div class="bi-stat-label">Orders</div>
+                                    </div>
+                                </div>
+                                <div class="bi-status"></div>
+                            </div>
+                            <div class="branch-item" style="border-color:rgba(208,232,77,0.2)">
+                                <div>
+                                    <div class="bi-name">Paris Pop-Up</div>
+                                    <div class="bi-location">🇫🇷 Paris, France · New</div>
+                                </div>
+                                <div class="bi-stats">
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">$3.1K</div>
+                                        <div class="bi-stat-label">Revenue</div>
+                                    </div>
+                                    <div class="bi-stat">
+                                        <div class="bi-stat-val">54</div>
+                                        <div class="bi-stat-label">Orders</div>
+                                    </div>
+                                </div>
+                                <div class="bi-status" style="background:var(--lime)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feats">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">Scale without
+                        chaos</h2>
+                    <p style="font-size:16px;color:var(--gray-500);max-width:500px;margin:0 auto;">Expanding to a second
+                        or tenth location shouldn't mean doubling your workload.</p>
+                </div>
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-icon">🗺️</div>
+                        <div class="feat-title">Unified Dashboard</div>
+                        <div class="feat-desc">See all your branches in one view. Compare performance, identify top
+                            stores, and spot underperformers instantly.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📦</div>
+                        <div class="feat-title">Cross-Branch Inventory</div>
+                        <div class="feat-desc">Stock is visible across all branches. Transfer inventory between
+                            locations with a simple in-app request flow.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">👥</div>
+                        <div class="feat-title">Staff Per Branch</div>
+                        <div class="feat-desc">Add or remove staff per branch, set role-based permissions per location,
+                            and monitor individual cashier performance.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🌍</div>
+                        <div class="feat-title">Multi-Currency &amp; Language</div>
+                        <div class="feat-desc">Each branch can operate in its local currency and language. Sales
+                            consolidate into one reporting currency.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">⚡</div>
+                        <div class="feat-title">Instant Branch Setup</div>
+                        <div class="feat-desc">Open a new branch in minutes. Add the location, assign staff, import
+                            stock from head office, and go live.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📊</div>
+                        <div class="feat-title">Per-Branch Analytics</div>
+                        <div class="feat-desc">Drill down into individual branch performance or roll up to company
+                            level. Any date range, any metric.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-case-section">
+            <div class="s-container">
+                <h2 style="font-size:32px;font-weight:900;letter-spacing:-1.2px;margin-bottom:40px;text-align:center;">
+                    Built for brands at every stage</h2>
+                <div class="use-cases">
+                    <div class="uc-card">
+                        <div class="uc-icon">🏪</div>
+                        <div class="uc-title">Single Store Opening a Second</div>
+                        <div class="uc-desc">Seamlessly expand by cloning your product catalog, staff structure, and
+                            settings to the new location.</div>
+                    </div>
+                    <div class="uc-card">
+                        <div class="uc-icon">🏬</div>
+                        <div class="uc-title">Regional Franchise</div>
+                        <div class="uc-desc">Central management for brand franchisors with isolated reporting per
+                            franchisee.</div>
+                    </div>
+                    <div class="uc-card">
+                        <div class="uc-icon">🌐</div>
+                        <div class="uc-title">International Boutique Chain</div>
+                        <div class="uc-desc">Multi-currency, multi-language operations across continents — unified in a
+                            single account.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonial-section">
+            <div class="s-container">
+                <h2
+                    style="font-size:32px;font-weight:900;letter-spacing:-1.2px;color:var(--white);margin-bottom:40px;text-align:center;">
+                    What multi-branch owners say</h2>
+                <div class="testimonial-grid">
+                    <div class="test-card">
+                        <div class="test-stars">★★★★★</div>
+                        <div class="test-body">"We went from 2 branches to 5 in 18 months. Without Zenith, that would
+                            have been impossible to manage. Now I see all five stores on one screen."</div>
+                        <div class="test-author">
+                            <div class="test-avatar" style="background:linear-gradient(135deg,#D0E84D,#a8c230)">NA</div>
+                            <div>
+                                <div class="test-name">Nadia Al-Rashid</div>
+                                <div class="test-role">Founder, Maison Éclat</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-stars">★★★★★</div>
+                        <div class="test-body">"Inter-branch stock transfers went from a nightmare of phone calls and
+                            spreadsheets to a 30-second in-app flow. Game-changing."</div>
+                        <div class="test-author">
+                            <div class="test-avatar" style="background:linear-gradient(135deg,#818cf8,#6366f1)">JB</div>
+                            <div>
+                                <div class="test-name">Jacques Beaumont</div>
+                                <div class="test-role">Operations Director, Jardin Mode</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-card">
+                        <div class="test-stars">★★★★★</div>
+                        <div class="test-body">"We operate in three countries with three currencies. Zenith handles all
+                            of it and still gives me consolidated P&amp;L in one view."</div>
+                        <div class="test-author">
+                            <div class="test-avatar" style="background:linear-gradient(135deg,#34d399,#10b981)">FS</div>
+                            <div>
+                                <div class="test-name">Fatou Sanogo</div>
+                                <div class="test-role">CEO, Nègre de Blanc</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="background:var(--lime);padding:64px;text-align:center;">
+            <h2 style="font-size:32px;font-weight:900;letter-spacing:-1.2px;margin-bottom:12px;">Ready to scale your
+                boutique?</h2><a href="contact.html"
+                style="background:var(--black);color:var(--white);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;display:inline-block;text-decoration:none;">Talk
+                to Sales →</a>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

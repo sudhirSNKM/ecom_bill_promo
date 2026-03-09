@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Terms of Service — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .legal-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 48px;
+            padding: 64px 0 80px;
+            align-items: start;
+        }
+
+        .legal-toc {
+            position: sticky;
+            top: 88px;
+            background: var(--offwhite);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-400);
+            margin-bottom: 14px;
+        }
+
+        .toc-link {
+            display: block;
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 5px 8px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toc-link:hover {
+            color: var(--black);
+            background: var(--gray-200);
+        }
+
+        .legal-content h1 {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 8px;
+        }
+
+        .legal-date {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+        }
+
+        .legal-content h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin: 40px 0 12px;
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .legal-content p,
+        li {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        .legal-content ul {
+            padding-left: 24px;
+            margin-bottom: 14px;
+        }
+
+        @media(max-width:768px) {
+            .legal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-toc {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <div style="background:var(--dark-bg);padding:60px 0 48px;">
+            <div class="s-container">
+                <div class="page-hero-label"
+                    style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                    Legal</div>
+                <h1
+                    style="font-size:clamp(36px,4vw,56px);font-weight:900;letter-spacing:-2px;color:var(--white);line-height:1.05;">
+                    Terms of Service</h1>
+            </div>
+        </div>
+        <div class="s-container">
+            <div class="legal-layout">
+                <nav class="legal-toc">
+                    <div class="toc-title">Contents</div>
+                    <a class="toc-link" href="#acceptance">1. Acceptance</a>
+                    <a class="toc-link" href="#account">2. Your Account</a>
+                    <a class="toc-link" href="#use">3. Acceptable Use</a>
+                    <a class="toc-link" href="#payment">4. Payment</a>
+                    <a class="toc-link" href="#ip">5. Intellectual Property</a>
+                    <a class="toc-link" href="#data">6. Your Data</a>
+                    <a class="toc-link" href="#termination">7. Termination</a>
+                    <a class="toc-link" href="#liability">8. Limitation of Liability</a>
+                    <a class="toc-link" href="#disputes">9. Disputes</a>
+                    <a class="toc-link" href="#contact">10. Contact</a>
+                </nav>
+                <div class="legal-content">
+                    <h1>Terms of Service</h1>
+                    <div class="legal-date">Effective Date: January 1, 2026 · Last Updated: March 1, 2026</div>
+                    <p>These Terms of Service ("Terms") govern your access to and use of the Zenith platform, including
+                        any associated mobile applications, APIs, and services (collectively, the "Service"). Please
+                        read these Terms carefully. By accessing or using the Service, you agree to be bound by them.
+                    </p>
+
+                    <h2 id="acceptance">1. Acceptance of Terms</h2>
+                    <p>By creating an account or using Zenith, you confirm that you are at least 18 years old, have the
+                        authority to bind the business entity you represent (if applicable), and agree to these Terms
+                        and our Privacy Policy.</p>
+
+                    <h2 id="account">2. Your Account</h2>
+                    <p>You are responsible for maintaining the confidentiality of your login credentials and for all
+                        activities that occur under your account. You must notify us immediately at <a
+                            href="mailto:production@fortumars.com"
+                            style="color:var(--black);font-weight:600">production@fortumars.com</a> of any unauthorized
+                        use. We reserve the right to suspend accounts that show signs of compromise or misuse.</p>
+
+                    <h2 id="use">3. Acceptable Use</h2>
+                    <p>You agree not to use the Service to:</p>
+                    <ul>
+                        <li>Violate any applicable law or regulation</li>
+                        <li>Process transactions for illegal goods or services</li>
+                        <li>Attempt to gain unauthorized access to other accounts or systems</li>
+                        <li>Interfere with or disrupt the integrity or performance of the platform</li>
+                        <li>Reverse engineer, decompile, or extract source code from the Service</li>
+                        <li>Resell or sublicense access to the platform without our written consent</li>
+                    </ul>
+
+                    <h2 id="payment">4. Payment and Billing</h2>
+                    <p>Subscription fees are billed in advance on a monthly or annual basis. All fees are non-refundable
+                        except as explicitly stated in our refund policy. We may change pricing with 30 days' notice.
+                        Failure to pay may result in suspension or termination of your account.</p>
+
+                    <h2 id="ip">5. Intellectual Property</h2>
+                    <p>The Zenith platform, including its design, code, trademarks, and content, is owned by Zenith and
+                        protected by intellectual property laws. You retain all rights to the data you upload and manage
+                        through the platform. You grant us a limited, non-exclusive license to process your data solely
+                        to provide the Service.</p>
+
+                    <h2 id="data">6. Your Data</h2>
+                    <p>We treat your data as described in our Privacy Policy. You are responsible for ensuring that your
+                        use of customer data through the platform complies with applicable privacy laws.</p>
+
+                    <h2 id="termination">7. Termination</h2>
+                    <p>Either party may terminate the Agreement at any time. Upon termination, access to the platform
+                        will cease. We will retain your data for 30 days post-termination to allow you to export it,
+                        after which it may be permanently deleted.</p>
+
+                    <h2 id="liability">8. Limitation of Liability</h2>
+                    <p>To the maximum extent permitted by law, Zenith shall not be liable for any indirect, incidental,
+                        special, or consequential damages arising from your use of the Service. Our total liability to
+                        you shall not exceed the fees you paid in the 12 months preceding the claim.</p>
+
+                    <h2 id="disputes">9. Governing Law and Disputes</h2>
+                    <p>These Terms are governed by the laws of the jurisdiction in which Zenith is registered. Any
+                        disputes shall first be attempted to be resolved through good-faith negotiation. If unresolved,
+                        disputes shall be submitted to binding arbitration.</p>
+
+                    <h2 id="contact">10. Contact</h2>
+                    <p>For questions about these Terms, contact us at <a href="mailto:production@fortumars.com"
+                            style="color:var(--black);font-weight:600;border-bottom:1px solid var(--lime)">production@fortumars.com</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

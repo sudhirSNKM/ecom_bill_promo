@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Documentation — Zenith</title>
+    <meta name="description" content="Official Zenith developer and user documentation." />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 0;
+            min-height: calc(100vh - 64px);
+        }
+
+        .docs-sidebar {
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            border-right: 1px solid var(--gray-200);
+            padding: 32px 0;
+            background: var(--offwhite);
+        }
+
+        .docs-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .docs-sidebar::-webkit-scrollbar-thumb {
+            background: var(--gray-200);
+            border-radius: 4px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 28px;
+            padding: 0 20px;
+        }
+
+        .sidebar-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+
+        .sidebar-link {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 2px;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: var(--gray-200);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .sidebar-link.active {
+            background: rgba(208, 232, 77, 0.15);
+            color: var(--black);
+            border-left: 2px solid var(--lime);
+            border-radius: 0 6px 6px 0;
+            padding-left: 8px;
+        }
+
+        .docs-content {
+            padding: 48px 64px 80px;
+            max-width: 800px;
+        }
+
+        .docs-breadcrumb {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-bottom: 24px;
+        }
+
+        .docs-breadcrumb span {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .docs-title {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 8px;
+        }
+
+        .docs-meta {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+        }
+
+        .docs-lead {
+            font-size: 17px;
+            color: var(--gray-600);
+            line-height: 1.75;
+            margin-bottom: 40px;
+            border-left: 3px solid var(--lime);
+            padding-left: 20px;
+        }
+
+        .docs-h2 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 40px 0 12px;
+        }
+
+        .docs-h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 28px 0 8px;
+            color: var(--gray-700);
+        }
+
+        .docs-p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .docs-code {
+            background: #0a0a0a;
+            color: #d4d4d4;
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 16px 0 24px;
+            overflow-x: auto;
+        }
+
+        .docs-code .kw {
+            color: #c084fc;
+        }
+
+        .docs-code .str {
+            color: #86efac;
+        }
+
+        .docs-code .cm {
+            color: #555;
+        }
+
+        .docs-code .fn {
+            color: #93c5fd;
+        }
+
+        .docs-code .num {
+            color: #fbbf24;
+        }
+
+        .docs-inline {
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #dc2626;
+        }
+
+        .docs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 28px;
+            font-size: 14px;
+        }
+
+        .docs-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: var(--gray-50);
+            border-bottom: 2px solid var(--gray-200);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-500);
+        }
+
+        .docs-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--gray-100);
+            vertical-align: top;
+        }
+
+        .docs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .docs-callout {
+            background: rgba(208, 232, 77, 0.08);
+            border: 1px solid rgba(208, 232, 77, 0.25);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .docs-callout-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .docs-callout-body {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.65;
+        }
+
+        .docs-nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .docs-nav-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px 20px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .docs-nav-btn:hover {
+            border-color: var(--black);
+        }
+
+        .dnb-label {
+            font-size: 11px;
+            color: var(--gray-400);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .dnb-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        @media(max-width:768px) {
+            .docs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .docs-sidebar {
+                position: static;
+                height: auto;
+            }
+
+            .docs-content {
+                padding: 32px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <div class="docs-layout">
+            <nav class="docs-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Getting Started</div>
+                    <div class="sidebar-link active">Introduction</div>
+                    <div class="sidebar-link">Quick Start</div>
+                    <div class="sidebar-link">Installation</div>
+                    <div class="sidebar-link">Account Setup</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">POS System</div>
+                    <div class="sidebar-link">Overview</div>
+                    <div class="sidebar-link">Processing Sales</div>
+                    <div class="sidebar-link">Returns &amp; Refunds</div>
+                    <div class="sidebar-link">Receipt Templates</div>
+                    <div class="sidebar-link">Payment Methods</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Inventory</div>
+                    <div class="sidebar-link">Managing Products</div>
+                    <div class="sidebar-link">Stock Transfers</div>
+                    <div class="sidebar-link">Low-Stock Alerts</div>
+                    <div class="sidebar-link">Bulk Import (CSV)</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">E-commerce</div>
+                    <div class="sidebar-link">Storefront Setup</div>
+                    <div class="sidebar-link">Product Catalog</div>
+                    <div class="sidebar-link">Checkout Settings</div>
+                    <div class="sidebar-link">Order Management</div>
+                    <div class="sidebar-link">Customer Accounts</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Analytics</div>
+                    <div class="sidebar-link">Sales Reports</div>
+                    <div class="sidebar-link">Branch Performance</div>
+                    <div class="sidebar-link">Custom Dashboards</div>
+                    <div class="sidebar-link">Data Export</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Integrations</div>
+                    <div class="sidebar-link">REST API</div>
+                    <div class="sidebar-link">Webhooks</div>
+                    <div class="sidebar-link">Firebase SDK</div>
+                    <div class="sidebar-link">Zapier</div>
+                </div>
+            </nav>
+
+            <div class="docs-content">
+                <div class="docs-breadcrumb">Documentation › <span>Introduction</span></div>
+                <h1 class="docs-title">Welcome to Zenith</h1>
+                <div class="docs-meta">Last updated March 4, 2026 · 5 min read</div>
+                <p class="docs-lead">Zenith is the all-in-one retail platform for modern boutiques. This documentation
+                    covers everything you need to set up your store, manage your team, and grow your business — from POS
+                    setup to API integration.</p>
+
+                <h2 class="docs-h2">What is Zenith?</h2>
+                <p class="docs-p">Zenith is a multi-tenant SaaS platform built specifically for boutique retailers. It
+                    combines POS, inventory management, e-commerce, analytics, and branch management into a single
+                    unified system — accessible from any device.</p>
+
+                <div class="docs-callout">
+                    <div class="docs-callout-icon">💡</div>
+                    <div class="docs-callout-body"><strong>New to Zenith?</strong> Start with the <strong>Quick Start
+                            guide</strong> to get your first boutique configured in under 30 minutes, including your
+                        first product and a live test transaction.</div>
+                </div>
+
+                <h2 class="docs-h2">Core Concepts</h2>
+                <h3 class="docs-h3">Companies and Branches</h3>
+                <p class="docs-p">The top-level entity in Zenith is a <span class="docs-inline">Company</span>. A
+                    company can have one or more <span class="docs-inline">Branches</span> — physical store locations or
+                    warehouses. Each branch has its own inventory, sales data, and staff, while sharing the company's
+                    product catalog and customer base.</p>
+
+                <h3 class="docs-h3">User Roles</h3>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Access Level</th>
+                            <th>Typical Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Super Admin</strong></td>
+                            <td>Full platform access</td>
+                            <td>Platform operations team</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Company Admin</strong></td>
+                            <td>All branches in their company</td>
+                            <td>Boutique owner / GM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Branch Admin</strong></td>
+                            <td>Single branch only</td>
+                            <td>Store manager</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cashier</strong></td>
+                            <td>POS + limited inventory</td>
+                            <td>Sales associate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>E-commerce storefront only</td>
+                            <td>End customer</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="docs-h2">Quick Setup</h2>
+                <p class="docs-p">After signing up, follow these steps to get your boutique live:</p>
+                <pre class="docs-code"><span class="cm">// Step 1: Create your company profile</span>
+<span class="kw">POST</span> /api/v1/companies
+{
+  <span class="str">"name"</span>: <span class="str">"Maison Éclat"</span>,
+  <span class="str">"country"</span>: <span class="str">"AE"</span>,
+  <span class="str">"currency"</span>: <span class="str">"AED"</span>
+}
+
+<span class="cm">// Step 2: Add your first branch</span>
+<span class="kw">POST</span> /api/v1/branches
+{
+  <span class="str">"company_id"</span>: <span class="str">"cmp_xxx"</span>,
+  <span class="str">"name"</span>: <span class="str">"Dubai Marina Location"</span>
+}
+
+<span class="cm">// Step 3: Add products via dashboard or CSV import</span></pre>
+
+                <h2 class="docs-h2">Next Steps</h2>
+                <p class="docs-p">Once your company is set up, explore these guides to configure your store:</p>
+                <ul style="padding-left:20px;color:var(--gray-600);font-size:15px;line-height:2;">
+                    <li>Set up your <strong>POS terminals</strong> and configure payment methods</li>
+                    <li>Import your <strong>product catalog</strong> via CSV or manually</li>
+                    <li>Customize your <strong>e-commerce storefront</strong> with your brand colors and logo</li>
+                    <li>Invite your <strong>team members</strong> and assign roles</li>
+                    <li>Configure <strong>low-stock alerts</strong> per branch</li>
+                </ul>
+
+                <div class="docs-nav-btns">
+                    <a class="docs-nav-btn" href="docs.html">
+                        <div class="dnb-label">← Previous</div>
+                        <div class="dnb-title">Introduction</div>
+                    </a>
+                    <a class="docs-nav-btn" href="docs.html" style="text-align:right;">
+                        <div class="dnb-label">Next →</div>
+                        <div class="dnb-title">Quick Start</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

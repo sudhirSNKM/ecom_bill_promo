@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Security — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .sec-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .sec-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .sec-hero h1 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .sec-hero h1 span {
+            color: var(--lime);
+        }
+
+        .sec-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            line-height: 1.7;
+        }
+
+        .sec-certs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .sec-cert {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sec-cert-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .sec-cert-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .sec-cert-status {
+            font-size: 11px;
+            color: #4ade80;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .sec-pillars {
+            padding: 80px 0;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pillar-card {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .pillar-card:hover {
+            border-color: var(--lime);
+            box-shadow: 0 12px 40px rgba(208, 232, 77, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .pillar-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .pillar-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .pillar-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pillar-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        .pillar-item::before {
+            content: '✓';
+            color: var(--lime);
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .threat-section {
+            background: var(--dark-bg);
+            padding: 80px 0;
+        }
+
+        .threat-title {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .threat-sub {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 480px;
+            margin-bottom: 48px;
+        }
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .threat-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .threat-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .threat-card-body {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+        }
+
+        .vuln-section {
+            padding: 80px 0;
+        }
+
+        .vuln-card {
+            background: var(--offwhite);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+        }
+
+        .vuln-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+        }
+
+        .vuln-sub {
+            font-size: 16px;
+            color: var(--gray-500);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .vuln-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .vuln-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .vs-num {
+            width: 32px;
+            height: 32px;
+            background: var(--black);
+            color: var(--lime);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .vs-body {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.65;
+        }
+
+        .vs-title {
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 3px;
+        }
+
+        @media(max-width:768px) {
+
+            .sec-hero-grid,
+            .pillars-grid,
+            .threat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="sec-hero">
+            <div class="s-container">
+                <div class="sec-hero-grid">
+                    <div>
+                        <div class="page-hero-label"
+                            style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                            Security</div>
+                        <h1>Your data is<br /><span>fortress-level safe.</span></h1>
+                        <p>Zenith was built with security at its core, not bolted on afterward. We protect your business
+                            data and your customers' information with enterprise-grade security practices.</p>
+                    </div>
+                    <div class="sec-certs">
+                        <div class="sec-cert">
+                            <div class="sec-cert-icon">🔒</div>
+                            <div class="sec-cert-name">SOC 2 Type II</div>
+                            <div class="sec-cert-status">✓ Certified</div>
+                        </div>
+                        <div class="sec-cert">
+                            <div class="sec-cert-icon">🇪🇺</div>
+                            <div class="sec-cert-name">GDPR Compliant</div>
+                            <div class="sec-cert-status">✓ Compliant</div>
+                        </div>
+                        <div class="sec-cert">
+                            <div class="sec-cert-icon">💳</div>
+                            <div class="sec-cert-name">PCI DSS Level 2</div>
+                            <div class="sec-cert-status">✓ Compliant</div>
+                        </div>
+                        <div class="sec-cert">
+                            <div class="sec-cert-icon">🛡️</div>
+                            <div class="sec-cert-name">ISO 27001</div>
+                            <div class="sec-cert-status">✓ In Progress</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-pillars">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">Security built
+                        into every layer</h2>
+                    <p style="font-size:16px;color:var(--gray-500);max-width:500px;margin:0 auto;">We apply security
+                        controls at every level of the stack — infrastructure, application, and organizational.</p>
+                </div>
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🔐</div>
+                        <div class="pillar-title">Encryption</div>
+                        <div class="pillar-desc">Your data is encrypted both in transit and at rest using the strongest
+                            available standards.</div>
+                        <ul class="pillar-list">
+                            <li>AES-256 encryption at rest</li>
+                            <li>TLS 1.3 for all data in transit</li>
+                            <li>End-to-end encrypted customer PII</li>
+                            <li>Encrypted database backups</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🔑</div>
+                        <div class="pillar-title">Access Control</div>
+                        <div class="pillar-desc">Fine-grained role-based access ensures every user only sees what they
+                            need to.</div>
+                        <ul class="pillar-list">
+                            <li>Multi-factor authentication (MFA)</li>
+                            <li>Role-based permissions (5 levels)</li>
+                            <li>Single sign-on (SSO) support</li>
+                            <li>Session timeout and force-logout</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🧪</div>
+                        <div class="pillar-title">Testing &amp; Monitoring</div>
+                        <div class="pillar-desc">We continuously test and monitor our platform for vulnerabilities and
+                            anomalies.</div>
+                        <ul class="pillar-list">
+                            <li>Quarterly penetration testing</li>
+                            <li>Automated vulnerability scanning</li>
+                            <li>Real-time anomaly detection</li>
+                            <li>24/7 security incident monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🗂️</div>
+                        <div class="pillar-title">Data Isolation</div>
+                        <div class="pillar-desc">Each company's data lives in isolation, preventing cross-tenant data
+                            leakage.</div>
+                        <ul class="pillar-list">
+                            <li>Strict multi-tenant data isolation</li>
+                            <li>Row-level security in database</li>
+                            <li>Separate encryption keys per tenant</li>
+                            <li>Audit logs per user and action</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🌐</div>
+                        <div class="pillar-title">Infrastructure</div>
+                        <div class="pillar-desc">Hosted on Google Cloud with redundancy and DDoS protection built in.
+                        </div>
+                        <ul class="pillar-list">
+                            <li>Multi-region deployment</li>
+                            <li>DDoS and bot protection</li>
+                            <li>99.99% infrastructure uptime SLA</li>
+                            <li>Automated failover and backups</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">👥</div>
+                        <div class="pillar-title">People &amp; Process</div>
+                        <div class="pillar-desc">Security isn't just technology. Our team follows strict internal
+                            protocols.</div>
+                        <ul class="pillar-list">
+                            <li>Security-first engineering culture</li>
+                            <li>Background checks for all staff</li>
+                            <li>Mandatory security training (quarterly)</li>
+                            <li>Incident response plan &amp; drills</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="threat-section">
+            <div class="s-container">
+                <h2 class="threat-title">How we handle threats</h2>
+                <p class="threat-sub">When security events occur, we follow a defined playbook to detect, contain,
+                    notify, and remediate.</p>
+                <div class="threat-grid">
+                    <div class="threat-card">
+                        <div class="threat-card-title"><span>🔍</span>Detection</div>
+                        <div class="threat-card-body">Our monitoring systems alert on anomalous API behavior, login
+                            patterns, and unusual data access in real time. Average detection time: under 3 minutes.
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <div class="threat-card-title"><span>🚧</span>Containment</div>
+                        <div class="threat-card-body">Affected accounts or services are isolated within minutes.
+                            Automated rate limiting and session invalidation are triggered immediately upon detection.
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <div class="threat-card-title"><span>📣</span>Notification</div>
+                        <div class="threat-card-body">Affected customers are notified within 72 hours as required by
+                            GDPR. Our security team provides regular updates throughout the incident lifecycle.</div>
+                    </div>
+                    <div class="threat-card">
+                        <div class="threat-card-title"><span>🛠️</span>Remediation</div>
+                        <div class="threat-card-body">Root cause analysis is completed within 5 business days. Findings
+                            are used to harden our controls and prevent similar incidents in the future.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vuln-section">
+            <div class="s-container">
+                <div class="vuln-card">
+                    <h2 class="vuln-title">🐛 Responsible Disclosure</h2>
+                    <p class="vuln-sub">If you've discovered a potential security vulnerability in Zenith, we want to
+                        hear from you. We have a responsible disclosure program and will work with you to address
+                        verified issues promptly.</p>
+                    <div class="vuln-steps">
+                        <div class="vuln-step">
+                            <div class="vs-num">1</div>
+                            <div class="vs-body">
+                                <div class="vs-title">Report the issue</div>Email a detailed description of the
+                                vulnerability to <a href="mailto:production@fortumars.com"
+                                    style="color:var(--black);font-weight:600">production@fortumars.com</a> with the
+                                subject line "Security Disclosure".
+                            </div>
+                        </div>
+                        <div class="vuln-step">
+                            <div class="vs-num">2</div>
+                            <div class="vs-body">
+                                <div class="vs-title">We acknowledge within 24 hours</div>Our security team will confirm
+                                receipt and provide a timeline for investigation.
+                            </div>
+                        </div>
+                        <div class="vuln-step">
+                            <div class="vs-num">3</div>
+                            <div class="vs-body">
+                                <div class="vs-title">Investigation and fix</div>We'll investigate, develop a fix, and
+                                keep you updated throughout the process.
+                            </div>
+                        </div>
+                        <div class="vuln-step">
+                            <div class="vs-num">4</div>
+                            <div class="vs-body">
+                                <div class="vs-title">Public acknowledgment</div>With your permission, we'll credit you
+                                in our security acknowledgments once the issue is resolved.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

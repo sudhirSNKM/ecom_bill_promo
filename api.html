@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>API Reference — Zenith</title>
+    <meta name="description" content="Complete REST API reference for the Zenith platform." />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .api-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 340px;
+            min-height: calc(100vh - 64px);
+        }
+
+        .api-sidebar {
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            border-right: 1px solid var(--gray-200);
+            padding: 28px 0;
+            background: var(--offwhite);
+        }
+
+        .api-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .api-sidebar::-webkit-scrollbar-thumb {
+            background: var(--gray-200);
+        }
+
+        .api-section-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--gray-400);
+            margin: 20px 20px 6px;
+        }
+
+        .api-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 6px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .api-link:hover,
+        .api-link.active {
+            color: var(--black);
+            background: var(--gray-100);
+            font-weight: 600;
+        }
+
+        .method-tag {
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .get {
+            background: rgba(74, 222, 128, 0.15);
+            color: #16a34a;
+        }
+
+        .post {
+            background: rgba(99, 102, 241, 0.15);
+            color: #6366f1;
+        }
+
+        .put {
+            background: rgba(251, 191, 36, 0.15);
+            color: #d97706;
+        }
+
+        .del {
+            background: rgba(239, 68, 68, 0.15);
+            color: #dc2626;
+        }
+
+        .api-content {
+            padding: 48px 40px;
+            overflow-y: auto;
+        }
+
+        .api-intro {
+            max-width: 640px;
+            margin-bottom: 48px;
+        }
+
+        .api-intro h1 {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .api-intro p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.75;
+        }
+
+        .base-url {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 16px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .base-url .label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--gray-400);
+            font-family: var(--font);
+        }
+
+        .endpoint-block {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 24px;
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .endpoint-header:hover {
+            background: var(--gray-50);
+        }
+
+        .endpoint-path {
+            font-family: monospace;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .endpoint-desc {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-left: auto;
+        }
+
+        .endpoint-body {
+            padding: 24px;
+            border-top: 1px solid var(--gray-100);
+            display: none;
+        }
+
+        .endpoint-body.open {
+            display: block;
+        }
+
+        .param-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .param-row {
+            display: grid;
+            grid-template-columns: 160px 80px 1fr;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 13px;
+            align-items: start;
+        }
+
+        .param-row:last-child {
+            border-bottom: none;
+        }
+
+        .param-name {
+            font-family: monospace;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .param-type {
+            color: var(--gray-400);
+        }
+
+        .param-desc {
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .req-badge {
+            font-size: 9px;
+            font-weight: 700;
+            color: #dc2626;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 1px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        .api-code-panel {
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            background: #0d0d0d;
+            border-left: 1px solid #1e1e1e;
+            padding: 28px 24px;
+        }
+
+        .code-lang-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .code-lang-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .code-lang-tab.active {
+            background: #1e1e1e;
+            color: #fff;
+        }
+
+        .code-block {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: var(--radius);
+            padding: 16px;
+            font-family: monospace;
+            font-size: 12px;
+            line-height: 1.7;
+            overflow-x: auto;
+            color: #d4d4d4;
+            margin-bottom: 20px;
+            white-space: pre;
+        }
+
+        .code-block .kw {
+            color: #c084fc;
+        }
+
+        .code-block .str {
+            color: #86efac;
+        }
+
+        .code-block .cm {
+            color: #555;
+        }
+
+        .code-block .fn {
+            color: #93c5fd;
+        }
+
+        .code-block .num {
+            color: #fbbf24;
+        }
+
+        .code-block .prop {
+            color: #fdba74;
+        }
+
+        .res-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        @media(max-width:1024px) {
+            .api-layout {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .api-code-panel {
+                display: none;
+            }
+        }
+
+        @media(max-width:768px) {
+            .api-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .api-sidebar {
+                position: static;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <div class="api-layout">
+            <nav class="api-sidebar">
+                <div style="padding:0 20px 20px;border-bottom:1px solid var(--gray-200);margin-bottom:16px;">
+                    <div style="font-size:16px;font-weight:800;letter-spacing:-0.3px;">API Reference</div>
+                    <div style="font-size:12px;color:var(--gray-400);margin-top:3px;">v1.4.2</div>
+                </div>
+                <div class="api-section-title">Authentication</div>
+                <div class="api-link active"><span class="method-tag post">post</span>/auth/login</div>
+                <div class="api-link"><span class="method-tag post">post</span>/auth/refresh</div>
+                <div class="api-section-title">Companies</div>
+                <div class="api-link"><span class="method-tag get">get</span>/companies</div>
+                <div class="api-link"><span class="method-tag post">post</span>/companies</div>
+                <div class="api-link"><span class="method-tag get">get</span>/companies/:id</div>
+                <div class="api-link"><span class="method-tag put">put</span>/companies/:id</div>
+                <div class="api-section-title">Branches</div>
+                <div class="api-link"><span class="method-tag get">get</span>/branches</div>
+                <div class="api-link"><span class="method-tag post">post</span>/branches</div>
+                <div class="api-link"><span class="method-tag get">get</span>/branches/:id</div>
+                <div class="api-section-title">Products</div>
+                <div class="api-link"><span class="method-tag get">get</span>/products</div>
+                <div class="api-link"><span class="method-tag post">post</span>/products</div>
+                <div class="api-link"><span class="method-tag put">put</span>/products/:id</div>
+                <div class="api-link"><span class="method-tag del">del</span>/products/:id</div>
+                <div class="api-section-title">Orders</div>
+                <div class="api-link"><span class="method-tag get">get</span>/orders</div>
+                <div class="api-link"><span class="method-tag post">post</span>/orders</div>
+                <div class="api-link"><span class="method-tag get">get</span>/orders/:id</div>
+                <div class="api-section-title">Inventory</div>
+                <div class="api-link"><span class="method-tag get">get</span>/inventory</div>
+                <div class="api-link"><span class="method-tag post">post</span>/transfers</div>
+                <div class="api-section-title">Analytics</div>
+                <div class="api-link"><span class="method-tag get">get</span>/analytics/sales</div>
+                <div class="api-link"><span class="method-tag get">get</span>/analytics/branches</div>
+            </nav>
+
+            <div class="api-content">
+                <div class="api-intro">
+                    <h1>API Reference</h1>
+                    <p>The Zenith REST API lets you build integrations, automate workflows, and access your retail data
+                        programmatically. All endpoints return JSON and require a Bearer token for authentication.</p>
+                    <div class="base-url"><span class="label">Base URL</span><span
+                            style="font-family:monospace;color:#6366f1">https://api.zenith.app/v1</span></div>
+                </div>
+
+                <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:24px;">Authentication</h2>
+
+                <div class="endpoint-block">
+                    <div class="endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="method-tag post" style="font-size:11px;padding:3px 8px;">POST</span>
+                        <span class="endpoint-path">/auth/login</span>
+                        <span class="endpoint-desc">Obtain an access token</span>
+                    </div>
+                    <div class="endpoint-body open">
+                        <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;">Authenticate a user and
+                            receive a JWT access token and refresh token.</p>
+                        <div class="param-title">Request Body</div>
+                        <div class="param-row"><span class="param-name">email<span
+                                    class="req-badge">req</span></span><span class="param-type">string</span><span
+                                class="param-desc">The user's email address.</span></div>
+                        <div class="param-row"><span class="param-name">password<span
+                                    class="req-badge">req</span></span><span class="param-type">string</span><span
+                                class="param-desc">The user's password (min 8 chars).</span></div>
+                        <div class="param-title">Response</div>
+                        <div class="param-row"><span class="param-name">access_token</span><span
+                                class="param-type">string</span><span class="param-desc">JWT valid for 1 hour.</span>
+                        </div>
+                        <div class="param-row"><span class="param-name">refresh_token</span><span
+                                class="param-type">string</span><span class="param-desc">Used to refresh the access
+                                token without re-login.</span></div>
+                        <div class="param-row"><span class="param-name">user</span><span
+                                class="param-type">object</span><span class="param-desc">User profile including id,
+                                name, role, and company.</span></div>
+                    </div>
+                </div>
+
+                <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;margin:36px 0 24px;">Products</h2>
+
+                <div class="endpoint-block">
+                    <div class="endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="method-tag get" style="font-size:11px;padding:3px 8px;">GET</span>
+                        <span class="endpoint-path">/products</span>
+                        <span class="endpoint-desc">List all products</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;">Returns a paginated list of
+                            products for the authenticated company.</p>
+                        <div class="param-title">Query Parameters</div>
+                        <div class="param-row"><span class="param-name">page</span><span
+                                class="param-type">integer</span><span class="param-desc">Page number (default:
+                                1).</span></div>
+                        <div class="param-row"><span class="param-name">limit</span><span
+                                class="param-type">integer</span><span class="param-desc">Results per page, max 100
+                                (default: 20).</span></div>
+                        <div class="param-row"><span class="param-name">branch_id</span><span
+                                class="param-type">string</span><span class="param-desc">Filter by branch ID to get
+                                branch-specific stock levels.</span></div>
+                        <div class="param-row"><span class="param-name">search</span><span
+                                class="param-type">string</span><span class="param-desc">Search by product name, SKU, or
+                                barcode.</span></div>
+                    </div>
+                </div>
+
+                <div class="endpoint-block">
+                    <div class="endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="method-tag post" style="font-size:11px;padding:3px 8px;">POST</span>
+                        <span class="endpoint-path">/products</span>
+                        <span class="endpoint-desc">Create a product</span>
+                    </div>
+                    <div class="endpoint-body">
+                        <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;">Create a new product in the
+                            company's catalog.</p>
+                        <div class="param-title">Request Body</div>
+                        <div class="param-row"><span class="param-name">name<span
+                                    class="req-badge">req</span></span><span class="param-type">string</span><span
+                                class="param-desc">Product display name.</span></div>
+                        <div class="param-row"><span class="param-name">sku<span
+                                    class="req-badge">req</span></span><span class="param-type">string</span><span
+                                class="param-desc">Unique stock keeping unit.</span></div>
+                        <div class="param-row"><span class="param-name">price<span
+                                    class="req-badge">req</span></span><span class="param-type">number</span><span
+                                class="param-desc">Selling price in the company's base currency.</span></div>
+                        <div class="param-row"><span class="param-name">category</span><span
+                                class="param-type">string</span><span class="param-desc">Category name or ID.</span>
+                        </div>
+                        <div class="param-row"><span class="param-name">variants</span><span
+                                class="param-type">array</span><span class="param-desc">Array of size/color variant
+                                objects.</span></div>
+                        <div class="param-row"><span class="param-name">images</span><span
+                                class="param-type">array</span><span class="param-desc">Array of image URLs.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-code-panel">
+                <div class="code-lang-tabs">
+                    <div class="code-lang-tab active">cURL</div>
+                    <div class="code-lang-tab">Node.js</div>
+                    <div class="code-lang-tab">Python</div>
+                </div>
+                <div class="res-label">Request</div>
+                <div class="code-block"><span class="fn">curl</span> -X POST \
+                    https://api.zenith.app/v1/auth/login \
+                    -H <span class="str">'Content-Type: application/json'</span> \
+                    -d <span class="str">'{
+                        "email": "owner@boutique.com",
+                        "password": "your_password"
+                        }'</span></div>
+                <div class="res-label">Response 200</div>
+                <div class="code-block">{
+                    <span class="prop">"access_token"</span>: <span class="str">"eyJhbGciOiJSUzI1..."</span>,
+                    <span class="prop">"refresh_token"</span>: <span class="str">"drt_xxxxxxxxxxxxxxxx"</span>,
+                    <span class="prop">"expires_in"</span>: <span class="num">3600</span>,
+                    <span class="prop">"user"</span>: {
+                    <span class="prop">"id"</span>: <span class="str">"usr_xxxxxxxxxxxxxxxx"</span>,
+                    <span class="prop">"name"</span>: <span class="str">"Nadia Al-Rashid"</span>,
+                    <span class="prop">"role"</span>: <span class="str">"company_admin"</span>,
+                    <span class="prop">"company_id"</span>: <span class="str">"cmp_xxxxxxxxxxxxxxxx"</span>
+                    }
+                    }
+                </div>
+                <div class="res-label" style="color:#dc2626">Response 401</div>
+                <div class="code-block">{
+                    <span class="prop">"error"</span>: <span class="str">"invalid_credentials"</span>,
+                    <span class="prop">"message"</span>: <span class="str">"Email or password is incorrect."</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+    <script>
+        document.querySelectorAll('.api-link').forEach(l => {
+            l.addEventListener('click', () => {
+                document.querySelectorAll('.api-link').forEach(x => x.classList.remove('active'));
+                l.classList.add('active');
+            });
+        });
+        document.querySelectorAll('.code-lang-tab').forEach(t => {
+            t.addEventListener('click', () => {
+                document.querySelectorAll('.code-lang-tab').forEach(x => x.classList.remove('active'));
+                t.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

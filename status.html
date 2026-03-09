@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Status — Zenith</title>
+    <meta name="description" content="Real-time status of all Zenith platform services." />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .status-hero {
+            background: var(--dark-bg);
+            padding: 80px 0 64px;
+        }
+
+        .status-overall {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 12px #4ade80;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+
+            0%,
+            100% {
+                box-shadow: 0 0 6px #4ade80;
+            }
+
+            50% {
+                box-shadow: 0 0 18px #4ade80;
+            }
+        }
+
+        .status-overall-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .status-overall-sub {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .uptime-strip {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+
+
+        .uptime-val {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--lime);
+            letter-spacing: -1px;
+        }
+
+        .uptime-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .services-section {
+            padding: 64px 0;
+        }
+
+        .services-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 24px;
+        }
+
+        .service-group {
+            margin-bottom: 40px;
+        }
+
+        .service-group-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+        }
+
+        .service-list {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .service-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-100);
+            background: var(--white);
+        }
+
+        .service-row:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .service-desc {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-green {
+            background: #4ade80;
+        }
+
+        .dot-yellow {
+            background: #fbbf24;
+        }
+
+        .dot-red {
+            background: #f87171;
+        }
+
+        .status-label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-label.ok {
+            color: #16a34a;
+        }
+
+        .status-label.warn {
+            color: #d97706;
+        }
+
+        .status-label.down {
+            color: #dc2626;
+        }
+
+        .uptime-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .uptime-bars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .uptime-day {
+            width: 6px;
+            height: 24px;
+            border-radius: 2px;
+            background: #4ade80;
+        }
+
+        .uptime-day.down {
+            background: #f87171;
+        }
+
+        .uptime-day.partial {
+            background: #fbbf24;
+        }
+
+        .incidents-section {
+            padding: 0 0 80px;
+        }
+
+        .incident-item {
+            padding: 20px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+        }
+
+        .incident-date {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .incident-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .incident-body {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .resolved-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #16a34a;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 2px 8px;
+            border-radius: 50px;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .uptime-strip {
+                gap: 20px;
+            }
+
+            .uptime-val {
+                font-size: 22px;
+            }
+
+            .service-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .uptime-bar-row {
+                width: 100%;
+                justify-content: space-between;
+                border-top: 1px solid var(--gray-100);
+                padding-top: 12px;
+            }
+
+            .uptime-bars {
+                flex: 1;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="status-hero">
+            <div class="s-container">
+                <div class="page-hero-label"
+                    style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                    System Status</div>
+                <h1
+                    style="font-size:clamp(36px,5vw,60px);font-weight:900;letter-spacing:-2.5px;color:var(--white);line-height:1.05;margin-bottom:12px;">
+                    All systems <span style="color:var(--lime)">operational.</span></h1>
+                <div class="status-overall">
+                    <div class="status-dot"></div>
+                    <div>
+                        <div class="status-overall-text">No active incidents</div>
+                        <div class="status-overall-sub">Last checked: March 9, 2026 at 07:47 UTC</div>
+                    </div>
+                </div>
+                <div class="uptime-strip">
+                    <div class="uptime-item">
+                        <div class="uptime-val">99.98%</div>
+                        <div class="uptime-label">Uptime (90 days)</div>
+                    </div>
+                    <div class="uptime-item">
+                        <div class="uptime-val">18ms</div>
+                        <div class="uptime-label">Avg. API Response</div>
+                    </div>
+                    <div class="uptime-item">
+                        <div class="uptime-val">0</div>
+                        <div class="uptime-label">Active Incidents</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="s-container">
+                <h2>Service Status</h2>
+
+                <div class="service-group">
+                    <div class="service-group-title">Core Platform</div>
+                    <div class="service-list">
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">POS System</div>
+                                <div class="service-desc">Point-of-sale terminal, receipt generation, payment processing
+                                </div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Inventory Engine</div>
+                                <div class="service-desc">Real-time stock sync, low-stock alerts, transfer management
+                                </div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">E-commerce Storefront</div>
+                                <div class="service-desc">Customer-facing store, product pages, checkout flow</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Analytics Dashboard</div>
+                                <div class="service-desc">Sales reporting, branch performance, customer insights</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Authentication &amp; SSO</div>
+                                <div class="service-desc">Login, role management, session handling</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-group">
+                    <div class="service-group-title">Infrastructure</div>
+                    <div class="service-list">
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">API Gateway</div>
+                                <div class="service-desc">REST and WebSocket endpoints for all platform services</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Database Cluster</div>
+                                <div class="service-desc">Primary and replica databases, automated failover</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Media &amp; File Storage</div>
+                                <div class="service-desc">Product image uploads, invoice PDFs, export files</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Email Delivery</div>
+                                <div class="service-desc">Order confirmations, invoices, staff invitations</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div>
+                                <div class="service-name">Webhooks &amp; Events</div>
+                                <div class="service-desc">Real-time event delivery to external integrations</div>
+                            </div>
+                            <div class="service-status">
+                                <div class="dot dot-green"></div><span class="status-label ok">Operational</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="margin-bottom:20px;">Past Incidents</h2>
+                <div class="incidents-section">
+                    <div class="incident-item">
+                        <div class="incident-date">February 14, 2026<span class="resolved-badge">✓ Resolved</span></div>
+                        <div class="incident-title">Elevated API latency on MENA region endpoints</div>
+                        <div class="incident-body">Some users in the MENA region experienced elevated latency on API
+                            requests between 14:20 and 15:05 UTC. Root cause was a misconfigured edge routing rule.
+                            Fully resolved with no data loss.</div>
+                    </div>
+                    <div class="incident-item">
+                        <div class="incident-date">January 3, 2026<span class="resolved-badge">✓ Resolved</span></div>
+                        <div class="incident-title">Email delivery delays for order confirmations</div>
+                        <div class="incident-body">Order confirmation emails were delayed by 12–25 minutes for
+                            approximately 340 transactions. Our email provider experienced a transient issue. All emails
+                            were delivered, none were lost.</div>
+                    </div>
+                    <p style="font-size:14px;color:var(--gray-400);margin-top:16px;">No other incidents in the past 90
+                        days.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

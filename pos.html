@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>POS System — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .plat-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .plat-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .plat-hero h1 {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .plat-hero h1 span {
+            color: var(--lime);
+        }
+
+        .plat-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .plat-hero-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .pos-mock {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .pos-mock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #1e1e1e;
+        }
+
+        .pos-mock-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .pos-mock-time {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .pos-cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 13px;
+            color: #ccc;
+        }
+
+        .pos-cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            border-top: 1px solid #333;
+            margin-top: 8px;
+        }
+
+        .pos-pay-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .pos-pay-btn {
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pos-pay-card {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .pos-pay-cash {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .pos-charge-btn {
+            background: var(--lime);
+            color: var(--black);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 800;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .features-section {
+            padding: 80px 0;
+        }
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feat-card {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            border-color: var(--lime);
+            box-shadow: 0 12px 40px rgba(208, 232, 77, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feat-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feat-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .feat-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .pricing-section {
+            background: var(--dark-bg);
+            padding: 80px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .price-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+        }
+
+        .price-card.featured {
+            border-color: var(--lime);
+        }
+
+        .plan-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -2px;
+            margin-bottom: 4px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .plan-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 28px;
+        }
+
+        .plan-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .plan-feat {
+            font-size: 14px;
+            color: #aaa;
+            display: flex;
+            gap: 8px;
+        }
+
+        .plan-feat::before {
+            content: '✓';
+            color: var(--lime);
+            font-weight: 800;
+        }
+
+        .plan-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .plan-btn-outline {
+            border: 1px solid #333;
+            color: #888;
+        }
+
+        .plan-btn-outline:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        .plan-btn-lime {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .plan-btn-lime:hover {
+            background: var(--lime-dark);
+        }
+
+        @media(max-width:768px) {
+
+            .plat-hero-inner,
+            .feat-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="plat-hero">
+            <div class="s-container">
+                <div class="plat-hero-inner">
+                    <div>
+                        <div class="page-hero-label"
+                            style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                            Platform · POS</div>
+                        <h1>The POS built for<br /><span>luxury boutiques.</span></h1>
+                        <p>Process payments, manage returns, issue receipts, and handle multi-currency transactions —
+                            all from a single sleek interface that takes seconds for staff to learn.</p>
+                        <div class="plat-hero-btns">
+                            <a href="contact.html" class="btn-sm btn-primary-sm"
+                                style="padding:12px 24px;font-size:14px;">Book a Demo</a>
+                            <a href="docs.html" class="btn-sm btn-ghost-sm"
+                                style="padding:12px 24px;font-size:14px;color:#aaa;border-color:#333;">View Docs →</a>
+                        </div>
+                    </div>
+                    <div class="pos-mock">
+                        <div class="pos-mock-header"><span class="pos-mock-title">🛍️ Maison Éclat — POS</span><span
+                                class="pos-mock-time">12:47 PM</span></div>
+                        <div class="pos-cart-item"><span>Silk Wrap Dress (S)</span><span style="color:var(--lime)">AED
+                                590</span></div>
+                        <div class="pos-cart-item"><span>Linen Blazer (M)</span><span style="color:var(--lime)">AED
+                                820</span></div>
+                        <div class="pos-cart-item"><span>Satin Blouse (XS)</span><span style="color:var(--lime)">AED
+                                340</span></div>
+                        <div class="pos-cart-item"><span style="color:#555">Discount (10%)</span><span
+                                style="color:#f87171">- AED 175</span></div>
+                        <div class="pos-cart-total"><span>Total</span><span>AED 1,575</span></div>
+                        <div class="pos-pay-btns">
+                            <div class="pos-pay-btn pos-pay-card">💳 Card</div>
+                            <div class="pos-pay-btn pos-pay-cash">💵 Cash</div>
+                        </div>
+                        <div class="pos-charge-btn">Charge AED 1,575 →</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">Everything your
+                        cashier needs</h2>
+                    <p style="font-size:16px;color:var(--gray-500);max-width:480px;margin:0 auto;">A complete POS that
+                        works on iPad, desktop, and purpose-built hardware — with zero training required.</p>
+                </div>
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-icon">⚡</div>
+                        <div class="feat-title">Instant Transactions</div>
+                        <div class="feat-desc">Process sales, apply discounts, and issue digital or printed receipts in
+                            under 10 seconds. No lag, no loading screens.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">💳</div>
+                        <div class="feat-title">All Payment Methods</div>
+                        <div class="feat-desc">Accept card, cash, buy-now-pay-later, store credit, digital wallets, and
+                            split payments — all in one checkout flow.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🔄</div>
+                        <div class="feat-title">Returns &amp; Exchanges</div>
+                        <div class="feat-desc">Handle returns and exchanges with automatic inventory restocking and
+                            instant refund processing.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🌍</div>
+                        <div class="feat-title">Multi-Currency</div>
+                        <div class="feat-desc">Serve international customers with automatic currency conversion based on
+                            live exchange rates.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📦</div>
+                        <div class="feat-title">Live Inventory Sync</div>
+                        <div class="feat-desc">Stock levels update in real time across all branches the moment a sale is
+                            completed.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📊</div>
+                        <div class="feat-title">End-of-Day Reports</div>
+                        <div class="feat-desc">Auto-generated daily sales reports sent straight to owner and manager
+                            inboxes.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2
+                        style="font-size:36px;font-weight:900;letter-spacing:-1.5px;color:var(--white);margin-bottom:12px;">
+                        Simple, transparent pricing</h2>
+                    <p style="font-size:16px;color:rgba(255,255,255,0.4);max-width:440px;margin:0 auto;">No hidden fees.
+                        No per-transaction charges. Just a flat monthly rate.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <div class="plan-name">Starter</div>
+                        <div class="plan-price">$89<span>/mo</span></div>
+                        <div class="plan-desc">Perfect for single-location boutiques</div>
+                        <div class="plan-features">
+                            <div class="plan-feat">1 POS terminal</div>
+                            <div class="plan-feat">Unlimited transactions</div>
+                            <div class="plan-feat">Inventory management</div>
+                            <div class="plan-feat">Email receipts</div>
+                        </div><a href="contact.html" class="plan-btn plan-btn-outline">Get Started</a>
+                    </div>
+                    <div class="price-card featured">
+                        <div class="plan-name" style="color:var(--lime)">Growth ✦ Popular</div>
+                        <div class="plan-price">$199<span>/mo</span></div>
+                        <div class="plan-desc">For boutiques ready to scale</div>
+                        <div class="plan-features">
+                            <div class="plan-feat">3 POS terminals</div>
+                            <div class="plan-feat">Multi-branch support</div>
+                            <div class="plan-feat">E-commerce storefront</div>
+                            <div class="plan-feat">Analytics dashboard</div>
+                            <div class="plan-feat">Customer loyalty program</div>
+                        </div><a href="contact.html" class="plan-btn plan-btn-lime">Start Free Trial</a>
+                    </div>
+                    <div class="price-card">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price" style="font-size:32px;">Custom</div>
+                        <div class="plan-desc">For multi-location brands</div>
+                        <div class="plan-features">
+                            <div class="plan-feat">Unlimited terminals</div>
+                            <div class="plan-feat">Unlimited branches</div>
+                            <div class="plan-feat">Dedicated success manager</div>
+                            <div class="plan-feat">Custom integrations</div>
+                            <div class="plan-feat">SLA guarantee</div>
+                        </div><a href="contact.html" class="plan-btn plan-btn-outline">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

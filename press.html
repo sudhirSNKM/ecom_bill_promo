@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Press — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .press-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .press-hero h1 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .press-hero h1 span {
+            color: var(--lime);
+        }
+
+        .press-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        .press-contact {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .press-coverage {
+            padding: 80px 0;
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .coverage-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: var(--transition);
+        }
+
+        .coverage-card:hover {
+            border-color: var(--black);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .coverage-pub {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+        }
+
+        .coverage-quote {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.45;
+            letter-spacing: -0.3px;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .coverage-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--black);
+            border-bottom: 2px solid var(--lime);
+            padding-bottom: 2px;
+        }
+
+        .coverage-date {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        .assets-section {
+            background: var(--offwhite);
+            padding: 80px 0;
+        }
+
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .asset-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .asset-card:hover {
+            border-color: var(--black);
+        }
+
+        .asset-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .asset-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .asset-desc {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background: #333;
+        }
+
+        .stats-strip {
+            background: var(--dark-bg);
+            padding: 64px 0;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--lime);
+            letter-spacing: -2px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        @media(max-width:768px) {
+
+            .coverage-grid,
+            .assets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="press-hero">
+            <div class="s-container">
+                <div class="page-hero-label"
+                    style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                    Press &amp; Media</div>
+                <h1>Zenith in<br /><span>the press.</span></h1>
+                <p>Find the latest Zenith news coverage, press releases, brand assets, and media kit. For press
+                    inquiries, contact us directly.</p>
+                <div class="press-contact">
+                    <a href="mailto:production@fortumars.com" class="btn-sm btn-primary-sm">Press Inquiry →</a>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.4)">production@fortumars.com</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="press-coverage">
+            <div class="s-container">
+                <h2 style="font-size:28px;font-weight:800;letter-spacing:-0.8px;margin-bottom:32px;">Recent Coverage
+                </h2>
+                <div class="coverage-grid">
+                    <div class="coverage-card">
+                        <div class="coverage-pub">TechCrunch</div>
+                        <div class="coverage-quote">"Zenith is building what Shopify built for e-commerce, but
+                            specifically for luxury boutique retail."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">February 2026</div>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-pub">Forbes</div>
+                        <div class="coverage-quote">"The startup powering boutique retail's digital transformation
+                            across the Middle East and Africa."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">January 2026</div>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-pub">Retail Dive</div>
+                        <div class="coverage-quote">"How Zenith's all-in-one approach is winning over boutique owners
+                            tired of fragmented retail software."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">December 2025</div>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-pub">Vogue Business</div>
+                        <div class="coverage-quote">"The tech stack powering the next generation of fashion boutiques —
+                            and why it looks nothing like what came before."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">November 2025</div>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-pub">Sifted</div>
+                        <div class="coverage-quote">"Zenith raises $18M to bring enterprise-grade retail infrastructure
+                            to independent boutique brands."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">September 2025</div>
+                    </div>
+                    <div class="coverage-card">
+                        <div class="coverage-pub">Wired</div>
+                        <div class="coverage-quote">"Meet the founders who left boutique retail to build the platform
+                            they always wished existed."</div>
+                        <a href="#" class="coverage-link">Read Article →</a>
+                        <div class="coverage-date">July 2025</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-strip">
+            <div class="s-container">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-num">2,400+</div>
+                        <div class="stat-label">Boutiques using Zenith</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">38</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">$180M+</div>
+                        <div class="stat-label">GMV processed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">$18M</div>
+                        <div class="stat-label">Raised (Series A)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">2023</div>
+                        <div class="stat-label">Year founded</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="assets-section">
+            <div class="s-container">
+                <h2 style="font-size:28px;font-weight:800;letter-spacing:-0.8px;margin-bottom:8px;">Media Kit &amp;
+                    Assets</h2>
+                <p style="font-size:15px;color:var(--gray-500);margin-bottom:40px;">Download official Zenith brand
+                    assets, logos, and executive photos. For custom requests, contact <a
+                        href="mailto:production@fortumars.com"
+                        style="font-weight:600;color:var(--black)">production@fortumars.com</a>.</p>
+                <div class="assets-grid">
+                    <div class="asset-card">
+                        <div class="asset-icon">🎨</div>
+                        <div class="asset-title">Logo Package</div>
+                        <div class="asset-desc">SVG and PNG versions of the Zenith logo in all color variants (dark,
+                            light, lime).</div><a href="#" class="download-btn">Download</a>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-icon">📸</div>
+                        <div class="asset-title">Executive Photos</div>
+                        <div class="asset-desc">High-resolution headshots of Zenith's co-founders and leadership team.
+                        </div><a href="#" class="download-btn">Download</a>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-icon">📋</div>
+                        <div class="asset-title">Company Fact Sheet</div>
+                        <div class="asset-desc">One-page overview of Zenith's story, product, market size, and key
+                            statistics.</div><a href="#" class="download-btn">Download</a>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-icon">🖼️</div>
+                        <div class="asset-title">Product Screenshots</div>
+                        <div class="asset-desc">High-res screenshots of the dashboard, POS interface, and e-commerce
+                            storefront.</div><a href="#" class="download-btn">Download</a>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-icon">🎠</div>
+                        <div class="asset-title">Brand Guide</div>
+                        <div class="asset-desc">Color palette, typography, spacing guidelines, and usage rules for the
+                            Zenith brand.</div><a href="#" class="download-btn">Download</a>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-icon">📰</div>
+                        <div class="asset-title">Press Release Archive</div>
+                        <div class="asset-desc">All official Zenith press releases, funding announcements, and company
+                            updates.</div><a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>

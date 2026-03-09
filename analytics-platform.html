@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Analytics — Zenith</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .plat-hero {
+            background: var(--dark-bg);
+            padding: 100px 0 80px;
+        }
+
+        .plat-hero h1 {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .plat-hero h1 span {
+            color: var(--lime);
+        }
+
+        .plat-hero p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .dashboard-mock {
+            background: #111;
+            border: 1px solid #1e1e1e;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 48px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .dm-top {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .dm-metric {
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .dm-label {
+            font-size: 9px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .dm-value {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .dm-change {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4ade80;
+            margin-top: 4px;
+        }
+
+        .dm-change.down {
+            color: #f87171;
+        }
+
+        .dm-bottom {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+
+        .dm-chart {
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .dm-chart-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .chart-bars-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 60px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            border-radius: 3px 3px 0 0;
+            min-width: 10px;
+        }
+
+        .dm-top-products {
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .tp-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #141414;
+            font-size: 11px;
+        }
+
+        .tp-item:last-child {
+            border-bottom: none;
+        }
+
+        .tp-name {
+            color: #aaa;
+        }
+
+        .tp-val {
+            color: var(--lime);
+            font-weight: 700;
+        }
+
+        .feats {
+            padding: 80px 0;
+        }
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feat-card {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            border-color: var(--lime);
+            box-shadow: 0 12px 40px rgba(208, 232, 77, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feat-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feat-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .feat-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        .kpis-section {
+            background: var(--offwhite);
+            padding: 80px 0;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .kpi-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .kpi-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .kpi-desc {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        @media(max-width:768px) {
+            .dm-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dm-bottom,
+            .feat-grid,
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <section class="plat-hero">
+            <div class="s-container">
+                <div class="page-hero-label"
+                    style="color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)">
+                    Platform · Analytics</div>
+                <h1>Retail intelligence<br /><span>at your fingertips.</span></h1>
+                <p>Stop making decisions based on gut feelings. Zenith analytics gives you real-time visibility across
+                    every branch, every product, and every customer segment.</p>
+                <div style="display:flex;gap:12px;"><a href="contact.html" class="btn-sm btn-primary-sm"
+                        style="padding:12px 24px;font-size:14px;">Book a Demo</a><a href="docs.html"
+                        class="btn-sm btn-ghost-sm"
+                        style="padding:12px 24px;font-size:14px;color:#aaa;border-color:#333;">View Docs →</a></div>
+                <div class="dashboard-mock">
+                    <div class="dm-top">
+                        <div class="dm-metric">
+                            <div class="dm-label">Revenue (MTD)</div>
+                            <div class="dm-value">$41.2K</div>
+                            <div class="dm-change">↑ 18.4% vs last month</div>
+                        </div>
+                        <div class="dm-metric">
+                            <div class="dm-label">Orders</div>
+                            <div class="dm-value">892</div>
+                            <div class="dm-change">↑ 12.1%</div>
+                        </div>
+                        <div class="dm-metric">
+                            <div class="dm-label">Avg. Order Value</div>
+                            <div class="dm-value">$461</div>
+                            <div class="dm-change">↑ 5.6%</div>
+                        </div>
+                        <div class="dm-metric">
+                            <div class="dm-label">Return Rate</div>
+                            <div class="dm-value">3.6%</div>
+                            <div class="dm-change down">↓ 0.4%</div>
+                        </div>
+                    </div>
+                    <div class="dm-bottom">
+                        <div class="dm-chart">
+                            <div class="dm-chart-title">Revenue — Last 14 Days</div>
+                            <div class="chart-bars-row">
+                                <div class="chart-bar" style="height:35%;background:#333"></div>
+                                <div class="chart-bar" style="height:50%;background:#333"></div>
+                                <div class="chart-bar" style="height:40%;background:#333"></div>
+                                <div class="chart-bar" style="height:65%;background:#444"></div>
+                                <div class="chart-bar" style="height:55%;background:#444"></div>
+                                <div class="chart-bar" style="height:72%;background:#555"></div>
+                                <div class="chart-bar" style="height:60%;background:#555"></div>
+                                <div class="chart-bar" style="height:80%;background:#666"></div>
+                                <div class="chart-bar" style="height:68%;background:#666"></div>
+                                <div class="chart-bar" style="height:90%;background:#888"></div>
+                                <div class="chart-bar" style="height:82%;background:#999"></div>
+                                <div class="chart-bar" style="height:100%;background:#D0E84D"></div>
+                                <div class="chart-bar" style="height:88%;background:#b8d030"></div>
+                                <div class="chart-bar" style="height:94%;background:#D0E84D"></div>
+                            </div>
+                        </div>
+                        <div class="dm-top-products">
+                            <div class="dm-chart-title">Top Products</div>
+                            <div class="tp-item"><span class="tp-name">Silk Wrap Dress</span><span
+                                    class="tp-val">$8,260</span></div>
+                            <div class="tp-item"><span class="tp-name">Linen Blazer</span><span
+                                    class="tp-val">$6,420</span></div>
+                            <div class="tp-item"><span class="tp-name">Cashmere Scarf</span><span
+                                    class="tp-val">$4,810</span></div>
+                            <div class="tp-item"><span class="tp-name">Satin Blouse</span><span
+                                    class="tp-val">$3,950</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feats">
+            <div class="s-container">
+                <div style="text-align:center;margin-bottom:56px;">
+                    <h2 style="font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:12px;">Every metric
+                        that matters</h2>
+                </div>
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-icon">📊</div>
+                        <div class="feat-title">Real-Time Dashboard</div>
+                        <div class="feat-desc">Live sales data, order counts, and revenue metrics — updated every
+                            second. No end-of-day surprise.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🏪</div>
+                        <div class="feat-title">Branch Comparison</div>
+                        <div class="feat-desc">Compare revenue, margins, and conversion rates across all your locations
+                            side by side in one view.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">👥</div>
+                        <div class="feat-title">Customer Segmentation</div>
+                        <div class="feat-desc">Identify your VIPs, at-risk customers, and highest-value segments to
+                            target them with the right message.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📉</div>
+                        <div class="feat-title">Sell-Through Analysis</div>
+                        <div class="feat-desc">See exactly which products are moving and which are gathering dust, down
+                            to the variant level.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📅</div>
+                        <div class="feat-title">Scheduled Reports</div>
+                        <div class="feat-desc">Auto-generate and email weekly or monthly reports to owners, managers, or
+                            investors with one click.</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📤</div>
+                        <div class="feat-title">Data Export</div>
+                        <div class="feat-desc">Export any dataset as CSV, Excel, or PDF. Full API access to pipe data
+                            into your BI tool of choice.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="kpis-section">
+            <div class="s-container">
+                <h2 style="font-size:32px;font-weight:900;letter-spacing:-1.2px;margin-bottom:12px;">Track the KPIs that
+                    matter most</h2>
+                <p style="font-size:15px;color:var(--gray-500);margin-bottom:40px;">Zenith tracks 40+ retail KPIs out of
+                    the box. Here are the most popular ones.</p>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">💰</div>
+                        <div>
+                            <div class="kpi-title">Revenue &amp; GMV</div>
+                            <div class="kpi-desc">Total gross merchandise value, net revenue, and revenue by channel
+                                (POS vs. online) across any time period.</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🔄</div>
+                        <div>
+                            <div class="kpi-title">Sell-Through Rate</div>
+                            <div class="kpi-desc">Percentage of your inventory that sold in a given period. Essential
+                                for buying decisions and end-of-season markdowns.</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🛒</div>
+                        <div>
+                            <div class="kpi-title">Average Order Value</div>
+                            <div class="kpi-desc">Average spend per transaction, broken down by channel, branch, time of
+                                day, and customer segment.</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🔁</div>
+                        <div>
+                            <div class="kpi-title">Customer Retention</div>
+                            <div class="kpi-desc">What percentage of your customers came back for a second purchase?
+                                Tracked by cohort and purchase frequency.</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">📦</div>
+                        <div>
+                            <div class="kpi-title">Inventory Turnover</div>
+                            <div class="kpi-desc">How many times your inventory sells and is replaced in a period. A key
+                                indicator of buying efficiency.</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">↩️</div>
+                        <div>
+                            <div class="kpi-title">Return Rate</div>
+                            <div class="kpi-desc">Percentage of items returned, broken down by product, category,
+                                channel, and reason code.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="background:var(--lime);padding:64px;text-align:center;">
+            <h2 style="font-size:32px;font-weight:900;letter-spacing:-1.2px;margin-bottom:12px;">Ready to run your
+                boutique on data?</h2><a href="contact.html"
+                style="background:var(--black);color:var(--white);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;display:inline-block;text-decoration:none;">Book
+                a Demo →</a>
+        </div>
+    </div>
+    <script src="shared.js"></script>
+</body>
+
+</html>
