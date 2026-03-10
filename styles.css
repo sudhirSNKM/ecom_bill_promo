@@ -3276,3 +3276,220 @@ body {
   .cx-left-col { flex-direction: row; align-items: center; gap: 12px; }
   .cx-emoji { font-size: 40px; }
 }
+
+
+/* ============================================================
+   PREMIUM EFFECTS LAYER
+   Liquid Glass · Parallax · Floating Nav · Blur
+   ============================================================ */
+
+/* ─── 1. LIQUID GLASS NAVBAR ─────────────────────────────────
+   True liquid glass: layered blur, inner glow, refraction
+──────────────────────────────────────────────────────────── */
+.nav {
+  /* Override default */
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(28px) saturate(220%) brightness(1.05) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 100px !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.8) inset,   /* top inner highlight */
+    0 -1px 0 rgba(255,255,255,0.4) inset,  /* bottom inner */
+    0 8px 32px rgba(0,0,0,0.08),
+    0 1px 0 rgba(255,255,255,0.6) !important;
+  top: 20px !important;
+}
+
+.nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.12) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nav-inner { position: relative; z-index: 1; }
+
+.nav.scrolled {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(36px) saturate(240%) brightness(1.08) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(240%) brightness(1.08) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.9) inset,
+    0 12px 48px rgba(0,0,0,0.12),
+    0 1px 0 rgba(255,255,255,0.7) !important;
+  top: 10px !important;
+}
+
+/* ─── 2. HERO PARALLAX LAYERS ────────────────────────────────
+   Multiple depth layers move at different speeds
+──────────────────────────────────────────────────────────── */
+.hero {
+  overflow: hidden;
+}
+
+/* Floating ambient orbs — parallax depth */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-orb-1 {
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(208,232,77,0.18) 0%, transparent 65%);
+  top: -160px;
+  right: -120px;
+}
+
+.hero-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(208,232,77,0.1) 0%, transparent 65%);
+  bottom: -160px;
+  left: -80px;
+}
+
+.hero-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
+  top: 40%;
+  left: 40%;
+}
+
+/* Hero content and visual move at slightly different scroll speeds */
+.hero-content { will-change: transform; }
+.hero-visual   { will-change: transform; }
+
+/* ─── 3. LIQUID GLASS CARDS ──────────────────────────────────
+   Applied to floating-card, bento-card highlights, and cx-cards
+──────────────────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.12) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.4) inset,
+    0 8px 32px rgba(0,0,0,0.2) !important;
+}
+
+/* Floating cards in hero get liquid glass */
+.floating-card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.35) inset,
+    0 12px 40px rgba(0,0,0,0.25);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease;
+}
+
+.floating-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.4) inset,
+    0 24px 60px rgba(0,0,0,0.3);
+}
+
+/* ─── 4. SECTION PARALLAX BACKGROUND BLOBS ───────────────────
+   Each section gets a parallax ambient blob
+──────────────────────────────────────────────────────────── */
+.parallax-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+/* Make sections relative for blobs */
+.section { position: relative; overflow: hidden; }
+
+/* ─── 5. MOUSE PARALLAX TARGET ───────────────────────────────
+   Elements with this class respond to mouse position
+──────────────────────────────────────────────────────────── */
+.mouse-parallax {
+  will-change: transform;
+  transition: transform 0.12s linear;
+}
+
+/* ─── 6. SCROLL DEPTH BLUR ───────────────────────────────────
+   Background elements get slightly blurred as you scroll
+──────────────────────────────────────────────────────────── */
+.hero-bg-grid {
+  transition: opacity 0.4s ease;
+}
+
+/* ─── 7. GLASS BADGE ─────────────────────────────────────────*/
+.hero-badge {
+  background: rgba(208,232,77,0.14) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(208,232,77,0.35) !important;
+  box-shadow: 0 2px 0 rgba(255,255,255,0.15) inset;
+}
+
+/* ─── 8. CX CARD liquid glass accent ─────────────────────────*/
+.cx-card {
+  background: rgba(255,255,255,0.92) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255,255,255,0.7) !important;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.9) inset,
+    0 4px 12px rgba(0,0,0,0.04),
+    0 16px 48px rgba(0,0,0,0.08) !important;
+}
+
+/* ─── 9. ANALYTICS / REVIEW GLASS CARDS ─────────────────────*/
+.analytics-metric,
+.chart-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.25s, box-shadow 0.3s;
+}
+.analytics-metric:hover,
+.chart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(208,232,77,0.15), 0 0 0 1px rgba(208,232,77,0.2);
+}
+
+/* ─── 10. SECTION TITLE word reveal preparation ──────────────*/
+.section-title .word {
+  display: inline-block;
+  overflow: hidden;
+}
+.section-title .word span {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* ─── 11. SMOOTH GRADIENT HERO DEPTH ─────────────────────────*/
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(0,0,0,0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-content, .hero-visual { z-index: 2 !important; }
