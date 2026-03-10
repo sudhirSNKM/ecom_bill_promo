@@ -2883,3 +2883,252 @@ body {
 
 /* ── Remove old CSS animation kill-switch if it exists ───── */
 /* (none to remove — original styles don't have transition:none) */
+
+
+/* ============================================================
+   HORIZONTAL SCROLL ROLES GALLERY
+   Equivalent to React/framer-motion ScrollHorizontal
+   ============================================================ */
+
+/* Outer section just for the intro text */
+.roles-section-outer {
+  padding-bottom: 60px !important;
+}
+
+/* Tall container provides the vertical scroll distance */
+.roles-scroll-container {
+  height: 400vh;         /* 400vh → smooth pan across 5 cards */
+  position: relative;
+  background: #0d0d0b;   /* matches section-dark */
+}
+
+/* Sticks to the viewport while you scroll through */
+.roles-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Thin progress bar at top of sticky strip */
+.roles-progress-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  z-index: 10;
+}
+.roles-progress-fill {
+  height: 100%;
+  background: var(--lime, #D0E84D);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Flex row of cards — GSAP translates this on X */
+.roles-gallery {
+  display: flex;
+  gap: 32px;
+  will-change: transform;
+  padding: 0 80px;
+}
+
+/* Individual role card */
+.role-hcard {
+  flex-shrink: 0;
+  width: 460px;
+  min-height: 560px;
+  background: #161613;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.role-hcard::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--card-color, #D0E84D) 0%, transparent 70%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.role-hcard:hover {
+  border-color: var(--card-color, #D0E84D);
+}
+
+.rhc-number {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: var(--card-color, #D0E84D);
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+.rhc-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--card-color, #D0E84D);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  padding: 5px 14px;
+  width: fit-content;
+}
+
+.rhc-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.rhc-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  flex: 0;
+}
+
+.rhc-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.rhc-features li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  padding-left: 18px;
+  position: relative;
+}
+.rhc-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--card-color, #D0E84D);
+  font-weight: 700;
+}
+
+/* Mini visual panel at bottom of each card */
+.rhc-visual {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: auto;
+  font-size: 12px;
+}
+
+.rhc-mini-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.rhc-mini-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.rhc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rhc-val  { font-size: 18px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+.rhc-lbl  { font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 600; }
+
+.rhc-mini-rows { display: flex; flex-direction: column; gap: 8px; }
+.rhc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.rhc-row:last-child { border-bottom: none; }
+
+.rhc-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.rhc-tag.open { background: rgba(74,222,128,0.15); color: #4ade80; }
+.rhc-tag.soon { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.rhc-tag.low  { background: rgba(248,113,113,0.15); color: #f87171; }
+
+/* POS visual */
+.rhc-pos-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.rhc-pos-item  { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.6); }
+.rhc-pos-total { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px; margin-bottom: 12px; }
+.rhc-pos-row   { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+.rhc-total-row { color: #fff; font-weight: 700; font-size: 13px; }
+.rhc-pos-btn   {
+  background: var(--card-color, #D0E84D);
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Store grid visual */
+.rhc-store-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+.rhc-product { display: flex; flex-direction: column; gap: 4px; }
+.rhc-product-img { height: 70px; border-radius: 8px; }
+.rhc-pname  { font-size: 10px; color: rgba(255,255,255,.6); font-weight: 600; }
+.rhc-pprice { font-size: 11px; color: var(--card-color,#D0E84D); font-weight: 800; }
+
+/* Scroll hint at bottom of sticky wrapper */
+.roles-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .role-hcard { width: 300px; min-height: 480px; padding: 28px 24px; }
+  .roles-gallery { gap: 20px; padding: 0 24px; }
+}

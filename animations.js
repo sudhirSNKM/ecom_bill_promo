@@ -10,6 +10,51 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof gsap === 'undefined') { console.warn('[MarsCart] GSAP not loaded.'); return; }
     gsap.registerPlugin(ScrollTrigger);
 
+    /* ── HORIZONTAL SCROLL — Roles Gallery ────────────────────
+       Equivalent to framer-motion:
+         const x = useTransform(scrollYProgress, [0,1], [0, -totalDistance])
+       GSAP scrub does identical thing via ScrollTrigger scrub:1
+    ─────────────────────────────────────────────────────────── */
+    (function initRolesHScroll() {
+        const container = document.getElementById('rolesScrollContainer');
+        const gallery = document.getElementById('rolesGallery');
+        const fill = document.getElementById('rolesProgressFill');
+        if (!container || !gallery) return;
+
+        const cards = Array.from(gallery.querySelectorAll('.role-hcard'));
+        const cardW = cards[0]?.offsetWidth || 460;
+        const gap = 32;
+        const totalPan = (cards.length - 1) * (cardW + gap);
+
+        // Initial state: fade all non-first cards
+        gsap.set(cards, { scale: 0.93, opacity: 0.5 });
+        gsap.set(cards[0], { scale: 1.0, opacity: 1 });
+
+        gsap.to(gallery, {
+            x: -totalPan,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: container,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 1.2,
+                onUpdate: (self) => {
+                    if (fill) fill.style.width = (self.progress * 100) + '%';
+                    const activeIdx = Math.round(self.progress * (cards.length - 1));
+                    cards.forEach((c, i) => {
+                        gsap.to(c, {
+                            scale: i === activeIdx ? 1.0 : 0.93,
+                            opacity: i === activeIdx ? 1 : 0.5,
+                            duration: 0.35,
+                            overwrite: 'auto',
+                            ease: 'power2.out'
+                        });
+                    });
+                }
+            }
+        });
+    })();
+
     /* ── 1. NAVBAR — compact on scroll ──────────────────────── */
     ScrollTrigger.create({
         start: 'top -60',

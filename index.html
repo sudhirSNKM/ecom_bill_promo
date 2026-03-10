@@ -250,185 +250,156 @@
     </div>
   </section>
 
-  <!-- ROLE-BASED PLATFORM -->
-  <section class="section section-dark" id="roles">
-    <div class="container">
+  <!-- ROLE-BASED PLATFORM — Horizontal Scroll Gallery -->
+
+  <!-- Section intro header (sits in normal flow above the sticky strip) -->
+  <section class="section section-dark roles-section-outer" id="roles">
+    <div class="container roles-intro">
       <div class="section-label light">Role-Based Access</div>
       <h2 class="section-title light">Built for every person<br />in your retail operation.</h2>
-      <p class="section-sub light">Five distinct roles with tailored dashboards, permissions, and tools — so everyone
-        works with exactly what they need.</p>
-      <div class="roles-tabs">
-        <button class="role-tab active" data-role="company" id="tab-company">Company Admin</button>
-        <button class="role-tab" data-role="branch" id="tab-branch">Branch Admin</button>
-        <button class="role-tab" data-role="cashier" id="tab-cashier">Cashier</button>
-        <button class="role-tab" data-role="customer" id="tab-customer">Customer</button>
-      </div>
-      <div class="roles-content">
-        <div class="role-panel active" data-role="company">
-          <div class="role-info">
-            <div class="role-badge">Company Admin</div>
-            <h3>Manage your retail brand</h3>
-            <p>Company Admins control their entire business — branches, staff, product catalog, and company-wide
-              settings — all from a central management hub.</p>
-            <ul class="role-features">
-              <li>✓ Manage branches & locations</li>
-              <li>✓ Staff accounts & permissions</li>
-              <li>✓ Product catalog & collections</li>
-              <li>✓ Brand & theme customization</li>
-              <li>✓ Company-wide analytics</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard">
-              <div class="mini-header">Brand Dashboard — Company Admin</div>
-              <div class="mini-stats">
-                <div class="mini-stat">
-                  <div class="ms-val">6</div>
-                  <div class="ms-label">Branches</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">840</div>
-                  <div class="ms-label">Products</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">42</div>
-                  <div class="ms-label">Staff</div>
-                </div>
-              </div>
-              <div class="mini-list">
-                <div class="mini-list-item"><span class="mli-name">New Delhi Flagship</span><span
-                    class="mli-status active-tag">Open</span></div>
-                <div class="mini-list-item"><span class="mli-name">Branch 2 · Mumbai</span><span
-                    class="mli-status active-tag">Open</span></div>
-                <div class="mini-list-item"><span class="mli-name">Branch 3 · Bangalore</span><span
-                    class="mli-status trial-tag">Opening Soon</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="role-panel" data-role="branch">
-          <div class="role-info">
-            <div class="role-badge">Branch Admin</div>
-            <h3>Run your store with precision</h3>
-            <p>Branch Admins manage their specific store location — handling local inventory, monitoring cashier
-              performance, and tracking branch-level sales analytics in real time.</p>
-            <ul class="role-features">
-              <li>✓ Local inventory management</li>
-              <li>✓ Staff scheduling & tracking</li>
-              <li>✓ Branch sales & analytics</li>
-              <li>✓ Invoice & receipt management</li>
-              <li>✓ Stock transfer requests</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard">
-              <div class="mini-header">Branch Dashboard — Dubai Mall</div>
-              <div class="mini-stats">
-                <div class="mini-stat">
-                  <div class="ms-val">$12,440</div>
-                  <div class="ms-label">Today's Sales</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">89</div>
-                  <div class="ms-label">Transactions</div>
-                </div>
-                <div class="mini-stat">
-                  <div class="ms-val">6</div>
-                  <div class="ms-label">Staff On Duty</div>
-                </div>
-              </div>
-              <div class="mini-list">
-                <div class="mini-list-item"><span class="mli-name">Aria Silk Dress</span><span
-                    class="mli-status trial-tag">Low Stock (3)</span></div>
-                <div class="mini-list-item"><span class="mli-name">Cashmere Blouse</span><span
-                    class="mli-status active-tag">In Stock (48)</span></div>
-                <div class="mini-list-item"><span class="mli-name">Linen Trouser</span><span
-                    class="mli-status active-tag">In Stock (21)</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="role-panel" data-role="cashier">
-          <div class="role-info">
-            <div class="role-badge">Cashier</div>
-            <h3>Fast, seamless checkout</h3>
-            <p>Cashiers use an intuitive POS interface to process in-store sales, generate invoices, apply discounts,
-              and handle returns — all without friction.</p>
-            <ul class="role-features">
-              <li>✓ Instant product search & scan</li>
-              <li>✓ Multi-payment methods</li>
-              <li>✓ Discount & promo codes</li>
-              <li>✓ Invoice & receipt generation</li>
-              <li>✓ Return & exchange handling</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard pos-ui">
-              <div class="mini-header">POS Terminal</div>
-              <div class="pos-items">
-                <div class="pos-item"><span>Aria Silk Dress × 1</span><span>$249</span></div>
-                <div class="pos-item"><span>Wool Scarf × 2</span><span>$110</span></div>
-                <div class="pos-item"><span>Leather Tote × 1</span><span>$195</span></div>
-              </div>
-              <div class="pos-total">
-                <div class="pos-row"><span>Subtotal</span><span>$554</span></div>
-                <div class="pos-row"><span>Discount (10%)</span><span>-$55.40</span></div>
-                <div class="pos-row total-row"><span>Total</span><span>$498.60</span></div>
-              </div>
-              <div class="pos-btn">Charge $498.60</div>
-            </div>
-          </div>
-        </div>
-        <div class="role-panel" data-role="customer">
-          <div class="role-info">
-            <div class="role-badge">Customer</div>
-            <h3>A delightful shopping experience</h3>
-            <p>Customers enjoy a beautifully curated online boutique — browsing collections, saving wishlists, placing
-              orders, and tracking deliveries effortlessly.</p>
-            <ul class="role-features">
-              <li>✓ Personalized product discovery</li>
-              <li>✓ Collections & wishlists</li>
-              <li>✓ Secure checkout & payment</li>
-              <li>✓ Order tracking & history</li>
-              <li>✓ Custom measurements profile</li>
-            </ul>
-          </div>
-          <div class="role-visual">
-            <div class="mini-dashboard store-ui">
-              <div class="store-nav">
-                <span class="store-brand">AURA</span>
-                <span class="store-links">Shop · Collections · About</span>
-                <span class="store-icons">♡ 🛒</span>
-              </div>
-              <div class="store-grid">
-                <div class="store-product">
-                  <div class="product-img p1"></div>
-                  <div class="product-info">
-                    <div class="pname">Aria Silk Dress</div>
-                    <div class="pprice">$249</div>
-                  </div>
-                </div>
-                <div class="store-product">
-                  <div class="product-img p2"></div>
-                  <div class="product-info">
-                    <div class="pname">Luna Blouse</div>
-                    <div class="pprice">$110</div>
-                  </div>
-                </div>
-                <div class="store-product">
-                  <div class="product-img p3"></div>
-                  <div class="product-info">
-                    <div class="pname">Kai Blazer</div>
-                    <div class="pprice">$295</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="section-sub light">Five distinct roles with tailored dashboards, permissions, and tools — so everyone works with exactly what they need.</p>
     </div>
   </section>
+
+  <!-- Tall scroll container — height gives GSAP scrub room (300vh = smooth pan across 5 cards) -->
+  <div class="roles-scroll-container" id="rolesScrollContainer">
+    <div class="roles-sticky-wrapper">
+      <div class="roles-progress-bar"><div class="roles-progress-fill" id="rolesProgressFill"></div></div>
+      <div class="roles-gallery" id="rolesGallery">
+
+        <div class="role-hcard" style="--card-color:#D0E84D">
+          <div class="rhc-number">01</div>
+          <div class="rhc-badge">Company Admin</div>
+          <h3 class="rhc-title">Manage your entire retail brand</h3>
+          <p class="rhc-desc">Control branches, staff, catalog, and company-wide settings from one powerful hub.</p>
+          <ul class="rhc-features">
+            <li>Manage branches &amp; locations</li>
+            <li>Staff accounts &amp; permissions</li>
+            <li>Product catalog &amp; collections</li>
+            <li>Brand &amp; theme customization</li>
+            <li>Company-wide analytics</li>
+          </ul>
+          <div class="rhc-visual">
+            <div class="rhc-mini-header">Brand Dashboard</div>
+            <div class="rhc-mini-stats">
+              <div class="rhc-stat"><span class="rhc-val">6</span><span class="rhc-lbl">Branches</span></div>
+              <div class="rhc-stat"><span class="rhc-val">840</span><span class="rhc-lbl">Products</span></div>
+              <div class="rhc-stat"><span class="rhc-val">42</span><span class="rhc-lbl">Staff</span></div>
+            </div>
+            <div class="rhc-mini-rows">
+              <div class="rhc-row"><span>New Delhi Flagship</span><span class="rhc-tag open">Open</span></div>
+              <div class="rhc-row"><span>Branch 2 · Mumbai</span><span class="rhc-tag open">Open</span></div>
+              <div class="rhc-row"><span>Branch 3 · Bangalore</span><span class="rhc-tag soon">Opening Soon</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-hcard" style="--card-color:#60a5fa">
+          <div class="rhc-number">02</div>
+          <div class="rhc-badge">Branch Admin</div>
+          <h3 class="rhc-title">Run your store with precision</h3>
+          <p class="rhc-desc">Manage your specific location — inventory, cashier performance, and real-time analytics.</p>
+          <ul class="rhc-features">
+            <li>Local inventory management</li>
+            <li>Staff scheduling &amp; tracking</li>
+            <li>Branch sales &amp; analytics</li>
+            <li>Invoice &amp; receipt management</li>
+            <li>Stock transfer requests</li>
+          </ul>
+          <div class="rhc-visual">
+            <div class="rhc-mini-header">Branch Dashboard — Dubai Mall</div>
+            <div class="rhc-mini-stats">
+              <div class="rhc-stat"><span class="rhc-val">₹12.4k</span><span class="rhc-lbl">Today</span></div>
+              <div class="rhc-stat"><span class="rhc-val">89</span><span class="rhc-lbl">Txns</span></div>
+              <div class="rhc-stat"><span class="rhc-val">6</span><span class="rhc-lbl">Staff</span></div>
+            </div>
+            <div class="rhc-mini-rows">
+              <div class="rhc-row"><span>Aria Silk Dress</span><span class="rhc-tag low">Low Stock (3)</span></div>
+              <div class="rhc-row"><span>Cashmere Blouse</span><span class="rhc-tag open">In Stock (48)</span></div>
+              <div class="rhc-row"><span>Linen Trouser</span><span class="rhc-tag open">In Stock (21)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-hcard" style="--card-color:#f472b6">
+          <div class="rhc-number">03</div>
+          <div class="rhc-badge">Cashier</div>
+          <h3 class="rhc-title">Fast, seamless checkout</h3>
+          <p class="rhc-desc">Process in-store sales, apply discounts, and handle returns — without friction.</p>
+          <ul class="rhc-features">
+            <li>Instant product search &amp; scan</li>
+            <li>Multi-payment methods</li>
+            <li>Discount &amp; promo codes</li>
+            <li>Invoice &amp; receipt generation</li>
+            <li>Return &amp; exchange handling</li>
+          </ul>
+          <div class="rhc-visual">
+            <div class="rhc-mini-header">POS Terminal</div>
+            <div class="rhc-pos-items">
+              <div class="rhc-pos-item"><span>Aria Silk Dress × 1</span><span>₹249</span></div>
+              <div class="rhc-pos-item"><span>Wool Scarf × 2</span><span>₹110</span></div>
+              <div class="rhc-pos-item"><span>Leather Tote × 1</span><span>₹195</span></div>
+            </div>
+            <div class="rhc-pos-total">
+              <div class="rhc-pos-row"><span>Subtotal</span><span>₹554</span></div>
+              <div class="rhc-pos-row rhc-total-row"><span>Total</span><span>₹498.60</span></div>
+            </div>
+            <div class="rhc-pos-btn">Charge ₹498.60</div>
+          </div>
+        </div>
+
+        <div class="role-hcard" style="--card-color:#a78bfa">
+          <div class="rhc-number">04</div>
+          <div class="rhc-badge">Customer</div>
+          <h3 class="rhc-title">A delightful shopping experience</h3>
+          <p class="rhc-desc">Browse collections, save wishlists, place orders, and track deliveries effortlessly.</p>
+          <ul class="rhc-features">
+            <li>Personalized product discovery</li>
+            <li>Collections &amp; wishlists</li>
+            <li>Secure checkout &amp; payment</li>
+            <li>Order tracking &amp; history</li>
+            <li>Custom measurements profile</li>
+          </ul>
+          <div class="rhc-visual">
+            <div class="rhc-mini-header">AURA Boutique</div>
+            <div class="rhc-store-grid">
+              <div class="rhc-product"><div class="rhc-product-img" style="background:linear-gradient(135deg,#4a1942,#7b2d73)"></div><div class="rhc-pname">Aria Dress</div><div class="rhc-pprice">₹249</div></div>
+              <div class="rhc-product"><div class="rhc-product-img" style="background:linear-gradient(135deg,#1a3a6b,#2d5fa5)"></div><div class="rhc-pname">Luna Blouse</div><div class="rhc-pprice">₹110</div></div>
+              <div class="rhc-product"><div class="rhc-product-img" style="background:linear-gradient(135deg,#1a4a25,#2d7a3a)"></div><div class="rhc-pname">Kai Blazer</div><div class="rhc-pprice">₹295</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-hcard" style="--card-color:#fb923c">
+          <div class="rhc-number">05</div>
+          <div class="rhc-badge">Owner / Super Admin</div>
+          <h3 class="rhc-title">Bird's eye view of everything</h3>
+          <p class="rhc-desc">Full platform access — every branch, every rupee, every team member from one master dashboard.</p>
+          <ul class="rhc-features">
+            <li>All branches &amp; all data</li>
+            <li>Billing &amp; subscription control</li>
+            <li>AI-powered revenue forecasting</li>
+            <li>Export reports &amp; audit logs</li>
+            <li>Enterprise security controls</li>
+          </ul>
+          <div class="rhc-visual">
+            <div class="rhc-mini-header">Owner Dashboard</div>
+            <div class="rhc-mini-stats">
+              <div class="rhc-stat"><span class="rhc-val">₹4.1M</span><span class="rhc-lbl">Revenue</span></div>
+              <div class="rhc-stat"><span class="rhc-val">99.9%</span><span class="rhc-lbl">Uptime</span></div>
+              <div class="rhc-stat"><span class="rhc-val">2,400</span><span class="rhc-lbl">Users</span></div>
+            </div>
+            <div class="rhc-mini-rows">
+              <div class="rhc-row"><span>Revenue ↑ 13.5%</span><span class="rhc-tag open">On Track</span></div>
+              <div class="rhc-row"><span>AI Inventory Forecast</span><span class="rhc-tag open">Active</span></div>
+              <div class="rhc-row"><span>Support Tickets</span><span class="rhc-tag soon">4 Open</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end .roles-gallery -->
+    </div><!-- end .roles-sticky-wrapper -->
+  </div><!-- end .roles-scroll-container -->
 
   <!-- CUSTOMER JOURNEY -->
   <section class="section" id="shopping">
