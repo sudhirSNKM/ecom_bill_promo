@@ -17,6 +17,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+  <!-- Lenis Smooth Scroll (Premium Momentum Scroll) -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <style>
+    html.lenis {
+      height: auto;
+    }
+
+    .lenis-smooth {
+      scroll-behavior: auto;
+    }
+
+    .lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis-stopped {
+      overflow: hidden;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -144,21 +164,23 @@
     </div>
   </section>
 
-  
+
   <!-- PLATFORM OVERVIEW — Stacked Cards -->
   <section class="section platform-stacked-sec" id="platform">
     <div class="container">
       <div class="section-label">Platform Overview</div>
       <h2 class="section-title">One platform.<br />Every retail tool you need.</h2>
-      <p class="section-sub">MarsCart replaces your fragmented stack with a single, unified ecosystem — purpose-built for modern retail.</p>
-      
+      <p class="section-sub">MarsCart replaces your fragmented stack with a single, unified ecosystem — purpose-built
+        for modern retail.</p>
+
       <div class="modules-stack">
         <div class="module-card-stack" id="stack-pos">
           <div class="mcs-inner">
             <div class="mcs-content">
               <div class="module-icon">🖥️</div>
               <h3 class="module-name">MarsCart POS</h3>
-              <p class="module-desc">Fast, intuitive point-of-sale for in-store checkout. Handle cash, card, and UPI payments with ease.</p>
+              <p class="module-desc">Fast, intuitive point-of-sale for in-store checkout. Handle cash, card, and UPI
+                payments with ease.</p>
             </div>
             <div class="mcs-visual visual-pos"></div>
           </div>
@@ -168,7 +190,8 @@
             <div class="mcs-content">
               <div class="module-icon">📦</div>
               <h3 class="module-name">Inventory Management</h3>
-              <p class="module-desc">Track stock across branches in real-time. Get low-stock alerts and automate reorders.</p>
+              <p class="module-desc">Track stock across branches in real-time. Get low-stock alerts and automate
+                reorders.</p>
             </div>
             <div class="mcs-visual visual-inv"></div>
           </div>
@@ -178,7 +201,8 @@
             <div class="mcs-content">
               <div class="module-icon">🛒</div>
               <h3 class="module-name">E-commerce Storefront</h3>
-              <p class="module-desc">A beautiful online shop synced instantly with your physical inventory and product catalog.</p>
+              <p class="module-desc">A beautiful online shop synced instantly with your physical inventory and product
+                catalog.</p>
             </div>
             <div class="mcs-visual visual-ecom"></div>
           </div>
@@ -188,7 +212,8 @@
             <div class="mcs-content">
               <div class="module-icon">📊</div>
               <h3 class="module-name">Sales Analytics</h3>
-              <p class="module-desc">Deep insights into revenue, products, and customer behavior. Make data-driven decisions.</p>
+              <p class="module-desc">Deep insights into revenue, products, and customer behavior. Make data-driven
+                decisions.</p>
             </div>
             <div class="mcs-visual visual-ana"></div>
           </div>
@@ -196,7 +221,7 @@
       </div>
     </div>
   </section>
-<!-- ROLE-BASED PLATFORM — Horizontal Scroll Gallery -->
+  <!-- ROLE-BASED PLATFORM — Horizontal Scroll Gallery -->
 
   <!-- Section intro header (sits in normal flow above the sticky strip) -->
   <section class="section section-dark roles-section-outer" id="roles">
@@ -488,9 +513,11 @@
               <div class="card__visual">
                 <div class="inv-row header-row"
                   style="color:#888;font-size:10px;display:flex;justify-content:space-between;">
-                  <span>Store</span><span>Stock</span></div>
+                  <span>Store</span><span>Stock</span>
+                </div>
                 <div class="inv-row" style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;">
-                  <span>Global HQ</span><span>48</span></div>
+                  <span>Global HQ</span><span>48</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1243,7 +1270,7 @@
   </footer>
 
   <script src="app.js"></script>
-    <script src="animations.js"></script>
+  <script src="animations.js"></script>
 </body>
 
 </html>

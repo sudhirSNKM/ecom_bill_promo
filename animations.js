@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.registerPlugin(ScrollTrigger);
 
     /* ════════════════════════════════════════════════════════════
+       0. LENIS SMOOTH SCROLL — Initializing momentum scroll
+    ════════════════════════════════════════════════════════════ */
+    const lenis = new Lenis({ duration: 1.3, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    /* ════════════════════════════════════════════════════════════
        UTILITY — safe query, only runs if elements exist
     ════════════════════════════════════════════════════════════ */
     const q = (sel) => document.querySelector(sel);
@@ -77,11 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('.hero-badge', { y: 24, opacity: 0, duration: 0.7 }, 0.1)
-        .from('.hero-headline', { y: 70, opacity: 0, duration: 0.85 }, 0.2)
+        .from('.hero-headline', { y: 70, opacity: 0, duration: 0.85, filter: 'blur(5px)' }, 0.2)
         .from('.hero-sub', { y: 40, opacity: 0, duration: 0.7 }, 0.38)
-        .from('.hero-actions', { y: 30, opacity: 0, duration: 0.6 }, 0.52)
+        .from('.hero-actions .btn', { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' }, 0.52)
         .from('.hero-stats', { y: 20, opacity: 0, duration: 0.55 }, 0.65)
-        .from('.hero-visual', { y: 60, opacity: 0, duration: 0.85 }, 0.28);
+        .from('.hero-visual', { y: 60, opacity: 0, duration: 0.85, filter: 'blur(10px)' }, 0.28);
 
     /* ════════════════════════════════════════════════════════════
        5. FLOATING CARDS — hero cards gently bob up/down
