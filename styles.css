@@ -2212,6 +2212,7 @@ body {
    ============================================================ */
 
 .sec-phones {
+  min-height: 340px; /* Accommodate the 300px phones + stagger */
   margin-bottom: 80px; /* Space for the callout */
   display: flex;
   justify-content: center;
@@ -2220,35 +2221,16 @@ body {
   margin-bottom: 64px;
 }
 
-.sec-phone {
-  width: 210px;
-  height: 420px;
-  position: relative;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  flex-shrink: 0;
-}
 
-.sec-phone-shell {
-  width: 100%;
-  height: 100%;
-  background: #1a1f24;
-  border-radius: 42px;
-  border: 1px solid rgba(255,255,255,0.08);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
+
+
 
 .sec-phone-featured {
   transform: translateY(-20px);
   z-index: 2;
 }
 
-.sec-phone-featured .sec-phone-shell {
-  border-color: rgba(208, 232, 77, 0.4);
-  box-shadow: 0 0 0 1px rgba(208, 232, 77, 0.2), 0 40px 80px rgba(208, 232, 77, 0.15);
-}
+.sec-phone-featured 
 
 .sec-phone:hover {
   transform: translateY(-28px) scale(1.04);
@@ -2257,16 +2239,7 @@ body {
   transform: translateY(-40px) scale(1.05);
 }
 
-.sec-phone-cam {
-  width: 10px;
-  height: 10px;
-  background: #000;
-  border-radius: 50%;
-  margin: 14px auto 0;
-  border: 1.5px solid rgba(255,255,255,0.1);
-  position: relative;
-  z-index: 10;
-}
+
 
 .sec-phone-screen {
   position: absolute;
@@ -2442,6 +2415,7 @@ body {
 
 @media (max-width: 900px) {
   .sec-phones {
+  min-height: 340px; /* Accommodate the 300px phones + stagger */
   margin-bottom: 80px; /* Space for the callout */
     flex-direction: column;
     align-items: center;
@@ -4894,4 +4868,98 @@ body {
 .tech-card {
   max-width: 440px !important;
   transform: none !important; /* Let margins do the work */
+}
+
+
+
+/* --- New User-Requested Phone Mockup --- */
+.sec-phone {
+  width: 160px;
+  height: 300px;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
+
+.sec-phone-shell {
+  width: 100%;
+  height: 100%;
+  background: #f9fafb !important; /* gray-50 */
+  border-radius: 16px !important; /* rounded-2xl */
+  border: 4px solid #000 !important;
+  position: relative;
+  overflow: visible !important;
+  box-shadow: 5px 5px 2.5px 6px rgb(209, 218, 218) !important;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-notch {
+  border: 1px solid #000;
+  background: #000;
+  width: 80px;
+  height: 8px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.phone-btn-top {
+  position: absolute;
+  right: -8px;
+  top: 56px;
+  border: 4px solid #000;
+  height: 28px;
+  border-radius: 6px;
+  background: #000;
+}
+
+.phone-btn-bottom {
+  position: absolute;
+  right: -8px;
+  bottom: 144px;
+  border: 4px solid #000;
+  height: 40px;
+  border-radius: 6px;
+  background: #000;
+}
+
+.sec-phone-cam { display: none; } /* Replaced by notch */
+
+.sec-phone-screen {
+  position: absolute;
+  inset: 4px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Adjust visibility of white phone content */
+.sec-default-view, .sec-hover-view {
+  color: #000 !important;
+}
+.sec-d-title, .sec-h-title { color: #000 !important; font-weight: 800; }
+.sec-d-sub, .sec-h-desc, .sec-h-list li { color: #666 !important; }
+
+
+
+.sec-phone-featured .sec-phone-shell {
+  border-color: #000 !important; /* Keep black border but maybe lime glow */
+  box-shadow: 0 0 25px rgba(208, 232, 77, 0.25), 5px 5px 2.5px 6px rgb(200, 210, 210) !important;
+}
+
+/* Ensure inner icons and text are visible on the new white phone screen */
+.sec-phone-screen svg {
+  stroke: #000 !important;
+}
+.sec-phone-screen circle, .sec-phone-screen path {
+  stroke: #000 !important;
+}
+.sec-icon-box {
+  background: rgba(208, 232, 77, 0.1) !important;
 }
