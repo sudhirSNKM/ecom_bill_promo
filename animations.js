@@ -123,15 +123,15 @@ document.addEventListener('DOMContentLoaded', function () {
        10. SPECIALIZED SECTION ANIMATIONS (Below Analytics)
     ════════════════════════════════════════════════════════════ */
 
-    // Tech Stack Reveal (Diagonal Stagger - Safe Bounds)
+    // Tech Stack Reveal (Staircase Entrance)
     if (q('.tech-cards-col')) {
         gsap.from('.tech-card', {
-            x: 50, opacity: 0, duration: 1, stagger: 0.2, ease: 'power2.out',
-            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 85%' }
+            y: 40, opacity: 0, duration: 1.2, stagger: 0.3, ease: 'power3.out',
+            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 80%' }
         });
         gsap.from('.floating-buy-card', {
-            y: 30, scale: 0.9, opacity: 0, duration: 1.2, ease: 'back.out(1.5)',
-            scrollTrigger: { trigger: '.tech-left', start: 'top 85%' }
+            y: 30, scale: 0.9, opacity: 0, duration: 1.4, ease: 'back.out(1.5)',
+            scrollTrigger: { trigger: '.tech-left', start: 'top 80%' }
         });
     }
 
