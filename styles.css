@@ -2332,22 +2332,7 @@ body {
   white-space: nowrap;
 }
 
-.sec-callout {
-  margin-top: 100px; /* Clear space from phones */
-  background: rgba(208, 232, 77, 0.03);
-  border: 1px solid rgba(208, 232, 77, 0.1);
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 900px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+
 
 .sec-callout-icon { font-size: 32px; }
 
@@ -2392,17 +2377,7 @@ body {
   }
   .sec-phone-featured { transform: none; }
   .sec-phone-label-tag { bottom: -28px; }
-  .sec-callout {
-  margin-top: 100px; /* Clear space from phones */
-  background: rgba(208, 232, 77, 0.03);
-  border: 1px solid rgba(208, 232, 77, 0.1);
-  position: relative;
-  z-index: 10;
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    padding: 30px 20px;
-  }
+  
 }
 
 
@@ -3996,21 +3971,7 @@ body {
 .sec-phone-card:hover .sec-phone-glare { left: 150%; }
 
 /* ── Privacy callout ── */
-.sec-callout {
-  margin-top: 100px; /* Clear space from phones */
-  background: rgba(208, 232, 77, 0.03);
-  border: 1px solid rgba(208, 232, 77, 0.1);
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  background: rgba(208,232,77,0.05);
-  border: 1px solid rgba(208,232,77,0.13);
-  border-radius: 16px;
-  padding: 24px 32px;
-  margin-top: 16px;
-}
+
 
 .sec-callout-icon { font-size: 28px; flex-shrink: 0; }
 
@@ -4048,12 +4009,7 @@ body {
 @media (max-width: 768px) {
   
   .sec-phone-center { transform: none; }
-  .sec-callout {
-  margin-top: 100px; /* Clear space from phones */
-  background: rgba(208, 232, 77, 0.03);
-  border: 1px solid rgba(208, 232, 77, 0.1);
-  position: relative;
-  z-index: 10; flex-direction: column; text-align: center; }
+  
   .sec-callout-badges { justify-content: center; }
 }
 
@@ -5098,4 +5054,43 @@ body {
 /* Ensure the hover view doesn't leak out */
 .sec-hover-view {
   border-radius: 12px !important;
+}
+
+
+
+/* --- Definitive Security Callout Fix --- */
+.sec-callout {
+  margin-top: 140px !important; /* Huge gap to prevent ANY overlay */
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 32px !important;
+  position: relative !important;
+  z-index: 20 !important;
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  clear: both !important;
+}
+
+.sec-callout-text strong {
+  color: #D0E84D !important;
+  font-size: 22px !important;
+  margin-bottom: 12px !important;
+}
+
+.sec-callout-text p {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* Ensure phones don't overlap labels */
+.sec-phone-label-tag {
+  bottom: -45px !important; /* Give more room below phones */
+}
+
+.sec-phones {
+  margin-bottom: 100px !important;
 }
