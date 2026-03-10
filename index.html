@@ -86,81 +86,23 @@
         <div class="stat"><span class="stat-num">99.9%</span><span class="stat-label">Uptime</span></div>
       </div>
     </div>
+    
+    
     <div class="hero-visual">
-      <div class="dashboard-frame">
-        <div class="dashboard-bar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="url-bar">app.marscartretail.com/dashboard</span>
+      <div class="hero-vid-shell">
+        <div class="vid-bar">
+          <div class="vid-dots"><span></span><span></span><span></span></div>
+          <div class="vid-address">marscart.ai/analytics</div>
         </div>
-        <div class="dashboard-body">
-          <div class="db-sidebar">
-            <div class="db-logo">M</div>
-            <nav class="db-nav">
-              <a class="db-nav-item active">Dashboard</a>
-              <a class="db-nav-item">POS</a>
-              <a class="db-nav-item">E-commerce</a>
-              <a class="db-nav-item">Inventory</a>
-              <a class="db-nav-item">Sales</a>
-              <a class="db-nav-item">Customers</a>
-              <a class="db-nav-item">Analytics</a>
-            </nav>
+        <div class="vid-body">
+          <video class="hero-video" autoplay loop muted playsinline poster="hero_poster.png">
+            <source src="https://cdn.pixabay.com/video/2016/10/26/6190-189182315_tiny.mp4" type="video/mp4">
+          </video>
+          <div class="vid-overlay">
+            <div class="vo-label">REAL-TIME SALES</div>
+            <div class="vo-price">₹1,24,500</div>
+            <div class="vo-trend">↑ 12% today</div>
           </div>
-          <div class="db-main">
-            <div class="db-header">
-              <div>
-                <div class="db-title">Welcome back, Sarah!</div>
-                <div class="db-subtitle">Modern Retail Dashboard · Last 30 days</div>
-              </div>
-            </div>
-            <div class="db-metrics">
-              <div class="metric-card accent">
-                <div class="metric-label">Total Revenue</div>
-                <div class="metric-val">₹6,90,000</div>
-                <div class="metric-change up">↑ 14.2%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Sales Today</div>
-                <div class="metric-val">₹32,500</div>
-                <div class="metric-change up">↑ 8.1%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">New Orders</div>
-                <div class="metric-val">112</div>
-                <div class="metric-change up">↑ 9.5%</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Avg. Order</div>
-                <div class="metric-val">₹4,999</div>
-                <div class="metric-change down">↓ 2.3%</div>
-              </div>
-            </div>
-            <div class="db-chart-area">
-              <div class="chart-title">Revenue Performance</div>
-              <div class="chart-bars">
-                <div class="bar" style="height:40%"></div>
-                <div class="bar" style="height:55%"></div>
-                <div class="bar" style="height:45%"></div>
-                <div class="bar" style="height:70%"></div>
-                <div class="bar" style="height:60%"></div>
-                <div class="bar" style="height:80%"></div>
-                <div class="bar accent-bar" style="height:95%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="floating-card card-1">
-        <div class="fc-icon">🛍️</div>
-        <div>
-          <div class="fc-title">New Order</div>
-          <div class="fc-sub">Aria Silk Dress · ₹18,500</div>
-        </div>
-      </div>
-      <div class="floating-card card-2">
-        <div class="fc-icon">📦</div>
-        <div>
-          <div class="fc-title">Low Stock Alert</div>
-          <div class="fc-sub">Cashmere Blouse · 3 left</div>
         </div>
       </div>
     </div>
@@ -758,109 +700,106 @@
   </section>
 
   <!-- SECURITY -->
-  <!-- SECURITY & PRIVACY — 3 Horizontal Phone Cards (Uiverse-style) -->
   <section class="section section-dark" id="security">
     <div class="container">
       <div class="section-label light">Security &amp; Privacy</div>
       <h2 class="section-title light">Your data is safe.<br />Your customers protected.</h2>
       <p class="section-sub light">MarsCart is built with privacy-first architecture — protecting sensitive customer data while enabling personalized, memorable shopping experiences.</p>
 
-      <div class="sec-phones-row">
+      <!-- 3 Security Phone Mockups -->
+      <div class="sec-phones">
 
-        <!-- Phone 1 -->
-        <div class="sec-phone-card" id="sec-phone-1">
-          <div class="sec-phone-border"></div>
-          <div class="sec-phone-frame">
-            <div class="sec-phone-notch"></div>
-            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
-            <div class="sec-phone-default">
-              <div class="sec-phone-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
-                  <path d="M17 11V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V11M4 11H20V21H4V11Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="12" cy="16" r="2" fill="#D0E84D"/>
-                </svg>
+        <div class="sec-phone" id="sec-phone-1">
+          <!-- Phone outer shell -->
+          <div class="sec-phone-shell">
+            <div class="sec-phone-cam"></div>
+            <div class="sec-phone-screen">
+              <!-- Default view -->
+              <div class="sec-default-view">
+                <div class="sec-icon-box">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 11V7C17 4.24 14.76 2 12 2C9.24 2 7 4.24 7 7V11M4 11H20V21H4V11Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="16" r="1.8" fill="#D0E84D"/>
+                  </svg>
+                </div>
+                <div class="sec-d-title">Encrypted</div>
+                <div class="sec-d-sub">AES-256</div>
               </div>
-              <div class="sec-phone-label">Encrypted</div>
-              <div class="sec-phone-sublabel">AES-256</div>
+              <!-- Hover view -->
+              <div class="sec-hover-view">
+                <div class="sec-h-emoji">🔒</div>
+                <div class="sec-h-title">Data Encryption</div>
+                <div class="sec-h-desc">Military-grade encryption on every byte.</div>
+                <ul class="sec-h-list">
+                  <li>AES-256 at rest</li>
+                  <li>TLS 1.3 in transit</li>
+                  <li>Nightly backups</li>
+                </ul>
+              </div>
             </div>
-            <div class="sec-phone-hover-content">
-              <div class="sec-hover-icon">🔒</div>
-              <div class="sec-hover-title">Data Encryption</div>
-              <div class="sec-hover-desc">Military-grade encryption protects all customer &amp; transaction data at every layer.</div>
-              <ul class="sec-hover-list">
-                <li>AES-256 at rest</li>
-                <li>TLS 1.3 in transit</li>
-                <li>Nightly cloud backups</li>
-              </ul>
-            </div>
-            <div class="sec-phone-glare"></div>
           </div>
-          <div class="sec-phone-bottom-text">data protection</div>
+          <div class="sec-phone-label-tag">data protection</div>
         </div>
 
-        <!-- Phone 2 (center — elevated) -->
-        <div class="sec-phone-card sec-phone-center" id="sec-phone-2">
-          <div class="sec-phone-border"></div>
-          <div class="sec-phone-frame">
-            <div class="sec-phone-notch"></div>
-            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
-            <div class="sec-phone-default">
-              <div class="sec-phone-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M9 12L11 14L15 10" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="sec-phone sec-phone-featured" id="sec-phone-2">
+          <div class="sec-phone-shell">
+            <div class="sec-phone-cam"></div>
+            <div class="sec-phone-screen">
+              <div class="sec-default-view">
+                <div class="sec-icon-box">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 12L11 14L15 10" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="sec-d-title">Protected</div>
+                <div class="sec-d-sub">MFA + RBAC</div>
               </div>
-              <div class="sec-phone-label">Protected</div>
-              <div class="sec-phone-sublabel">MFA + RBAC</div>
+              <div class="sec-hover-view">
+                <div class="sec-h-emoji">🛡️</div>
+                <div class="sec-h-title">Auth &amp; Access</div>
+                <div class="sec-h-desc">Granular control over every user and role.</div>
+                <ul class="sec-h-list">
+                  <li>Mandatory MFA</li>
+                  <li>Role-based access</li>
+                  <li>Audit logs</li>
+                </ul>
+              </div>
             </div>
-            <div class="sec-phone-hover-content">
-              <div class="sec-hover-icon">🛡️</div>
-              <div class="sec-hover-title">Auth &amp; Access</div>
-              <div class="sec-hover-desc">Multi-factor auth and role-based permissions control exactly who sees what.</div>
-              <ul class="sec-hover-list">
-                <li>Mandatory MFA</li>
-                <li>RBAC permissions</li>
-                <li>Real-time audit logs</li>
-              </ul>
-            </div>
-            <div class="sec-phone-glare"></div>
           </div>
-          <div class="sec-phone-bottom-text">access control</div>
+          <div class="sec-phone-label-tag">access control</div>
         </div>
 
-        <!-- Phone 3 -->
-        <div class="sec-phone-card" id="sec-phone-3">
-          <div class="sec-phone-border"></div>
-          <div class="sec-phone-frame">
-            <div class="sec-phone-notch"></div>
-            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
-            <div class="sec-phone-default">
-              <div class="sec-phone-icon-wrap">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
-                  <rect x="5" y="4" width="14" height="17" rx="2" stroke="#D0E84D" stroke-width="1.8"/>
-                  <path d="M9 9H15M9 13H15M9 17H12" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
+        <div class="sec-phone" id="sec-phone-3">
+          <div class="sec-phone-shell">
+            <div class="sec-phone-cam"></div>
+            <div class="sec-phone-screen">
+              <div class="sec-default-view">
+                <div class="sec-icon-box">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                    <rect x="5" y="4" width="14" height="17" rx="2" stroke="#D0E84D" stroke-width="1.8"/>
+                    <path d="M9 9H15M9 13H15M9 17H12" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="sec-d-title">Compliant</div>
+                <div class="sec-d-sub">GDPR · CCPA</div>
               </div>
-              <div class="sec-phone-label">Compliant</div>
-              <div class="sec-phone-sublabel">GDPR · CCPA</div>
+              <div class="sec-hover-view">
+                <div class="sec-h-emoji">📋</div>
+                <div class="sec-h-title">Privacy Laws</div>
+                <div class="sec-h-desc">Built for global compliance from day one.</div>
+                <ul class="sec-h-list">
+                  <li>GDPR &amp; CCPA</li>
+                  <li>Right-to-Erasure</li>
+                  <li>Zero-sell policy</li>
+                </ul>
+              </div>
             </div>
-            <div class="sec-phone-hover-content">
-              <div class="sec-hover-icon">📋</div>
-              <div class="sec-hover-title">Privacy Compliance</div>
-              <div class="sec-hover-desc">Built to honor the strictest global data protection laws in every market.</div>
-              <ul class="sec-hover-list">
-                <li>GDPR &amp; CCPA ready</li>
-                <li>Right-to-Erasure flows</li>
-                <li>Zero-sell metadata</li>
-              </ul>
-            </div>
-            <div class="sec-phone-glare"></div>
           </div>
-          <div class="sec-phone-bottom-text">privacy &amp; compliance</div>
+          <div class="sec-phone-label-tag">compliance</div>
         </div>
 
-      </div><!-- end .sec-phones-row -->
+      </div><!-- end .sec-phones -->
 
       <div class="sec-callout">
         <div class="sec-callout-icon">🔐</div>
@@ -874,6 +813,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- CUSTOMER REVIEWS -->
   <section class="section section-dark" id="reviews">
