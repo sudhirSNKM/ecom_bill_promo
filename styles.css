@@ -1397,31 +1397,7 @@ body {
   color: var(--black);
 }
 
-/* ---- FEATURES BENTO ---- */
-.features-bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  gap: 20px;
-}
 
-.bento-card {
-  background: var(--offwhite);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-xl);
-  padding: 36px 32px;
-  transition: var(--transition);
-}
-
-.bento-card:hover {
-  border-color: var(--lime);
-  box-shadow: 0 12px 40px rgba(208, 232, 77, 0.12);
-  transform: translateY(-3px);
-}
-
-.bento-wide {
-  grid-column: span 2;
-}
 
 .bento-icon {
   font-size: 32px;
@@ -2205,7 +2181,7 @@ body {
 }
 
 
-}
+
 
 
 #security {
@@ -2993,15 +2969,8 @@ body {
   border-color: rgba(208, 232, 77, 0.4);
 }
 
-/* ── Bento cards hover ────────────────────────────────────── */
-.bento-card {
-  transition: box-shadow 0.3s ease,
-              transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.bento-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
-}
+
+
 
 /* ── Review cards hover ───────────────────────────────────── */
 .review-card {
@@ -4116,7 +4085,7 @@ body {
   border: 1px solid rgba(208,232,77,0.22);
 }
 
-@media (max-width: 768px) {@media (max-width: 768px) {
+@media (max-width: 768px) {
   
   .sec-phone-center { transform: none; }
   .sec-callout { flex-direction: column; text-align: center; }
@@ -4365,4 +4334,260 @@ body {
   .hero-actions { justify-content: center; }
   .hero-stats { justify-content: center; }
   .hero-visual { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   BENTO REVEAL CARDS (3D Fold Effect)
+   MarsCart Premium Branding
+   ============================================================ */
+
+.features-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  grid-auto-rows: 240px;
+}
+
+.bento-reveal-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1200px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.br-card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.br-card-icon {
+  font-size: 54px;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.br-card-title-main {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0d0d0b;
+  letter-spacing: -0.5px;
+}
+
+.bento-reveal-card:hover {
+  transform: scale(1.02);
+  border-color: #D0E84D;
+  box-shadow: 0 20px 50px rgba(208, 232, 77, 0.15);
+}
+
+.br-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+  background-color: #0d0d0b; /* Dark MarsCart back */
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bento-reveal-card:hover .br-card-back {
+  transform: rotateX(0deg);
+}
+
+.bento-reveal-card:hover .br-card-front {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.br-card-title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: #D0E84D;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.br-card-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.br-mini-visual {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.inv-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 4px;
+  color: rgba(255,255,255,0.4);
+}
+
+.inv-row span:last-child { color: #D0E84D; font-weight: 700; }
+
+.branch-nodes {
+  font-size: 10px;
+  color: rgba(208,232,77,0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.bento-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .features-bento { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .bento-wide { grid-column: span 1; }
+}
+
+/* Bento Visual Assets */
+.br-card-front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.br-card-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('bento_card_assets_1773126800301.png');
+  background-size: 400% 400%; /* We zoomed in to hide other icons */
+  opacity: 0.15;
+  filter: grayscale(100%) brightness(1.2);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.bento-reveal-card:hover .br-card-front::after {
+  opacity: 0.05;
+}
+
+#feat-inventory .br-card-front::after { background-position: 5% 5%; }
+#feat-catalog .br-card-front::after { background-position: 95% 5%; }
+#feat-invoice .br-card-front::after { background-position: 5% 95%; }
+#feat-staff .br-card-front::after { background-position: 95% 95%; }
+#feat-theme .br-card-front::after { background-position: 50% 50%; }
+#feat-branch .br-card-front::after { background-position: center; }
+
+#features .section-label { color: #0d0d0b; border-color: rgba(0,0,0,0.1); }
+
+
+/* ============================================================
+   BUSINESS MANAGEMENT BENTO — Uiverse Reveal Cards
+   ============================================================ */
+
+.features-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.bento-card-wrap {
+  perspective: 1000px;
+}
+
+.bento-card-wrap.bento-wide {
+  grid-column: span 2;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 5px #ffffff80;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.card .card__icon {
+  font-size: 50px;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 20px;
+  color: #0d0d0b;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.card:hover .card__icon {
+  transform: scale(0);
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.card__visual {
+  margin-top: 15px;
+}
+
+@media (max-width: 991px) {
+  .features-bento { grid-template-columns: 1fr; }
+  .bento-card-wrap.bento-wide { grid-column: span 1; }
 }

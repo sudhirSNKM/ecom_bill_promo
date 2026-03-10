@@ -197,21 +197,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ── BUSINESS MANAGEMENT — bento cards spring up ── */
+    /* ── BUSINESS MANAGEMENT — Uiverse cards entrance reveal ── */
     if (q('.features-bento')) {
-        gsap.from('.bento-card', {
-            y: 60,
-            opacity: 0,
-            scale: 0.98,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.features-bento',
-                start: 'top 92%',
-                toggleActions: 'play none none none',
-                once: true
-            }
+        gsap.from('.bento-card-wrap', {
+            y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.features-bento', start: 'top 92%', toggleActions: 'play none none none', once: true }
         });
     }
 
