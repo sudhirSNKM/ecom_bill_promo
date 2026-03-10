@@ -90,14 +90,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ════════════════════════════════════════════════════════════
-       6. SECTION REVEAL — every .section fades + rises on enter
-    ════════════════════════════════════════════════════════════ */
+    /* ── SECTION REVEAL — universal fade-in ── */
     qa('.section').forEach((sec) => {
+        // Skip sections that have specialized internal stagger animations to avoid conflicts
+        const skip = ['platform', 'features', 'analytics', 'tech'];
+        if (skip.includes(sec.id)) return;
+
         gsap.from(sec, {
-            opacity: 0, y: 50, duration: 0.8, ease: 'power2.out',
+            opacity: 0, y: 40, duration: 0.8, ease: 'power2.out',
             scrollTrigger: {
-                trigger: sec, start: 'top 88%',
+                trigger: sec, start: 'top 90%',
                 toggleActions: 'play none none none'
             }
         });
@@ -125,13 +127,21 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     );
 
-    /* ════════════════════════════════════════════════════════════
-       8. PLATFORM — module cards stagger
-    ════════════════════════════════════════════════════════════ */
-    if (q('.module-card')) {
+    /* ── PLATFORM — module cards spring up ── */
+    if (q('.modules-grid')) {
         gsap.from('.module-card', {
-            y: 60, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.modules-grid', start: 'top 82%', toggleActions: 'play none none none' }
+            y: 50,
+            opacity: 0,
+            scale: 0.98,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.modules-grid',
+                start: 'top 92%',
+                toggleActions: 'play none none none',
+                once: true
+            }
         });
     }
 
@@ -187,13 +197,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ════════════════════════════════════════════════════════════
-       11. FEATURES — bento cards stagger
-    ════════════════════════════════════════════════════════════ */
-    if (q('.bento-card')) {
+    /* ── BUSINESS MANAGEMENT — bento cards spring up ── */
+    if (q('.features-bento')) {
         gsap.from('.bento-card', {
-            y: 70, opacity: 0, duration: 0.75, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.features-bento', start: 'top 82%', toggleActions: 'play none none none' }
+            y: 60,
+            opacity: 0,
+            scale: 0.98,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.features-bento',
+                start: 'top 92%',
+                toggleActions: 'play none none none',
+                once: true
+            }
         });
     }
 
@@ -239,16 +257,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /* ── SECURITY — phone cards stagger up ── */
-    if (q('.sec-phone-card')) {
-        gsap.from('.sec-phone-card', {
-            y: 80, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'back.out(1.2)',
-            scrollTrigger: { trigger: '.sec-phones-row', start: 'top 82%', toggleActions: 'play none none none' }
+    /* ── SECURITY — phone mockups stagger up ── */
+    if (q('.sec-phone')) {
+        gsap.from('.sec-phone', {
+            y: 80, opacity: 0, duration: 0.9, stagger: 0.15, ease: 'back.out(1.4)',
+            scrollTrigger: { trigger: '.sec-phones', start: 'top 85%', toggleActions: 'play none none none' }
         });
         if (q('.sec-callout')) {
             gsap.from('.sec-callout', {
-                y: 32, opacity: 0, duration: 0.65, ease: 'power2.out',
-                scrollTrigger: { trigger: '.sec-callout', start: 'top 88%', toggleActions: 'play none none none' }
+                y: 32, opacity: 0, duration: 0.7, ease: 'power2.out',
+                scrollTrigger: { trigger: '.sec-callout', start: 'top 92%', toggleActions: 'play none none none' }
             });
         }
     }
