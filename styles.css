@@ -3661,3 +3661,318 @@ body {
   }
   .floating-buy-card { max-width: 100%; }
 }
+
+
+/* ============================================================
+   SECURITY SECTION — 3 Phone Cards (Uiverse-style hover)
+   Inspired by: Uiverse.io card hover with border animation
+   ============================================================ */
+
+#security {
+  background: #0d0d0b;
+}
+
+#security .section-title.light,
+#security .section-sub.light {
+  color: #fff;
+}
+
+/* Row of 3 phones */
+.sec-phones-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 28px;
+  margin: 60px 0 56px;
+}
+
+/* ── The phone card (Uiverse-style wrapper) ── */
+.sec-phone-card {
+  width: 220px;
+  height: 420px;
+  background: #1a1f24;
+  position: relative;
+  display: grid;
+  place-content: center;
+  border-radius: 36px;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.sec-phone-card:hover {
+  transform: translateY(-14px) scale(1.05);
+  box-shadow: 0 32px 80px rgba(208,232,77,0.18), 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Center phone elevated by default */
+.sec-phone-center {
+  transform: translateY(-20px);
+  box-shadow: 0 24px 60px rgba(208,232,77,0.12), 0 8px 24px rgba(0,0,0,0.3);
+}
+.sec-phone-center:hover {
+  transform: translateY(-36px) scale(1.06);
+}
+
+/* ── Animated border (from Uiverse) ── */
+.sec-phone-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #D0E84D;
+  border-radius: inherit;
+  opacity: 0;
+  transform: rotate(6deg);
+  transition: inset 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sec-phone-card:hover .sec-phone-border {
+  inset: 12px;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* ── Phone frame styling ── */
+.sec-phone-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 12px 0 20px;
+}
+
+/* Notch */
+.sec-phone-notch {
+  width: 60px;
+  height: 10px;
+  background: #000;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Status bar */
+.sec-phone-status {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 18px;
+  font-size: 9px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── Default screen (visible when not hovering) ── */
+.sec-phone-default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 12px;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  padding: 0 16px;
+}
+
+.sec-phone-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: rgba(208,232,77,0.08);
+  border: 1px solid rgba(208,232,77,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec-phone-label {
+  font-size: 16px;
+  font-weight: 900;
+  color: #D0E84D;
+  letter-spacing: -0.3px;
+}
+
+.sec-phone-sublabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(208,232,77,0.5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ── Hover content (hidden by default, shows on hover) ── */
+.sec-phone-hover-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 28px 22px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  background: linear-gradient(160deg, #1e2830 0%, #111518 100%);
+  border-radius: inherit;
+  gap: 10px;
+}
+
+.sec-phone-card:hover .sec-phone-default {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sec-phone-card:hover .sec-phone-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sec-hover-icon {
+  font-size: 28px;
+  margin-bottom: 2px;
+}
+
+.sec-hover-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: #D0E84D;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.sec-hover-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+.sec-hover-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.sec-hover-list li {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  padding-left: 16px;
+  position: relative;
+}
+
+.sec-hover-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #D0E84D;
+  font-weight: 700;
+}
+
+/* Bottom label (Uiverse "universe of ui" style) */
+.sec-phone-bottom-text {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #D0E84D;
+  background: #1a1f24;
+  padding: 0 6px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.5s ease, letter-spacing 0.5s ease;
+}
+
+.sec-phone-card:hover .sec-phone-bottom-text {
+  opacity: 1;
+  letter-spacing: 2px;
+}
+
+/* Glass glare effect inside phone */
+.sec-phone-glare {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.06) 50%,
+    transparent 60%
+  );
+  pointer-events: none;
+  transition: left 0.6s ease;
+}
+
+.sec-phone-card:hover .sec-phone-glare {
+  left: 150%;
+}
+
+/* ── Privacy callout bar ── */
+.sec-callout {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(208,232,77,0.06);
+  border: 1px solid rgba(208,232,77,0.15);
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-top: 16px;
+}
+
+.sec-callout-icon { font-size: 28px; flex-shrink: 0; }
+
+.sec-callout-text {
+  flex: 1;
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+}
+
+.sec-callout-text strong {
+  color: #fff;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sec-callout-badges {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.sec-callout-badges span {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: rgba(208,232,77,0.1);
+  color: #D0E84D;
+  border: 1px solid rgba(208,232,77,0.25);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .sec-phones-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .sec-phone-center { transform: none; }
+  .sec-callout { flex-direction: column; text-align: center; }
+  .sec-callout-badges { justify-content: center; }
+}

@@ -239,14 +239,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /* ════════════════════════════════════════════════════════════
-       14. SECURITY — rows stagger
-    ════════════════════════════════════════════════════════════ */
-    if (q('.security-row')) {
-        gsap.from('.security-row', {
-            x: -40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.security-grid', start: 'top 82%', toggleActions: 'play none none none' }
+    /* ── SECURITY — phone cards stagger up ── */
+    if (q('.sec-phone-card')) {
+        gsap.from('.sec-phone-card', {
+            y: 80, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'back.out(1.2)',
+            scrollTrigger: { trigger: '.sec-phones-row', start: 'top 82%', toggleActions: 'play none none none' }
         });
+        if (q('.sec-callout')) {
+            gsap.from('.sec-callout', {
+                y: 32, opacity: 0, duration: 0.65, ease: 'power2.out',
+                scrollTrigger: { trigger: '.sec-callout', start: 'top 88%', toggleActions: 'play none none none' }
+            });
+        }
     }
 
     /* ════════════════════════════════════════════════════════════

@@ -758,127 +758,118 @@
   </section>
 
   <!-- SECURITY -->
-  <section class="section section-offwhite" id="security">
+  <!-- SECURITY & PRIVACY — 3 Horizontal Phone Cards (Uiverse-style) -->
+  <section class="section section-dark" id="security">
     <div class="container">
-      <div class="section-label">Security & Privacy</div>
-      <h2 class="section-title">Your data is safe.<br />Your customers protected.</h2>
-      <p class="section-sub">MarsCart is built with privacy-first architecture — protecting sensitive customer data
-        while
-        enabling personalized, memorable shopping experiences.</p>
-      <div class="security-grid">
-        <!-- 1st Row: Text Left, Phone Right -->
-        <div class="security-row">
-          <div class="sec-info">
-            <h3 class="sec-title">Encrypted Data Storage</h3>
-            <p class="sec-desc">Your data is yours alone. We ensure it stays that way through rigorous encryption
-              standards that meet global banking requirements.</p>
-            <div class="sec-points">
-              <div class="sec-point">AES-256 military-grade encryption for data at rest</div>
-              <div class="sec-point">TLS 1.3 protocol for all data in transit</div>
-              <div class="sec-point">Automatic nightly encrypted cloud backups</div>
-            </div>
-          </div>
-          <div class="sec-visual">
-            <div class="phone-container">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="sec-phone-icon">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 11V15M12 15V19M12 15H15M12 15H9" stroke="var(--lime)" stroke-width="2"
-                      stroke-linecap="round" />
-                    <path d="M17 11V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V11M4 11H20V21H4V11Z"
-                      stroke="var(--lime)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <div
-                  style="color:var(--lime);font-weight:800;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-top:16px;">
-                  Encrypted</div>
-                <div class="phone-glare"></div>
+      <div class="section-label light">Security &amp; Privacy</div>
+      <h2 class="section-title light">Your data is safe.<br />Your customers protected.</h2>
+      <p class="section-sub light">MarsCart is built with privacy-first architecture — protecting sensitive customer data while enabling personalized, memorable shopping experiences.</p>
+
+      <div class="sec-phones-row">
+
+        <!-- Phone 1 -->
+        <div class="sec-phone-card" id="sec-phone-1">
+          <div class="sec-phone-border"></div>
+          <div class="sec-phone-frame">
+            <div class="sec-phone-notch"></div>
+            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
+            <div class="sec-phone-default">
+              <div class="sec-phone-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+                  <path d="M17 11V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V11M4 11H20V21H4V11Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="16" r="2" fill="#D0E84D"/>
+                </svg>
               </div>
+              <div class="sec-phone-label">Encrypted</div>
+              <div class="sec-phone-sublabel">AES-256</div>
             </div>
+            <div class="sec-phone-hover-content">
+              <div class="sec-hover-icon">🔒</div>
+              <div class="sec-hover-title">Data Encryption</div>
+              <div class="sec-hover-desc">Military-grade encryption protects all customer &amp; transaction data at every layer.</div>
+              <ul class="sec-hover-list">
+                <li>AES-256 at rest</li>
+                <li>TLS 1.3 in transit</li>
+                <li>Nightly cloud backups</li>
+              </ul>
+            </div>
+            <div class="sec-phone-glare"></div>
           </div>
+          <div class="sec-phone-bottom-text">data protection</div>
         </div>
 
-        <!-- 2nd Row: Phone Left, Text Right -->
-        <div class="security-row">
-          <div class="sec-info">
-            <h3 class="sec-title">Secure Authentication</h3>
-            <p class="sec-desc">Grant access only to those who need it. Multi-factor authentication and role-based
-              permissions give you granular control over your store's security.</p>
-            <div class="sec-points">
-              <div class="sec-point">Mandatory Multi-Factor Authentication (MFA)</div>
-              <div class="sec-point">Role-Based Access Control (RBAC) levels</div>
-              <div class="sec-point">Real-time session monitoring and audit logs</div>
-            </div>
-          </div>
-          <div class="sec-visual">
-            <div class="phone-container">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="sec-phone-icon">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="var(--lime)"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M9 12L11 14L15 10" stroke="var(--lime)" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <div
-                  style="color:var(--lime);font-weight:800;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-top:16px;">
-                  Protected</div>
-                <div class="phone-glare"></div>
+        <!-- Phone 2 (center — elevated) -->
+        <div class="sec-phone-card sec-phone-center" id="sec-phone-2">
+          <div class="sec-phone-border"></div>
+          <div class="sec-phone-frame">
+            <div class="sec-phone-notch"></div>
+            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
+            <div class="sec-phone-default">
+              <div class="sec-phone-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 12L11 14L15 10" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
+              <div class="sec-phone-label">Protected</div>
+              <div class="sec-phone-sublabel">MFA + RBAC</div>
             </div>
+            <div class="sec-phone-hover-content">
+              <div class="sec-hover-icon">🛡️</div>
+              <div class="sec-hover-title">Auth &amp; Access</div>
+              <div class="sec-hover-desc">Multi-factor auth and role-based permissions control exactly who sees what.</div>
+              <ul class="sec-hover-list">
+                <li>Mandatory MFA</li>
+                <li>RBAC permissions</li>
+                <li>Real-time audit logs</li>
+              </ul>
+            </div>
+            <div class="sec-phone-glare"></div>
           </div>
+          <div class="sec-phone-bottom-text">access control</div>
         </div>
 
-        <!-- 3rd Row: Text Left, Phone Right -->
-        <div class="security-row">
-          <div class="sec-info">
-            <h3 class="sec-title">Privacy Compliance</h3>
-            <p class="sec-desc">Global retail requires global compliance. MarsCart is built to honor the strictest
-              data
-              protection laws, keeping your brand safe in every market.</p>
-            <div class="sec-points">
-              <div class="sec-point">Full GDPR and CCPA alignment out of the box</div>
-              <div class="sec-point">Customer Right-to-Erasure automated workflows</div>
-              <div class="sec-point">Zero-sell metadata policy for third-parties</div>
-            </div>
-          </div>
-          <div class="sec-visual">
-            <div class="phone-container">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <div class="sec-phone-icon">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="5" y="4" width="14" height="17" rx="2" stroke="var(--lime)" stroke-width="2" />
-                    <path d="M9 9H15" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M9 13H15" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M9 17H12" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M8 2V5" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M16 2V5" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" />
-                  </svg>
-                </div>
-                <div
-                  style="color:var(--lime);font-weight:800;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-top:16px;">
-                  Compliant</div>
-                <div class="phone-glare"></div>
+        <!-- Phone 3 -->
+        <div class="sec-phone-card" id="sec-phone-3">
+          <div class="sec-phone-border"></div>
+          <div class="sec-phone-frame">
+            <div class="sec-phone-notch"></div>
+            <div class="sec-phone-status"><span>9:41</span><span>▌●●●</span></div>
+            <div class="sec-phone-default">
+              <div class="sec-phone-icon-wrap">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+                  <rect x="5" y="4" width="14" height="17" rx="2" stroke="#D0E84D" stroke-width="1.8"/>
+                  <path d="M9 9H15M9 13H15M9 17H12" stroke="#D0E84D" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
               </div>
+              <div class="sec-phone-label">Compliant</div>
+              <div class="sec-phone-sublabel">GDPR · CCPA</div>
             </div>
+            <div class="sec-phone-hover-content">
+              <div class="sec-hover-icon">📋</div>
+              <div class="sec-hover-title">Privacy Compliance</div>
+              <div class="sec-hover-desc">Built to honor the strictest global data protection laws in every market.</div>
+              <ul class="sec-hover-list">
+                <li>GDPR &amp; CCPA ready</li>
+                <li>Right-to-Erasure flows</li>
+                <li>Zero-sell metadata</li>
+              </ul>
+            </div>
+            <div class="sec-phone-glare"></div>
           </div>
+          <div class="sec-phone-bottom-text">privacy &amp; compliance</div>
         </div>
-      </div>
-      <div class="privacy-callout">
-        <div class="pc-text">
-          <h3>Personalization without compromise</h3>
-          <p>MarsCart uses customer data to power smart recommendations and personalized experiences — while keeping
-            privacy at the forefront. Your customers trust you. We help you earn that trust every day.</p>
+
+      </div><!-- end .sec-phones-row -->
+
+      <div class="sec-callout">
+        <div class="sec-callout-icon">🔐</div>
+        <div class="sec-callout-text">
+          <strong>Personalization without compromise.</strong>
+          MarsCart uses customer data to power smart recommendations — while keeping privacy at the forefront.
         </div>
-        <div class="pc-data-types">
-          <div class="pdt-item">📞 Contact Details</div>
-          <div class="pdt-item">📦 Order History</div>
-          <div class="pdt-item">💜 Style Preferences</div>
-          <div class="pdt-item">📏 Measurements</div>
+        <div class="sec-callout-badges">
+          <span>GDPR</span><span>SOC 2</span><span>ISO 27001</span><span>CCPA</span>
         </div>
       </div>
     </div>
