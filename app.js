@@ -1,49 +1,74 @@
 /* ============================================================
-   MARSCART — UI Logic
+   MarsCart — UI Logic (No Animations — Handled by animations.js)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    /* ============================================================
-       1. NAVBAR — scroll shadow
-    ============================================================ */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
 
-    /* ============================================================
-       2. MOBILE HAMBURGER
-    ============================================================ */
+    /* ── 1. NAVBAR hamburger ─────────────────────────────── */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    hamburger?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-        const spans = hamburger.querySelectorAll('span');
-        const isOpen = mobileMenu.classList.contains('open');
-        spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px,5px)' : '';
-        spans[1].style.opacity = isOpen ? '0' : '';
-        spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
-    });
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const spans = hamburger.querySelectorAll('span');
+            const isOpen = mobileMenu.classList.contains('open');
+            spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px,5px)' : '';
+            spans[1].style.opacity = isOpen ? '0' : '';
+            spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.querySelectorAll('span').forEach(s => {
+                s.style.transform = '';
+                s.style.opacity = '';
+            });
+        }));
+    }
 
-    /* ============================================================
-       3. ROLE TABS (Legacy toggles kept for UI forms if needed)
-    ============================================================ */
-    document.querySelectorAll('.role-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            const role = tab.dataset.role;
-            // Tell 3d-scene to swap out models based on role tab click
-            if(window.marsCart3D) {
-              window.marsCart3D.loadRoleModel(role);
-            }
-            
-            document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            const panel = document.querySelector(".role-panel[data-role='"+role+"']");
-            if (panel) panel.classList.add('active');
+    /* ── 2. Active nav link highlight on scroll ──────────── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const toIntersect = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+            });
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => toIntersect.observe(s));
+
+    /* ── 3. Pricing toggle (Annual / Monthly) ────────────── */
+    const pricingToggle = document.getElementById('pricing-toggle');
+    if (pricingToggle) {
+        pricingToggle.addEventListener('change', () => {
+            const isAnnual = pricingToggle.checked;
+            document.querySelectorAll('.price-amount').forEach(el => {
+                const monthly = el.dataset.monthly;
+                const annual = el.dataset.annual;
+                if (monthly && annual) el.textContent = isAnnual ? annual : monthly;
+            });
+        });
+    }
+
+    /* ── 4. Accordion / FAQ ──────────────────────────────── */
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const item = trigger.closest('.accordion-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
         });
     });
 
-    console.log('%cMarsCart Platform', 'font-size:24px;font-weight:900;color:#D0E84D;background:#0a0a0a;padding:8px 16px;border-radius:6px;');
-    console.log('%cPOS • Billing • Inventory • Ecommerce', 'color:#888;font-size:12px;');
+    /* ── 5. Smooth anchor scroll (fallback if Lenis is loaded) ── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
 });
