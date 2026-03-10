@@ -3136,107 +3136,120 @@ body {
 
 /* ============================================================
    CUSTOMER EXPERIENCE — Spring Card Stack
-   Mirrors framer-motion: whileInView + spring bounce
+   Cards slide up with spring bounce, readable, no rotation
    ============================================================ */
 
 #cx-cards {
   background: #f6f6f4;
   padding-top: 100px;
-  padding-bottom: 0 !important;
+  padding-bottom: 80px !important;
   overflow: visible;
 }
 
 #cx-cards .container {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
 }
 
 #cx-cards .section-label { justify-content: center; }
 #cx-cards .section-sub   { margin-left: auto; margin-right: auto; margin-bottom: 0; }
 
-/* Stack container — centred on page */
+/* Stack container */
 .cx-stack-container {
-  max-width: 540px;
+  max-width: 600px;
   margin: 0 auto;
-  padding-bottom: 120px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;           /* comfortable gap — every card is fully visible */
 }
 
-/* Each wrap holds the card + soft splash glow behind it */
+/* No overlap, no stacking — just a clean vertical flow */
 .cx-card-wrap {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
-  padding-top: 24px;
-  margin-bottom: -160px;
 }
-.cx-card-wrap:last-child { margin-bottom: 0; }
 
-/* Soft blurred ellipse glow — replaces the problematic clipPath */
+/* Soft glow halo behind each card */
 .cx-splash {
   position: absolute;
-  bottom: 0;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  height: 240px;
+  width: 70%;
+  height: 120px;
   border-radius: 50%;
-  filter: blur(48px);
-  opacity: 0.25;
+  filter: blur(40px);
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
 }
 
-/* The card itself */
+/* The actual card — full width, fully readable */
 .cx-card {
-  width: 480px;
-  border-radius: 28px;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 24px;
   background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
   box-shadow:
-    0 2px 6px rgba(0,0,0,0.04),
-    0 8px 24px rgba(0,0,0,0.06),
-    0 24px 64px rgba(0,0,0,0.10);
-  transform-origin: 50% 80%;
+    0 4px 12px rgba(0,0,0,0.04),
+    0 16px 40px rgba(0,0,0,0.07);
   position: relative;
   z-index: 2;
-  transform: translateY(300px);
-  will-change: transform;
+  /* GSAP sets initial transform */
+  will-change: transform, opacity;
 }
 
 .cx-card-inner {
-  padding: 48px 48px 40px;
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 24px;
+  align-items: start;
+}
+
+/* Left column: number + emoji stacked */
+.cx-left-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
 }
 
 .cx-step-num {
   font-size: 11px;
   font-weight: 800;
   color: rgba(0,0,0,0.2);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   font-family: 'Courier New', monospace;
-  text-transform: uppercase;
 }
 
 .cx-emoji {
-  font-size: 60px;
+  font-size: 52px;
   line-height: 1;
-  margin: 4px 0 8px;
+}
+
+/* Right column: all text */
+.cx-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .cx-card-title {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 900;
   color: #0a0a0a;
-  letter-spacing: -0.8px;
-  line-height: 1.15;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .cx-card-desc {
-  font-size: 15px;
-  color: #666;
+  font-size: 14px;
+  color: #555;
   line-height: 1.75;
 }
 
@@ -3244,21 +3257,22 @@ body {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 8px;
 }
 
 .cx-tags span {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
   border-radius: 50px;
   background: rgba(0,0,0,0.05);
-  color: rgba(0,0,0,0.45);
+  color: rgba(0,0,0,0.4);
 }
 
-@media (max-width: 600px) {
-  .cx-stack-container { max-width: 90vw; }
-  .cx-card { width: 100%; border-radius: 20px; }
-  .cx-card-inner { padding: 32px 28px; }
-  .cx-card-title { font-size: 22px; }
+@media (max-width: 640px) {
+  .cx-card-inner {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+  .cx-left-col { flex-direction: row; align-items: center; gap: 12px; }
+  .cx-emoji { font-size: 40px; }
 }

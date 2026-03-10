@@ -56,48 +56,46 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
 
     /* ── SPRING CARD STACK — Customer Experience ───────────────
-       Equivalent to framer-motion:
-         initial="offscreen" → y:300
-         whileInView="onscreen" → y:50, rotate:-10
-         viewport={{ amount: 0.8 }}
-         transition: { type:"spring", bounce:0.4, duration:0.8 }
-       
-       GSAP "elastic.out" is the spring equivalent.
+       Cards slide up from below with springy bounce on scroll enter.
+       NO rotation — content must be readable.
+       Each card triggers independently as it enters viewport.
     ─────────────────────────────────────────────────────────── */
     (function initCxCards() {
-        const cards = document.querySelectorAll('.cx-card');
-        if (!cards.length) return;
+        const wraps = document.querySelectorAll('.cx-card-wrap');
+        if (!wraps.length) return;
 
-        // Set all cards to their "offscreen" state
-        gsap.set(cards, { y: 300, rotation: 0, opacity: 1 });
+        wraps.forEach((wrap) => {
+            const card = wrap.querySelector('.cx-card');
+            const splash = wrap.querySelector('.cx-splash');
 
-        cards.forEach((card, i) => {
-            // Rotate alternates: odd cards lean left, even lean right — like stacked deck
-            const finalRotate = i % 2 === 0 ? -8 : 6;
+            if (!card) return;
 
+            // Start state: below screen, invisible
+            gsap.set(card, { y: 80, opacity: 0 });
+
+            // Spring entrance: y → 0, opacity → 1
             gsap.to(card, {
-                y: 50,
-                rotation: finalRotate,
-                duration: 0.9,
-                ease: 'elastic.out(1, 0.5)', // spring bounce — matches bounce:0.4 in framer-motion
+                y: 0,
+                opacity: 1,
+                duration: 0.85,
+                ease: 'back.out(1.4)',   // gentle spring — readable, no rotation
                 scrollTrigger: {
-                    trigger: card.closest('.cx-card-wrap'),
-                    start: 'top 80%',   // fires when 80% of card is visible (viewport.amount:0.8)
+                    trigger: wrap,
+                    start: 'top 82%',
                     toggleActions: 'play none none reverse',
                 }
             });
 
-            // Animate the splash behind it too
-            const splash = card.closest('.cx-card-wrap')?.querySelector('.cx-splash');
+            // Splash glow fades in softly
             if (splash) {
                 gsap.from(splash, {
                     opacity: 0,
-                    scale: 0.6,
-                    duration: 0.6,
-                    ease: 'power3.out',
+                    scale: 0.5,
+                    duration: 0.7,
+                    ease: 'power2.out',
                     scrollTrigger: {
-                        trigger: card.closest('.cx-card-wrap'),
-                        start: 'top 80%',
+                        trigger: wrap,
+                        start: 'top 82%',
                         toggleActions: 'play none none reverse',
                     }
                 });
