@@ -5094,3 +5094,26 @@ body {
 .sec-phones {
   margin-bottom: 100px !important;
 }
+
+
+
+/* --- Vertical Phone Staircase (Step Structure) --- */
+#sec-phone-1 { transform: translateY(0); }
+#sec-phone-2 { transform: translateY(60px); }
+#sec-phone-3 { transform: translateY(120px); }
+
+/* Ensure the container has enough height to allow the staggered layout */
+.sec-phones {
+  min-height: 460px !important;
+  margin-bottom: 160px !important; 
+  align-items: flex-start !important; /* Start from top to allow staggered push down */
+  padding-top: 40px;
+}
+
+/* Redefine hover to preserve the step position but add lift */
+#sec-phone-1:hover { transform: translateY(-10px) scale(1.05); }
+#sec-phone-2:hover { transform: translateY(50px) scale(1.05); }
+#sec-phone-3:hover { transform: translateY(110px) scale(1.05); }
+
+/* Hide old featured transform that breaks the logic */
+.sec-phone-featured { transform: none !important; }

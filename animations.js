@@ -135,16 +135,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Security Phone Reveals (Deep Pop + Safety distance)
+    // Security Phone Reveals (Slow Staircase Steps)
     if (q('.sec-phones')) {
         gsap.from('.sec-phone', {
-            y: 100, opacity: 0, scale: 0.9, duration: 1.2, stagger: 0.15, ease: 'power4.out',
-            scrollTrigger: { trigger: '.sec-phones', start: 'top 85%' }
+            y: 150,
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.8,
+            stagger: 0.45,
+            ease: 'power4.out',
+            scrollTrigger: { trigger: '.sec-phones', start: 'top 80%' }
         });
 
         // Ensure the callout below also has a clean entrance
         gsap.from('.sec-callout', {
-            y: 40, opacity: 0, duration: 1, ease: 'power2.out',
+            y: 40, opacity: 0, duration: 1.2, delay: 0.8, ease: 'power2.out',
             scrollTrigger: { trigger: '.sec-callout', start: 'top 95%' }
         });
     }
