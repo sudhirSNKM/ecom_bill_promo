@@ -55,6 +55,56 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     })();
 
+    /* ── SPRING CARD STACK — Customer Experience ───────────────
+       Equivalent to framer-motion:
+         initial="offscreen" → y:300
+         whileInView="onscreen" → y:50, rotate:-10
+         viewport={{ amount: 0.8 }}
+         transition: { type:"spring", bounce:0.4, duration:0.8 }
+       
+       GSAP "elastic.out" is the spring equivalent.
+    ─────────────────────────────────────────────────────────── */
+    (function initCxCards() {
+        const cards = document.querySelectorAll('.cx-card');
+        if (!cards.length) return;
+
+        // Set all cards to their "offscreen" state
+        gsap.set(cards, { y: 300, rotation: 0, opacity: 1 });
+
+        cards.forEach((card, i) => {
+            // Rotate alternates: odd cards lean left, even lean right — like stacked deck
+            const finalRotate = i % 2 === 0 ? -8 : 6;
+
+            gsap.to(card, {
+                y: 50,
+                rotation: finalRotate,
+                duration: 0.9,
+                ease: 'elastic.out(1, 0.5)', // spring bounce — matches bounce:0.4 in framer-motion
+                scrollTrigger: {
+                    trigger: card.closest('.cx-card-wrap'),
+                    start: 'top 80%',   // fires when 80% of card is visible (viewport.amount:0.8)
+                    toggleActions: 'play none none reverse',
+                }
+            });
+
+            // Animate the splash behind it too
+            const splash = card.closest('.cx-card-wrap')?.querySelector('.cx-splash');
+            if (splash) {
+                gsap.from(splash, {
+                    opacity: 0,
+                    scale: 0.6,
+                    duration: 0.6,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: card.closest('.cx-card-wrap'),
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    }
+                });
+            }
+        });
+    })();
+
     /* ── 1. NAVBAR — compact on scroll ──────────────────────── */
     ScrollTrigger.create({
         start: 'top -60',

@@ -3132,3 +3132,125 @@ body {
   .role-hcard { width: 300px; min-height: 480px; padding: 28px 24px; }
   .roles-gallery { gap: 20px; padding: 0 24px; }
 }
+
+
+/* ============================================================
+   CUSTOMER EXPERIENCE — Spring Card Stack
+   Mirrors framer-motion: whileInView + spring bounce
+   Each card flies in from y:300 with a springy bounce
+   ============================================================ */
+
+#cx-cards {
+  padding-bottom: 0 !important;
+  overflow: visible;
+}
+
+#cx-cards .container {
+  margin-bottom: 60px;
+}
+
+/* The outer container holds all the stacked card wraps */
+.cx-stack-container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+/* Each card-wrap = the card + the colourful splash behind it */
+.cx-card-wrap {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 20px;
+  margin-bottom: -140px; /* negative margin stacks cards like framer-motion */
+}
+
+/* Last card gets no negative overlap */
+.cx-card-wrap:last-child {
+  margin-bottom: 0;
+}
+
+/* Colourful splash shape — same clipPath as the React example */
+.cx-splash {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  clip-path: path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z");
+  pointer-events: none;
+}
+
+/* The actual card */
+.cx-card {
+  width: 320px;
+  min-height: 380px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow:
+    0 0 2px rgba(0,0,0,0.05),
+    0 0 8px rgba(0,0,0,0.06),
+    0 0 24px rgba(0,0,0,0.08),
+    0 32px 80px rgba(0,0,0,0.12);
+  transform-origin: 10% 60%;
+  position: relative;
+  z-index: 2;
+  /* Start state: far below (set by GSAP) */
+  transform: translateY(300px) rotate(0deg);
+}
+
+.cx-card-inner {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cx-step-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(0,0,0,0.25);
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+}
+
+.cx-emoji {
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.cx-card-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0a0a0a;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.cx-card-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+}
+
+.cx-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.cx-tags span {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(0,0,0,0.05);
+  color: rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .cx-stack-container { max-width: 320px; }
+  .cx-card { width: 300px; min-height: 340px; }
+}
