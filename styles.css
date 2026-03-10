@@ -4591,3 +4591,236 @@ body {
   .features-bento { grid-template-columns: 1fr; }
   .bento-card-wrap.bento-wide { grid-column: span 1; }
 }
+
+
+
+/* ============================================================
+   PREMIUM SCROLL EFFECTS — Stacked Cards & Sticky Story
+   ============================================================ */
+
+/* 1. Stacked Cards Layout (Platform Overview) */
+.platform-stacked-sec {
+  background: #f8f9fa;
+  padding-bottom: 200px;
+}
+
+.modules-stack {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.module-card-stack {
+  position: sticky;
+  top: 120px;
+  width: 100%;
+  min-height: 480px;
+  background: white;
+  border-radius: 32px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.module-card-stack .mcs-inner {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.module-card-stack .mcs-content {
+  flex: 1;
+  padding: 60px;
+}
+
+.module-card-stack .mcs-visual {
+  flex: 1;
+  height: 100%;
+  background: #f2f4f7;
+  position: relative;
+}
+
+.module-card-stack h3 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 20px 0 16px;
+  letter-spacing: -1px;
+}
+
+.module-card-stack p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Specific stacked card visuals */
+.visual-pos { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+.visual-inv { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+.visual-ecom { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); }
+.visual-ana { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); }
+
+
+/* 2. Sticky Storytelling (Analytics) */
+.sticky-story-sec {
+  padding: 120px 0;
+  background: #0d0d0b;
+}
+
+.sticky-story-container {
+  display: flex;
+  gap: 80px;
+}
+
+.story-left {
+  flex: 1;
+  position: sticky;
+  top: 150px;
+  align-self: flex-start;
+}
+
+.story-right {
+  flex: 1.2;
+}
+
+.story-steps {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.story-step {
+  display: flex;
+  gap: 20px;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+.story-step.active {
+  opacity: 1;
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  background: #D0E84D;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(208, 232, 77, 0.4);
+}
+
+.step-txt strong {
+  display: block;
+  font-size: 18px;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.step-txt p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+.story-visual-wrap {
+  position: sticky;
+  top: 150px;
+  height: 400px;
+  width: 100%;
+}
+
+.story-visual-card {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+.story-visual-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.bar-chart-v {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  height: 180px;
+  margin-top: 30px;
+}
+
+.bv-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.bv-bar {
+  width: 100%;
+  background: #D0E84D;
+  border-radius: 6px 6px 0 0;
+  min-height: 20px;
+}
+
+.bv-col span { font-size: 11px; color: #666; font-weight: 700; }
+
+.viz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.vl-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+  color: white;
+}
+
+.viz-price {
+  font-size: 32px;
+  font-weight: 900;
+  color: #D0E84D;
+  margin-top: 20px;
+}
+
+.viz-price .up { font-size: 14px; color: #4ade80; margin-left: 10px; }
+
+@media (max-width: 991px) {
+  .sticky-story-container { flex-direction: column; }
+  .story-left { position: relative; top: 0; }
+  .story-visual-wrap { position: relative; top: 0; height: 320px; }
+  .module-card-stack .mcs-inner { flex-direction: column; }
+  .module-card-stack .mcs-visual { height: 260px; width: 100%; }
+}
+
+
+
+/* 3. Footer Parallax Background */
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 60px;
+}
+
+.footer-parallax {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 120%;
+  background: radial-gradient(circle at 50% 100%, #1a1a1a 0%, #0d0d0b 80%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Fix for Analytics Story Visuals */
+.viz-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 12px 0; }
+.viz-row span { color: white; font-size: 14px; }

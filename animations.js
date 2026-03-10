@@ -45,26 +45,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ════════════════════════════════════════════════════════════
-       3. SCROLL PARALLAX — hero layers move at different speeds
+       3. CINEMATIC HERO SCROLL — zoom + parallax + fade
     ════════════════════════════════════════════════════════════ */
     if (q('.hero-content')) {
         gsap.to('.hero-content', {
-            yPercent: -12, ease: 'none',
-            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+            y: -100, opacity: 0, scale: 0.95, filter: 'blur(10px)',
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: '80% top', scrub: 1 }
         });
     }
-    if (q('.hero-visual')) {
-        gsap.to('.hero-visual', {
-            yPercent: -22, ease: 'none',
+    if (q('.hero-vid-shell')) {
+        gsap.to('.hero-vid-shell', {
+            scale: 1.15, y: -40,
             scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
         });
     }
     if (q('.hero-bg-grid')) {
         gsap.to('.hero-bg-grid', {
-            opacity: 0, ease: 'none',
-            scrollTrigger: { trigger: '.hero', start: 'top top', end: '35% top', scrub: 1 }
+            y: 100, opacity: 0,
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: '60% top', scrub: 1 }
         });
     }
+    qa('.hero-orb').forEach((orb, i) => {
+        gsap.to(orb, {
+            y: (i + 1) * -150, x: (i % 2 === 0 ? 1 : -1) * 80,
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+        });
+    });
 
     /* ════════════════════════════════════════════════════════════
        4. HERO ENTRANCE — staggered text rise on load
@@ -127,20 +133,52 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     );
 
-    /* ── PLATFORM — module cards spring up ── */
-    if (q('.modules-grid')) {
-        gsap.from('.module-card', {
-            y: 50,
-            opacity: 0,
-            scale: 0.98,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.modules-grid',
-                start: 'top 92%',
-                toggleActions: 'play none none none',
-                once: true
+    /* ════════════════════════════════════════════════════════════
+       7. PLATFORM — Stacked Cards Effect
+    ════════════════════════════════════════════════════════════ */
+    if (qa('.module-card-stack').length) {
+        const stacks = qa('.module-card-stack');
+        stacks.forEach((card, i) => {
+            if (i === stacks.length - 1) return; // Last card doesn't need to scale down
+            gsap.to(card, {
+                scale: 0.92,
+                opacity: 0.8,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 120px',
+                    end: 'bottom 100px',
+                    scrub: true,
+                }
+            });
+        });
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       8. ANALYTICS — Sticky Storytelling
+    ════════════════════════════════════════════════════════════ */
+    if (q('.sticky-story-sec')) {
+        const steps = qa('.story-step');
+        const vcards = qa('.story-visual-card');
+
+        // Use a ScrollTrigger to switch steps/visuals
+        ScrollTrigger.create({
+            trigger: '.sticky-story-sec',
+            start: 'top top',
+            end: '+=150%',
+            pin: true,
+            scrub: 1,
+            onUpdate: (self) => {
+                const progress = self.progress;
+                let activeIdx = 0;
+                if (progress > 0.33) activeIdx = 1;
+                if (progress > 0.66) activeIdx = 2;
+
+                steps.forEach((step, i) => {
+                    step.classList.toggle('active', i === activeIdx);
+                });
+                vcards.forEach((vc, i) => {
+                    vc.classList.toggle('active', i === activeIdx);
+                });
             }
         });
     }
@@ -158,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const cardW = cards[0]?.offsetWidth || 460;
         const totalPan = (cards.length - 1) * (cardW + 32);
 
-        gsap.set(cards, { scale: 0.93, opacity: 0.5 });
-        gsap.set(cards[0], { scale: 1.0, opacity: 1 });
+        gsap.set(cards, { scale: 0.98, opacity: 1, borderColor: 'rgba(255,255,255,0.08)', boxShadow: 'none' });
+        gsap.set(cards[0], { scale: 1.0, borderColor: '#D0E84D', boxShadow: '0 0 30px rgba(208, 232, 77, 0.15)' });
 
         gsap.to(gallery, {
             x: -totalPan, ease: 'none',
@@ -168,11 +206,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrub: 1.2,
                 onUpdate: (self) => {
                     if (fill) fill.style.width = (self.progress * 100) + '%';
-                    const idx = Math.round(self.progress * (cards.length - 1));
+
+                    // Determine which card is closest to the viewport center
+                    const viewportCenter = window.innerWidth / 2;
+                    let activeIdx = 0;
+                    let minDistance = Infinity;
+
+                    cards.forEach((card, i) => {
+                        const rect = card.getBoundingClientRect();
+                        const cardCenter = rect.left + rect.width / 2;
+                        const dist = Math.abs(cardCenter - viewportCenter);
+
+                        if (dist < minDistance) {
+                            minDistance = dist;
+                            activeIdx = i;
+                        }
+                    });
+
                     cards.forEach((c, i) => gsap.to(c, {
-                        scale: i === idx ? 1.0 : 0.93,
-                        opacity: i === idx ? 1 : 0.5,
-                        duration: 0.35, overwrite: 'auto', ease: 'power2.out'
+                        scale: i === activeIdx ? 1.0 : 0.98,
+                        borderColor: i === activeIdx ? '#D0E84D' : 'rgba(255,255,255,0.08)',
+                        boxShadow: i === activeIdx ? '0 0 40px rgba(208, 232, 77, 0.25)' : 'none',
+                        duration: 0.4, overwrite: 'auto', ease: 'power2.out'
                     }));
                 }
             }
@@ -206,18 +261,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ════════════════════════════════════════════════════════════
-       12. ANALYTICS — metrics + chart cards stagger
+       9. FOOTER — Parallax Background
     ════════════════════════════════════════════════════════════ */
-    if (q('.analytics-metric')) {
-        gsap.from('.analytics-metric', {
-            y: 50, opacity: 0, duration: 0.65, stagger: 0.09, ease: 'power2.out',
-            scrollTrigger: { trigger: '#analytics', start: 'top 82%', toggleActions: 'play none none none' }
-        });
-    }
-    if (q('.chart-card')) {
-        gsap.from('.chart-card', {
-            y: 40, opacity: 0, duration: 0.65, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.analytics-main', start: 'top 82%', toggleActions: 'play none none none' }
+    if (q('.footer-parallax')) {
+        gsap.to('.footer-parallax', {
+            yPercent: -20,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.footer',
+                start: 'top bottom',
+                end: 'bottom bottom',
+                scrub: true
+            }
         });
     }
 
