@@ -218,22 +218,22 @@ document.addEventListener('DOMContentLoaded', function () {
        Note: tech-cards live inside .journey-flow in #tech
     ════════════════════════════════════════════════════════════ */
     if (q('#tech .tech-card')) {
-        // Floating buy card rises first
+        // Left column: heading + buy card animate together
         if (q('.floating-buy-card')) {
             gsap.from('.floating-buy-card', {
-                y: 50, opacity: 0, duration: 0.8, ease: 'back.out(1.2)',
-                scrollTrigger: { trigger: '#tech', start: 'top 80%', toggleActions: 'play none none none' }
+                y: 50, opacity: 0, duration: 0.85, ease: 'back.out(1.2)',
+                scrollTrigger: { trigger: '.tech-left', start: 'top 82%', toggleActions: 'play none none none' }
             });
         }
-        // Tech cards stagger in
+        // Right column: tech cards stagger in
         gsap.from('#tech .tech-card', {
-            y: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '#tech .journey-flow', start: 'top 82%', toggleActions: 'play none none none' }
+            y: 48, opacity: 0, duration: 0.65, stagger: 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 82%', toggleActions: 'play none none none' }
         });
-        // Tech badges pop in
+        // Badges pop in last
         if (q('.tech-badge')) {
             gsap.from('.tech-badge', {
-                y: 20, opacity: 0, scale: 0.85, duration: 0.5, stagger: 0.07, ease: 'back.out(1.5)',
+                y: 16, opacity: 0, scale: 0.88, duration: 0.45, stagger: 0.07, ease: 'back.out(1.5)',
                 scrollTrigger: { trigger: '.tech-badges', start: 'top 88%', toggleActions: 'play none none none' }
             });
         }

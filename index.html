@@ -680,70 +680,80 @@
 
   <!-- TECH STACK -->
   <section class="section" id="tech">
-    <div class="container container-narrow">
-      <div class="section-label light">E-commerce</div>
-      <h2 class="section-title">Turn browsers into buyers.</h2>
-      <p class="section-sub">A beautiful, fast storefront that syncs directly with your physical inventory.</p>
+    <div class="container">
+      <div class="tech-layout">
 
-      <!-- Floating 3D Context Card (GSAP Triggered) -->
-      <div class="floating-buy-card" id="floating-buy">
-        <div class="fbc-info">
-          <h3>Modern Luxury Chair</h3>
-          <p>In Stock • Ships Today</p>
+        <!-- Left: heading + floating product card -->
+        <div class="tech-left">
+          <div class="section-label">E-commerce</div>
+          <h2 class="section-title">Turn browsers<br />into buyers.</h2>
+          <p class="section-sub">A beautiful, fast storefront that syncs directly with your physical inventory — live stock, instant checkout, real orders.</p>
+
+          <!-- Floating product card with liquid glass -->
+          <div class="floating-buy-card" id="floating-buy">
+            <div class="fbc-badge">🟢 Live</div>
+            <div class="fbc-info">
+              <h3>Modern Luxury Chair</h3>
+              <p>In Stock &bull; Ships Today</p>
+            </div>
+            <div class="fbc-price">₹12,499</div>
+            <button class="btn btn-primary btn-sm open-cart-btn">Add to Cart</button>
+          </div>
         </div>
-        <button class="btn btn-primary btn-sm open-cart-btn">Add to Cart</button>
-      </div>
 
-    </div>
-    </div>
-    <div class="journey-flow">
-
-
-      <div class="tech-card" id="tech-firebase">
-        <div class="tech-icon-wrap">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="#FF6F00" />
-            <path d="M8 24l5-14 3 6 2-4 6 12H8z" fill="white" fill-opacity="0.9" />
-          </svg>
+        <!-- Right: 3 tech cards in a column -->
+        <div class="tech-cards-col">
+          <div class="tech-card" id="tech-firebase">
+            <div class="tech-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="#FF6F00" />
+                <path d="M8 24l5-14 3 6 2-4 6 12H8z" fill="white" fill-opacity="0.9" />
+              </svg>
+            </div>
+            <div class="tech-content">
+              <div class="tech-name">Firebase</div>
+              <div class="tech-role">Backend &amp; Auth</div>
+              <div class="tech-desc">Firestore real-time database and Firebase Authentication for instant sync and secure user management.</div>
+            </div>
+          </div>
+          <div class="tech-card" id="tech-genkit">
+            <div class="tech-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="#4285F4" />
+                <path d="M16 8l2 5h5l-4 3 1.5 5L16 18l-4.5 3 1.5-5-4-3h5z" fill="white" />
+              </svg>
+            </div>
+            <div class="tech-content">
+              <div class="tech-name">Google Genkit</div>
+              <div class="tech-role">AI Integration</div>
+              <div class="tech-desc">AI-powered inventory forecasting, product recommendations, and smart analytics driven by Google's LLMs.</div>
+            </div>
+          </div>
+          <div class="tech-card" id="tech-cloud">
+            <div class="tech-icon-wrap">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="#34A853" />
+                <path d="M10 22a4 4 0 010-8 5 5 0 019.9 1H21a3 3 0 010 6H10z" fill="white" />
+              </svg>
+            </div>
+            <div class="tech-content">
+              <div class="tech-name">Google Cloud</div>
+              <div class="tech-role">Deployment &amp; Scale</div>
+              <div class="tech-desc">Cloud-native deployment with global CDN, auto-scaling, and 99.9% uptime SLA for enterprise reliability.</div>
+            </div>
+          </div>
         </div>
-        <div class="tech-name">Firebase</div>
-        <div class="tech-role">Backend & Auth</div>
-        <div class="tech-desc">Firestore real-time database and Firebase Authentication for instant sync and secure
-          user management.</div>
-      </div>
-      <div class="tech-card" id="tech-genkit">
-        <div class="tech-icon-wrap">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="#4285F4" />
-            <path d="M16 8l2 5h5l-4 3 1.5 5L16 18l-4.5 3 1.5-5-4-3h5z" fill="white" />
-          </svg>
-        </div>
-        <div class="tech-name">Google Genkit</div>
-        <div class="tech-role">AI Integration</div>
-        <div class="tech-desc">AI-powered inventory forecasting, product recommendations, and smart analytics driven
-          by Google's LLMs.</div>
-      </div>
-      <div class="tech-card" id="tech-cloud">
-        <div class="tech-icon-wrap">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="#34A853" />
-            <path d="M10 22a4 4 0 010-8 5 5 0 019.9 1H21a3 3 0 010 6H10z" fill="white" />
-          </svg>
-        </div>
-        <div class="tech-name">Google Cloud</div>
-        <div class="tech-role">Deployment & Scale</div>
-        <div class="tech-desc">Cloud-native deployment with global CDN, auto-scaling, and 99.9% uptime SLA for
-          enterprise reliability.</div>
-      </div>
 
-    </div>
-    <div class="tech-badges">
-      <div class="tech-badge">🔒 SOC 2 Ready</div>
-      <div class="tech-badge">🌍 Global CDN</div>
-      <div class="tech-badge">⚡ &lt;200ms Response</div>
-      <div class="tech-badge">🔄 Real-time Sync</div>
-      <div class="tech-badge">📈 Auto-scaling</div>
-    </div>
+      </div><!-- end .tech-layout -->
+
+      <!-- Badges row -->
+      <div class="tech-badges">
+        <div class="tech-badge">🔒 SOC 2 Ready</div>
+        <div class="tech-badge">🌍 Global CDN</div>
+        <div class="tech-badge">⚡ &lt;200ms Response</div>
+        <div class="tech-badge">🔄 Real-time Sync</div>
+        <div class="tech-badge">📈 Auto-scaling</div>
+      </div>
     </div>
   </section>
 

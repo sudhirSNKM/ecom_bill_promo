@@ -3493,3 +3493,171 @@ body {
   z-index: 1;
 }
 .hero-content, .hero-visual { z-index: 2 !important; }
+
+
+/* ============================================================
+   TECH SECTION — 2-column layout fix
+   Left: heading + floating product card
+   Right: 3 tech cards stacked
+   ============================================================ */
+
+/* 2-column layout */
+.tech-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+/* Left column */
+.tech-left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.tech-left .section-label  { margin-bottom: -8px; }
+.tech-left .section-title  { font-size: clamp(28px, 3.5vw, 48px); }
+.tech-left .section-sub    { margin-bottom: 0; }
+
+/* Floating buy card — liquid glass */
+.floating-buy-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.9) inset,
+    0 8px 32px rgba(0,0,0,0.08),
+    0 2px 8px rgba(0,0,0,0.04);
+  max-width: 340px;
+}
+
+.fbc-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+  background: rgba(22,163,74,0.1);
+  border-radius: 50px;
+  padding: 3px 10px;
+  width: fit-content;
+  letter-spacing: 0.5px;
+}
+
+.fbc-info h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+}
+
+.fbc-info p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.fbc-price {
+  font-size: 24px;
+  font-weight: 900;
+  color: #0a0a0a;
+  letter-spacing: -1px;
+}
+
+/* Right column: tech cards stacked */
+.tech-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Tech card — horizontal layout (icon left, text right) */
+.tech-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.25s, box-shadow 0.3s;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(208,232,77,0.35);
+  box-shadow: 0 8px 32px rgba(208,232,77,0.12), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.tech-icon-wrap {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-content { display: flex; flex-direction: column; gap: 4px; }
+
+.tech-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.3px;
+}
+
+.tech-role {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.35);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.tech-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.65;
+  margin-top: 6px;
+}
+
+/* Badges bar */
+.tech-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.tech-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
+  color: rgba(0,0,0,0.6);
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.tech-badge:hover {
+  background: rgba(208,232,77,0.12);
+  border-color: rgba(208,232,77,0.3);
+}
+
+@media (max-width: 768px) {
+  .tech-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .floating-buy-card { max-width: 100%; }
+}
