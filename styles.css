@@ -172,7 +172,7 @@ body {
   height: 60px;
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
 }
 
 .logo {
@@ -1766,7 +1766,7 @@ body {
   padding: 48px;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 40px;
+  gap: 24px;
   align-items: center;
 }
 
@@ -2455,7 +2455,7 @@ body {
 .reviews-summary {
   display: grid;
   grid-template-columns: 160px 1fr 1fr;
-  gap: 40px;
+  gap: 24px;
   align-items: center;
   background: var(--dark-card);
   border: 1px solid var(--dark-border);
@@ -3260,7 +3260,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .role-hcard { width: 300px; min-height: 480px; padding: 28px 24px; }
+  .role-hcard { width: 300px; min-height: 380px; padding: 28px 24px; }
   .roles-gallery { gap: 20px; padding: 0 24px; }
 }
 
@@ -3788,7 +3788,7 @@ body {
 @media (max-width: 768px) {
   .tech-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 24px;
   }
   .floating-buy-card { max-width: 100%; }
 }
@@ -4234,7 +4234,7 @@ body {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
   padding: 120px 5% 80px;
 }
 
@@ -4601,21 +4601,21 @@ body {
 /* 1. Stacked Cards Layout (Platform Overview) */
 .platform-stacked-sec {
   background: #f8f9fa;
-  padding-bottom: 200px;
+  padding-bottom: 80px;
 }
 
 .modules-stack {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 24px;
 }
 
 .module-card-stack {
   position: sticky;
   top: 120px;
   width: 100%;
-  min-height: 480px;
+  min-height: 380px;
   background: white;
   border-radius: 32px;
   border: 1px solid rgba(0,0,0,0.05);

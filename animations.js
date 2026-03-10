@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ── SECTION REVEAL — universal fade-in ── */
     qa('.section').forEach((sec) => {
-        // Skip sections that have specialized internal stagger animations to avoid conflicts
-        const skip = ['platform', 'features', 'analytics', 'tech'];
+        // Skip sections that have specialized internal stagger animations or are handled elsewhere
+        const skip = ['platform', 'roles', 'analytics', 'tech', 'security', 'reviews', 'blog'];
         if (skip.includes(sec.id)) return;
 
         gsap.from(sec, {
@@ -118,6 +118,57 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    /* ════════════════════════════════════════════════════════════
+       10. SPECIALIZED SECTION ANIMATIONS (Below Analytics)
+    ════════════════════════════════════════════════════════════ */
+
+    // Tech Stack Reveal (Slide from right)
+    if (q('.tech-cards-col')) {
+        gsap.from('.tech-card', {
+            x: 100, opacity: 0, duration: 0.9, stagger: 0.15, ease: 'expo.out',
+            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 85%' }
+        });
+        gsap.from('.floating-buy-card', {
+            y: 40, scale: 0.8, opacity: 0, duration: 1.2, ease: 'back.out(1.5)',
+            scrollTrigger: { trigger: '.tech-left', start: 'top 85%' }
+        });
+    }
+
+    // Security Phone Reveals (Deep Pop)
+    if (q('.sec-phones')) {
+        gsap.from('.sec-phone', {
+            y: 120, opacity: 0, scale: 0.9, duration: 1.2, stagger: 0.2, ease: 'power4.out',
+            scrollTrigger: { trigger: '.sec-phones', start: 'top 82%' }
+        });
+    }
+
+    // Customer Reviews Stagger + Continuous Float
+    if (q('.reviews-grid')) {
+        gsap.from('.review-card', {
+            y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.reviews-grid', start: 'top 85%' },
+            onComplete: () => {
+                qa('.review-card').forEach((card, i) => {
+                    gsap.to(card, {
+                        y: i % 2 === 0 ? -10 : 10,
+                        duration: 3 + (i * 0.5),
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'sine.inOut'
+                    });
+                });
+            }
+        });
+    }
+
+    // Blog Grid Reveal
+    if (q('.blog-grid')) {
+        gsap.from('.blog-card', {
+            y: 60, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.blog-grid', start: 'top 85%' }
+        });
+    }
 
     /* ════════════════════════════════════════════════════════════
        7. SECTION LABELS · TITLES · SUBS — individual reveals
@@ -147,10 +198,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (qa('.module-card-stack').length) {
         const stacks = qa('.module-card-stack');
         stacks.forEach((card, i) => {
-            if (i === stacks.length - 1) return; // Last card doesn't need to scale down
+            if (i === stacks.length - 1) return;
             gsap.to(card, {
-                scale: 0.92,
-                opacity: 0.8,
+                scale: 0.94, // Compacter scale
+                opacity: 0.9,
                 scrollTrigger: {
                     trigger: card,
                     start: 'top 120px',
