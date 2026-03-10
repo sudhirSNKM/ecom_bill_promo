@@ -3696,22 +3696,23 @@ body {
 .sec-phones-row {
   display: flex;
   justify-content: center;
-  align-items: center;   /* center-align so heights match visually */
-  gap: 28px;
+  align-items: center;
+  gap: 24px;
   margin: 64px 0 56px;
 }
 
 /* ── The phone card (Uiverse-style wrapper) ── */
 .sec-phone-card {
-  width: 220px;
-  height: 440px;        /* all 3 same height */
-  background: #1a1f24;
+  width: 210px;
+  height: 400px;
+  background: #1c2128;
+  border: 1px solid rgba(255,255,255,0.06);
   position: relative;
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
   border-radius: 36px;
   overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1),
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1),
               box-shadow 0.4s ease;
   cursor: pointer;
   flex-shrink: 0;
@@ -3724,12 +3725,14 @@ body {
 
 /* Center phone: slightly elevated + lime border to mark it as "featured" */
 .sec-phone-center {
-  transform: translateY(-16px);
-  box-shadow: 0 0 0 1.5px rgba(208,232,77,0.4), 0 24px 64px rgba(208,232,77,0.14), 0 8px 24px rgba(0,0,0,0.3);
-  z-index: 2;   /* sits on top of side phones */
+  transform: translateY(-20px) scale(1.04);
+  box-shadow: 0 0 0 1.5px rgba(208,232,77,0.45),
+              0 24px 64px rgba(208,232,77,0.15),
+              0 8px 24px rgba(0,0,0,0.35);
+  z-index: 2;
 }
 .sec-phone-center:hover {
-  transform: translateY(-32px) scale(1.05);
+  transform: translateY(-36px) scale(1.06);
 }
 
 /* ── Animated border (from Uiverse) ── */
@@ -3758,19 +3761,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  padding: 12px 0 20px;
+  position: absolute;
+  inset: 0;
+  padding: 0 0 16px;
 }
 
 /* Notch */
 .sec-phone-notch {
-  width: 60px;
-  height: 10px;
-  background: #000;
-  border-radius: 0 0 12px 12px;
-  margin-bottom: 8px;
+  width: 12px;
+  height: 12px;
+  background: #111;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 50%;          /* pill camera dot — not a black box */
+  margin: 10px auto 6px;
   position: relative;
   z-index: 3;
+  flex-shrink: 0;
 }
 
 /* Status bar */
@@ -3778,12 +3784,12 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 6px 18px 12px;
   font-size: 9px;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.3);
   font-weight: 600;
-  margin-bottom: 16px;
   font-family: 'Courier New', monospace;
+  flex-shrink: 0;
 }
 
 /* ── Default screen (visible when not hovering) ── */
@@ -3793,22 +3799,24 @@ body {
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 12px;
+  gap: 10px;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  padding: 0 16px;
+  padding: 0 20px 16px;
   position: relative;
   z-index: 4;
+  width: 100%;
 }
 
 .sec-phone-icon-wrap {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
   background: rgba(208,232,77,0.08);
-  border: 1px solid rgba(208,232,77,0.2);
+  border: 1px solid rgba(208,232,77,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .sec-phone-label {
@@ -3834,7 +3842,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 60px 22px 28px;   /* top padding for notch/status area */
+  padding: 52px 22px 24px;   /* top padding clears camera dot + status bar */
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
