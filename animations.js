@@ -123,10 +123,14 @@ document.addEventListener('DOMContentLoaded', function () {
        10. SPECIALIZED SECTION ANIMATIONS (Below Analytics)
     ════════════════════════════════════════════════════════════ */
 
-    // Tech Stack Reveal (Slide from right)
+    // Tech Stack Reveal (Slide from right with step line)
     if (q('.tech-cards-col')) {
         gsap.from('.tech-card', {
-            x: 100, opacity: 0, duration: 0.9, stagger: 0.15, ease: 'expo.out',
+            x: 80, opacity: 0, duration: 0.9, stagger: 0.2, ease: 'power3.out',
+            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 85%' }
+        });
+        gsap.from('.tech-step-line', {
+            height: 0, opacity: 0, duration: 1.5, ease: 'power2.inOut',
             scrollTrigger: { trigger: '.tech-cards-col', start: 'top 85%' }
         });
         gsap.from('.floating-buy-card', {
@@ -143,16 +147,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Customer Reviews Stagger + Continuous Float
+    // Customer Reviews Stagger + Continuous Float (Safety first)
     if (q('.reviews-grid')) {
         gsap.from('.review-card', {
             y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
             scrollTrigger: { trigger: '.reviews-grid', start: 'top 85%' },
             onComplete: () => {
                 qa('.review-card').forEach((card, i) => {
+                    gsap.set(card, { clearProps: 'opacity,visibility' }); // Ensure visible
                     gsap.to(card, {
-                        y: i % 2 === 0 ? -10 : 10,
-                        duration: 3 + (i * 0.5),
+                        y: i % 3 === 0 ? -8 : (i % 3 === 1 ? 8 : 0),
+                        duration: 3 + (i * 0.4),
                         yoyo: true,
                         repeat: -1,
                         ease: 'sine.inOut'

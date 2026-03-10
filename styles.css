@@ -4824,3 +4824,96 @@ body {
 /* Fix for Analytics Story Visuals */
 .viz-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 12px 0; }
 .viz-row span { color: white; font-size: 14px; }
+
+
+
+
+
+
+/* --- Refined Tech Steps --- */
+.tech-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.tech-cards-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 40px;
+}
+
+.tech-step-line {
+  content: '';
+  position: absolute;
+  top: 45px;
+  bottom: 45px;
+  left: 62px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #D0E84D 10%, #D0E84D 90%, transparent);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.tech-card {
+  position: relative;
+  z-index: 2;
+  margin-left: 60px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.tech-card[data-step]::before {
+  content: attr(data-step);
+  position: absolute;
+  left: -90px;
+  top: 24px;
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: #999;
+  z-index: 3;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.tech-card:hover::before {
+  border-color: #D0E84D;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(208,232,77,0.4);
+}
+
+/* --- Review Card Visibility Fix --- */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-top: 40px;
+}
+
+.review-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  position: relative;
+  z-index: 5;
+}
+
+/* Reset any possible GSAP artifacts if they get stuck */
+.review-card.gsap-reveal-complete {
+  opacity: 1 !important;
+  transform: none !important;
+}
