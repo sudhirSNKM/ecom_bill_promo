@@ -5530,6 +5530,7 @@ body {
 
 
 
+
 /* --- 8. STICKY STORYTELLING --- */
 .sticky-story-sec {
   position: relative;
@@ -5542,24 +5543,21 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   align-items: flex-start;
-  min-height: 100vh;
-  /* Pinned height */
 }
 
 .ss-left {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 100px 0;
-  gap: 30vh;
-  /* Spacing between scrolling texts */
+  padding: 30vh 0 70vh 0; /* Proper spacing so items scroll through center */
+  gap: 80vh; 
 }
 
 .story-step {
-  opacity: 0.15;
+  opacity: 0.2;
   transition: opacity 0.5s ease;
-  min-height: 30vh;
   display: block !important;
+  scroll-snap-align: center;
 }
 
 .story-step.active {
@@ -5581,26 +5579,47 @@ body {
   width: 100%;
   max-width: 500px;
   height: 400px;
+  perspective: 1000px;
 }
 
 .story-visual-card {
   position: absolute;
   inset: 0;
   background: #111;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 20px;
   padding: 40px;
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  transform-origin: top center;
 }
 
-.story-visual-card.active {
+/* We will control the classes via JS to morph them */
+.story-visual-card.stack-active {
   opacity: 1;
   transform: translateY(0) scale(1);
+  z-index: 10;
   pointer-events: auto;
+}
+
+.story-visual-card.stack-next-1 {
+  opacity: 0.6;
+  transform: translateY(30px) scale(0.95);
+  z-index: 5;
+}
+
+.story-visual-card.stack-next-2 {
+  opacity: 0.3;
+  transform: translateY(60px) scale(0.9);
+  z-index: 1;
+}
+
+.story-visual-card.stack-past {
+  opacity: 0;
+  transform: translateY(-80px) scale(1.05); /* Lifts up and disappears */
   z-index: 10;
 }
 
@@ -5644,26 +5663,17 @@ body {
   border-radius: 6px;
 }
 
-.bg-lime {
-  background: #D0E84D;
-}
-
-.bg-blue {
-  background: #60a5fa;
-}
-
-.bg-pink {
-  background: #f472b6;
-}
+.bg-lime { background: #D0E84D; }
+.bg-blue { background: #60a5fa; }
+.bg-pink { background: #f472b6; }
 
 .svc-item {
   display: flex;
   justify-content: space-between;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   color: #fff;
 }
-
 .svc-item:last-child {
   border-bottom: none;
 }
