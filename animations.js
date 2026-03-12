@@ -62,10 +62,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     if (q('.hero-vid-shell')) {
-        gsap.to('.hero-vid-shell', {
-            scale: 1.15, y: -40,
-            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
-        });
+        gsap.fromTo('.hero-vid-shell',
+            { scale: 1.25, transformOrigin: 'top center' },
+            {
+                scale: 0.9, y: 50, opacity: 0, filter: 'blur(10px)',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+            }
+        );
     }
     if (q('.hero-bg-grid')) {
         gsap.to('.hero-bg-grid', {
@@ -80,16 +83,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ════════════════════════════════════════════════════════════
+        /* ════════════════════════════════════════════════════════════
        4. HERO ENTRANCE — staggered text rise on load
     ════════════════════════════════════════════════════════════ */
-    gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .from('.hero-badge', { y: 24, opacity: 0, duration: 0.7 }, 0.1)
-        .from('.hero-headline', { y: 70, opacity: 0, duration: 0.85, filter: 'blur(5px)' }, 0.2)
-        .from('.hero-sub', { y: 40, opacity: 0, duration: 0.7 }, 0.38)
-        .from('.hero-actions .btn, .hero-actions .btn-uiverse', { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' }, 0.52)
-        .from('.hero-stats', { y: 20, opacity: 0, duration: 0.55 }, 0.65)
-        .from('.hero-visual', { y: 60, opacity: 0, duration: 0.85, filter: 'blur(10px)' }, 0.28);
+    gsap.timeline({ defaults: { ease: 'power4.out' } })
+        .from('.hero-badge', { y: 30, opacity: 0, duration: 1 }, 0.1)
+        .from('.hero-headline > span', { 
+            y: 80, opacity: 0, duration: 1.2, filter: 'blur(8px)', stagger: 0.15 
+        }, 0.2)
+        .from('.hero-sub', { y: 40, opacity: 0, duration: 1 }, 0.4)
+        .from('.hero-actions .btn, .hero-actions .btn-uiverse', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
+        .from('.hero-stats', { y: 20, opacity: 0, duration: 0.8 }, 0.8)
+        .from('.hero-visual', { y: 80, opacity: 0, duration: 1.2, filter: 'blur(10px)' }, 0.4);
 
     /* ════════════════════════════════════════════════════════════
        5. FLOATING CARDS — hero cards gently bob up/down

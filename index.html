@@ -600,129 +600,58 @@
       </div>
     </div>
   </section>
-  <!-- ANALYTICS -->
-  <section class="section section-dark" id="analytics">
-    <div class="container">
-      <div class="section-label light">Analytics Dashboard</div>
-      <h2 class="section-title light">Data that drives<br />smarter decisions.</h2>
-      <p class="section-sub light">Real-time insights into your sales, products, branches, and customers — visualized
-        beautifully.</p>
-      <div class="analytics-layout">
-        <div class="analytics-sidebar">
-          <div class="analytics-metric" id="am-1">
-            <div class="am-label">Total Revenue</div>
-            <div class="am-value">$4.1M</div>
-            <div class="am-change up">↑ 13.5%</div>
-          </div>
-          <div class="analytics-metric" id="am-2">
-            <div class="am-label">Active Customers</div>
-            <div class="am-value">8,900</div>
-            <div class="am-change up">↑ 8%</div>
-          </div>
-          <div class="analytics-metric" id="am-3">
-            <div class="am-label">New Customers</div>
-            <div class="am-value">1,240</div>
-            <div class="am-change up">↑ 15%</div>
-          </div>
-          <div class="analytics-metric" id="am-4">
-            <div class="am-label">Conversion Rate</div>
-            <div class="am-value">3.6%</div>
-            <div class="am-change up">↑ 2.1%</div>
-          </div>
+  <!-- STICKY STORYTELLING: ANALYTICS -->
+  <section class="section section-dark sticky-story-sec" id="analytics">
+    <div class="container sticky-story-container">
+      <div class="ss-left">
+        <div class="story-step active" id="ss-1">
+          <div class="section-label light">Real-Time Data</div>
+          <h2 class="section-title light">Know exactly<br/>where you stand.</h2>
+          <p class="section-sub light">Get a bird's eye view of your entire business. Track gross revenue, net sales, and active orders minute by minute.</p>
         </div>
-        <div class="analytics-main">
-          <div class="chart-card" id="chart-sales">
-            <div class="chart-card-title">Monthly Revenue</div>
-            <div class="line-chart">
-              <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D0E84D" stop-opacity="0.4" />
-                    <stop offset="100%" stop-color="#D0E84D" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <path d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5"
-                  fill="none" stroke="#D0E84D" stroke-width="2.5" stroke-linecap="round" />
-                <path
-                  d="M0,100 L40,85 L80,70 L120,60 L160,50 L200,40 L240,30 L280,20 L320,15 L360,10 L400,5 L400,120 L0,120Z"
-                  fill="url(#grad)" />
-                <circle cx="280" cy="20" r="4" fill="#D0E84D" />
-              </svg>
-            </div>
+        <div class="story-step" id="ss-2">
+          <div class="section-label light">Branch Intelligence</div>
+          <h2 class="section-title light">Compare locations<br/>instantly.</h2>
+          <p class="section-sub light">See which branches are performing best. Identify trends by region, staffing efficiency, and localized stock performance.</p>
+        </div>
+        <div class="story-step" id="ss-3">
+          <div class="section-label light">Product Insights</div>
+          <h2 class="section-title light">Identify your<br/>top sellers.</h2>
+          <p class="section-sub light">Deep dive into individual product performance. Know what's flying off shelves and what needs a promotion to move.</p>
+        </div>
+      </div>
+      
+      <div class="ss-right">
+        <div class="ss-visual-stack">
+          <!-- Card 1: Revenue -->
+          <div class="story-visual-card active" id="svc-1">
+             <div class="svc-header">Global Revenue</div>
+             <div class="svc-big-num">₹4.2M <span class="up">↑ 12%</span></div>
+             <div class="svc-graph">
+               <svg viewBox="0 0 200 60"><path d="M0,50 L20,40 L40,45 L60,30 L80,35 L100,20 L120,25 L140,10 L160,15 L180,5 L200,10" fill="none" stroke="#D0E84D" stroke-width="3" stroke-linecap="round" /></svg>
+             </div>
           </div>
-          <div class="chart-card" id="chart-branch">
-            <div class="chart-card-title">Branch Performance</div>
-            <div class="bar-chart-h">
-              <div class="bch-row"><span class="bch-label">Dubai Mall</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:88%"></div>
-                </div><span class="bch-val">$1.8M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Abu Dhabi</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:65%"></div>
-                </div><span class="bch-val">$1.2M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Riyadh</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:45%"></div>
-                </div><span class="bch-val">$0.9M</span>
-              </div>
-              <div class="bch-row"><span class="bch-label">Online</span>
-                <div class="bch-bar-wrap">
-                  <div class="bch-bar" style="width:55%"></div>
-                </div><span class="bch-val">$1.1M</span>
-              </div>
-            </div>
+          
+          <!-- Card 2: Branches -->
+          <div class="story-visual-card" id="svc-2">
+            <div class="svc-header">Branch Comparison</div>
+            <div class="svc-bar"><span class="span-label">Dubai Mall</span><div class="bar bg-lime" style="width: 80%"></div></div>
+            <div class="svc-bar"><span class="span-label">Abu Dhabi</span><div class="bar bg-blue" style="width: 60%"></div></div>
+            <div class="svc-bar"><span class="span-label">Riyadh</span><div class="bar bg-pink" style="width: 45%"></div></div>
           </div>
-          <div class="chart-card chart-full" id="chart-products">
-            <div class="chart-card-title">Top Products</div>
-            <table class="products-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Product</th>
-                  <th>Revenue</th>
-                  <th>Units</th>
-                  <th>Growth</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Aria Silk Dress</td>
-                  <td>$84,200</td>
-                  <td>338</td>
-                  <td class="up">↑ 22%</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Cashmere Blouse</td>
-                  <td>$68,500</td>
-                  <td>274</td>
-                  <td class="up">↑ 18%</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Kai Tailored Blazer</td>
-                  <td>$55,000</td>
-                  <td>186</td>
-                  <td class="up">↑ 12%</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Luna Silk Blouse</td>
-                  <td>$42,900</td>
-                  <td>390</td>
-                  <td class="down">↓ 3%</td>
-                </tr>
-              </tbody>
-            </table>
+          
+          <!-- Card 3: Products -->
+          <div class="story-visual-card" id="svc-3">
+            <div class="svc-header">Top Movers</div>
+            <div class="svc-item"><span>Silk Dress</span> <span>84 Sold</span></div>
+            <div class="svc-item"><span>Linen Shirt</span> <span>62 Sold</span></div>
+            <div class="svc-item"><span>Leather Bag</span> <span>31 Sold</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- TECH STACK -->
   <section class="section" id="tech">
