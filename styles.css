@@ -1,11 +1,6 @@
 
 /* --- Global Mobile Safety --- */
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-    width: 100vw;
-    position: relative;
-  }
+
   .container, .s-container {
     padding-left: 20px !important;
     padding-right: 20px !important;
@@ -2822,10 +2817,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .reviews-summary {
-    grid-template-columns: 1fr;
-  }
+
 
   .rs-score {
     grid-column: span 1;
@@ -3267,12 +3259,7 @@ body {
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
-  .role-hcard {
-    width: 300px;
-    min-height: 380px;
-    padding: 28px 24px;
-  }
+
 
   .roles-gallery {
     gap: 20px;
@@ -3845,11 +3832,7 @@ body {
   border-color: rgba(208, 232, 77, 0.3);
 }
 
-@media (max-width: 768px) {
-  .tech-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+
 
   .floating-buy-card {
     max-width: 100%;
@@ -4148,11 +4131,7 @@ body {
   border: 1px solid rgba(208, 232, 77, 0.22);
 }
 
-@media (max-width: 768px) {
 
-  .sec-phone-center {
-    transform: none;
-  }
 
   .sec-callout-badges {
     justify-content: center;
@@ -4973,18 +4952,11 @@ body {
 }
 
 
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 140px !important; /* Ensure nav doesn't overlap text */
-    padding-bottom: 60px !important;
-  }
+
 }
 
 
-@media (max-width: 768px) {
-  #security, #analytics, #roles, .hero {
-    overflow: hidden !important;
-  }
+
 }
 
 
@@ -5070,8 +5042,7 @@ body {
 /* ============================================================
    COMPLETE MOBILE RE-DESIGN (View-Based Logic)
    ============================================================ */
-@media (max-width: 768px) {
-  body, html { overflow-x: hidden !important; width: 100% !important; }
+
   
   /* Reduction of fonts */
   h1, h2, .section-title { font-size: 28px !important; line-height: 1.2 !important; letter-spacing: -1px !important; }
@@ -5120,4 +5091,148 @@ body {
   /* Footer */
   .footer-inner { padding: 40px 16px !important; }
   .footer-links { grid-template-columns: 1fr 1fr !important; text-align: left !important; }
+}
+
+
+/* --- Security Phone Styles --- */
+.sec-phones {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  perspective: 1000px;
+  margin-top: 60px;
+  padding-bottom: 80px;
+}
+
+.sec-phone {
+  position: relative;
+  width: 260px;
+  height: 520px;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.sec-phone-shell {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  border-radius: 40px;
+  border: 4px solid #333;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 24px;
+  background: #333;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 10;
+}
+
+.sec-phone-screen {
+  position: absolute;
+  inset: 8px;
+  border-radius: 32px;
+  background: #000;
+  overflow: hidden;
+}
+
+.sec-default-view, .sec-hover-view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.6s ease;
+}
+
+.sec-hover-view {
+  opacity: 0;
+  transform: translateY(20px);
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.sec-phone:hover .sec-default-view { opacity: 0; transform: translateY(-20px); }
+.sec-phone:hover .sec-hover-view { opacity: 1; transform: translateY(0); }
+
+/* Stagger heights on Desktop */
+#sec-phone-2 { transform: translateY(-30px); }
+#sec-phone-3 { transform: translateY(30px); }
+
+
+@media (max-width: 768px) {
+  /* 0. GENERAL */
+  body, html { overflow-x: hidden !important; width: 100% !important; }
+  .section-title { font-size: 26px !important; }
+  .section-sub { font-size: 14px !important; }
+
+  /* 1. HEADER (Fixed Mixing Color) */
+  .nav { 
+    backdrop-filter: blur(20px) !important; 
+    background: rgba(0,0,0,0.95) !important; /* Solid dark background to prevent mixing */
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    top: 10px !important;
+    margin: 0 10px !important;
+    width: calc(100% - 20px) !important;
+  }
+  .nav-inner { padding: 0 15px !important; }
+  .logo-text, .pricing-label { display: none !important; }
+  .hamburger span { background: #fff !important; }
+
+  /* 2. HERO BUTTON Visibility */
+  .btn-uiverse { 
+    background: var(--lime) !important; /* Make it solid lime on mobile for visibility */
+    box-shadow: 0 10px 30px rgba(208, 232, 77, 0.3) !important;
+  }
+  .btn-uiverse-text { color: #000 !important; font-weight: 800 !important; }
+  .btn-uiverse-circle { background: #000 !important; }
+  .btn-uiverse-icon { color: var(--lime) !important; }
+
+  /* 3. ROLES (Vertical Stacking) */
+  .roles-scroll-container { height: auto !important; }
+  .roles-sticky-wrapper { position: relative !important; height: auto !important; padding: 40px 15px !important; top: 0 !important; }
+  .roles-gallery { flex-direction: column !important; transform: none !important; width: 100% !important; }
+  .role-hcard { width: 100% !important; margin-bottom: 20px !important; }
+
+  /* 4. ANALYTICS (Fixed Color Visibility) */
+  .story-visual-card { 
+    position: relative !important; opacity: 1 !important; transform: none !important; 
+    display: block !important; background: #222 !important; margin-bottom: 25px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+  }
+  .story-visual-card * { color: #fff !important; } /* Force everything to white */
+  .svc-header { color: var(--lime) !important; }
+  .bg-lime { background: var(--lime) !important; height: 12px !important; }
+
+  /* 5. SECURITY PHONES (Fixed Missing Frames) */
+  .sec-phones { 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    gap: 40px !important; 
+    perspective: none !important;
+  }
+  .sec-phone { 
+    width: 230px !important; 
+    height: 440px !important; 
+    transform: none !important; 
+    position: relative !important;
+    top: 0 !important;
+  }
+  .sec-phone-shell { border-width: 3px !important; }
+  .sec-phone-label-tag { bottom: -25px !important; font-size: 10px !important; opacity: 0.5 !important; }
+  
+  /* Disable Hover on Mobile */
+  .sec-phone:hover .sec-default-view { opacity: 1 !important; transform: none !important; }
+  .sec-phone:hover .sec-hover-view { opacity: 0 !important; }
 }
