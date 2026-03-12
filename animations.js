@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .from('.hero-badge', { y: 24, opacity: 0, duration: 0.7 }, 0.1)
         .from('.hero-headline', { y: 70, opacity: 0, duration: 0.85, filter: 'blur(5px)' }, 0.2)
         .from('.hero-sub', { y: 40, opacity: 0, duration: 0.7 }, 0.38)
-        .from('.hero-actions .btn', { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' }, 0.52)
+        .from('.hero-actions .btn, .hero-actions .btn-uiverse', { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' }, 0.52)
         .from('.hero-stats', { y: 20, opacity: 0, duration: 0.55 }, 0.65)
         .from('.hero-visual', { y: 60, opacity: 0, duration: 0.85, filter: 'blur(10px)' }, 0.28);
 

@@ -2225,10 +2225,7 @@ body {
 
 
 
-.sec-phone-featured {
-  transform: translateY(-20px);
-  z-index: 2;
-}
+
 
 .sec-phone-featured 
 
@@ -2375,7 +2372,7 @@ body {
     align-items: center;
     gap: 40px;
   }
-  .sec-phone-featured { transform: none; }
+  
   .sec-phone-label-tag { bottom: -28px; }
   
 }
@@ -4797,267 +4794,6 @@ body {
 
 
 
-/* --- New User-Requested Phone Mockup --- */
-.sec-phone {
-  width: 220px;
-  height: 400px;
-  position: relative;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-top: 0;
-}
-
-.sec-phone-shell {
-  width: 100%;
-  height: 100%;
-  background: #f9fafb !important; /* gray-50 */
-  border-radius: 16px !important; /* rounded-2xl */
-  border: 4px solid #000 !important;
-  position: relative;
-  overflow: visible !important;
-  box-shadow: 5px 5px 2.5px 6px rgb(209, 218, 218) !important;
-  display: flex;
-  justify-content: center;
-}
-
-.phone-notch {
-  border: 1px solid #000;
-  background: #000;
-  width: 110px;
-  height: 8px;
-  border-bottom-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-}
-
-.phone-btn-top {
-  position: absolute;
-  right: -8px;
-  top: 70px;
-  border: 4px solid #000;
-  height: 28px;
-  border-radius: 6px;
-  background: #000;
-}
-
-.phone-btn-bottom {
-  position: absolute;
-  right: -8px;
-  bottom: 180px;
-  border: 4px solid #000;
-  height: 40px;
-  border-radius: 6px;
-  background: #000;
-}
-
-.sec-phone-cam { display: none; } /* Replaced by notch */
-
-
-
-/* Adjust visibility of white phone content */
-.sec-default-view, 
-.sec-d-title, .sec-h-title { color: #000 !important; font-weight: 800; }
-.sec-d-sub, .sec-h-desc, .sec-h-list li { color: #666 !important; }
-
-
-
-.sec-phone-featured .sec-phone-shell {
-  border-color: #000 !important; /* Keep black border but maybe lime glow */
-  box-shadow: 0 0 25px rgba(208, 232, 77, 0.25), 5px 5px 2.5px 6px rgb(200, 210, 210) !important;
-}
-
-/* Ensure inner icons and text are visible on the new white phone screen */
-.sec-phone-screen svg {
-  stroke: #000 !important;
-}
-.sec-phone-screen circle, .sec-phone-screen path {
-  stroke: #000 !important;
-}
-.sec-icon-box {
-  background: rgba(208, 232, 77, 0.1) !important;
-}
-
-
-
-.sec-phone-screen {
-  position: absolute;
-  inset: 0; /* Fit exactly against the border */
-  border-radius: 12px;
-  background: #ffffff; /* Uniform white background */
-  overflow: hidden;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 10px;
-}
-
-/* Ensure the first phone is also white */
-.sec-phone#sec-phone-1 .sec-phone-screen,
-.sec-phone#sec-phone-1 
-
-/* Internal content alignment */
-.sec-default-view, 
-
-.sec-icon-box {
-  margin-bottom: 12px;
-  transform: scale(0.9);
-}
-
-.sec-d-title {
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.sec-d-sub {
-  font-size: 11px;
-}
-
-/* Reduce gap on top of phones section */
-#security {
-  padding-top: 80px !important;
-}
-
-.sec-phones {
-  margin-top: 0 !important;
-  padding-top: 20px;
-}
-
-
-
-/* Better fitting internal content for narrow phone */
-.sec-phone-screen {
-  inset: 0 !important;
-  background: #f9fafb !important; /* gray-50 to match user requested shell */
-  padding: 12px !important;
-}
-
-.sec-default-view {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.sec-icon-box {
-  width: 50px;
-  height: 50px;
-  background: #fff !important;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.03);
-}
-
-.sec-icon-box svg {
-  width: 24px;
-  height: 24px;
-}
-
-.sec-d-title {
-  font-size: 13px !important;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-
-.sec-d-sub {
-  font-size: 10px !important;
-  color: #888 !important;
-  font-weight: 600;
-}
-
-/* Hover view - absolute to prevent pushing content */
-.sec-hover-view {
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  z-index: 10;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  text-align: center;
-}
-
-.sec-phone:hover .sec-hover-view {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sec-h-emoji { font-size: 24px; margin-bottom: 8px; }
-.sec-h-title { font-size: 14px; font-weight: 800; margin-bottom: 6px; }
-.sec-h-desc { font-size: 10px; line-height: 1.4; margin-bottom: 8px; }
-.sec-h-list { 
-  list-style: none; padding: 0; margin: 0;
-  font-size: 9px; text-align: left; width: 100%;
-}
-.sec-h-list li { margin-bottom: 4px; padding-left: 12px; position: relative; }
-.sec-h-list li::before { content: '✓'; position: absolute; left: 0; color: #D0E84D; }
-
-/* Fixing colors for the first phone explicitly if needed */
-#sec-phone-1 .sec-phone-screen, #sec-phone-1 .sec-default-view {
-  background: #f9fafb !important;
-}
-
-/* Section Gap Fix */
-#security {
-  padding-top: 40px !important;
-  padding-bottom: 100px !important;
-}
-.sec-phones {
-  margin-top: -20px !important;
-}
-
-
-
-/* Making internal icons high-contrast for white screens */
-.sec-phone-screen svg path, 
-.sec-phone-screen svg circle, 
-.sec-phone-screen svg rect {
-  stroke: #1a1a1a !important; /* Force black for visibility */
-}
-
-/* Specific fix for the 'Protected' checkmark icon */
-.sec-phone-screen svg [stroke="#D0E84D"] {
-  stroke: #1a1a1a !important;
-}
-
-/* Ensure icons in the icon box are centered and visible */
-.sec-icon-box svg {
-  display: block;
-}
-
-
-
-.sec-phone-shell {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sec-phone-screen {
-  overflow: hidden !important;
-  border-radius: 12px !important;
-}
-
-/* Ensure the hover view doesn't leak out */
-.sec-hover-view {
-  border-radius: 12px !important;
-}
-
-
-
 /* --- Definitive Security Callout Fix --- */
 .sec-callout {
   margin-top: 140px !important; /* Huge gap to prevent ANY overlay */
@@ -5116,7 +4852,7 @@ body {
 #sec-phone-3:hover { transform: translateY(150px) scale(1.05); }
 
 /* Hide old featured transform that breaks the logic */
-.sec-phone-featured { transform: none !important; }
+
 
 
 
@@ -5154,4 +4890,189 @@ body {
   gap: 8px;
   display: flex;
   flex-direction: column;
+}
+
+
+
+/* --- Unified Premium Security Phones --- */
+#security {
+  padding-top: 100px !important;
+  padding-bottom: 120px !important;
+  background: var(--black);
+}
+
+.sec-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  min-height: 580px;
+  margin-top: 40px;
+  margin-bottom: 80px !important;
+}
+
+.sec-phone {
+  width: 220px !important;
+  height: 400px !important;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sec-phone-shell {
+  width: 100% !important;
+  height: 100% !important;
+  background: #f9fafb !important;
+  border-radius: 20px !important;
+  border: 4px solid #000 !important;
+  position: relative;
+  overflow: visible !important;
+  box-shadow: 5px 5px 2.5px 6px rgb(209, 218, 218) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.sec-phone-screen {
+  position: absolute;
+  inset: 0 !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  z-index: 1;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px 16px !important;
+}
+
+.phone-notch {
+  width: 100px;
+  height: 10px;
+  background: #000;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.phone-btn-top, .phone-btn-bottom {
+  position: absolute;
+  right: -8px;
+  background: #000;
+  width: 8px;
+  border-radius: 0 4px 4px 0;
+  z-index: 5;
+}
+
+.phone-btn-top { top: 70px; height: 30px; }
+.phone-btn-bottom { bottom: 180px; height: 45px; }
+
+/* Staircase positions */
+#sec-phone-1 { transform: translateY(0); }
+#sec-phone-2 { transform: translateY(80px); }
+#sec-phone-3 { transform: translateY(160px); }
+
+/* Hover with staircase preservation */
+#sec-phone-1:hover { transform: translateY(-10px) scale(1.02); }
+#sec-phone-2:hover { transform: translateY(70px) scale(1.02); }
+#sec-phone-3:hover { transform: translateY(150px) scale(1.02); }
+
+/* Labels */
+.sec-phone-label-tag {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+
+
+/* --- Uiverse Premium Button --- */
+.btn-uiverse {
+  cursor: pointer;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 0;
+  border-radius: 9999px;
+  min-width: 8.5rem;
+  min-height: 2.92rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.8s cubic-bezier(0.51, 0.026, 0.368, 1.016);
+  box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5);
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn-uiverse-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding: 4px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btn-uiverse-circle {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--lime);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
+  box-shadow: inset 1px -1px 3px 0 black;
+  flex-shrink: 0;
+}
+
+.btn-uiverse-icon {
+  width: 0.8rem;
+  height: 0.8rem;
+  color: #000;
+  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
+}
+
+.btn-uiverse-text {
+  padding-left: 3.4rem;
+  padding-right: 1.1rem;
+  color: #fff;
+  font-weight: 600;
+  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Hover Effects */
+.btn-uiverse:hover {
+  background: var(--lime);
+}
+
+.btn-uiverse:hover .btn-uiverse-circle {
+  width: calc(100% - 8px);
+  background: #000;
+  border-radius: 9999px;
+}
+
+.btn-uiverse:hover .btn-uiverse-icon {
+  color: #fff;
+  transform: rotate(-45deg);
+}
+
+.btn-uiverse:hover .btn-uiverse-text {
+  padding-left: 1.1rem;
+  padding-right: 3.4rem;
+  color: #000;
 }
