@@ -2917,16 +2917,7 @@ body {
 }
 
 /* Sticks to the viewport while you scroll through */
-.roles-sticky-wrapper {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+.roles-sticky-wrapper { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; }
 
 /* Thin progress bar at top of sticky strip */
 .roles-progress-bar {
