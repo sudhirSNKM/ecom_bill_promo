@@ -229,35 +229,49 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    
     /* ════════════════════════════════════════════════════════════
-       8. ANALYTICS — Sticky Storytelling
+       8. ANALYTICS — Sticky Storytelling (Morphing Stack)
     ════════════════════════════════════════════════════════════ */
     if (q('.sticky-story-sec')) {
         const steps = qa('.story-step');
         const vcards = qa('.story-visual-card');
 
-        // Use a ScrollTrigger to switch steps/visuals
-        ScrollTrigger.create({
-            trigger: '.sticky-story-sec',
-            start: 'top top',
-            end: '+=150%',
-            pin: true,
-            scrub: 1,
-            onUpdate: (self) => {
-                const progress = self.progress;
-                let activeIdx = 0;
-                if (progress > 0.33) activeIdx = 1;
-                if (progress > 0.66) activeIdx = 2;
+        // Set initial classes for the morphing stack
+        const updateStack = (idx) => {
+            steps.forEach((step, i) => step.classList.toggle('active', i === idx));
+            
+            vcards.forEach((vc, i) => {
+                vc.classList.remove('stack-active', 'stack-next-1', 'stack-next-2', 'stack-past', 'active');
+                
+                if (i < idx) {
+                    vc.classList.add('stack-past');
+                } else if (i === idx) {
+                    vc.classList.add('stack-active');
+                    vc.classList.add('active'); // compatibility
+                } else if (i === idx + 1) {
+                    vc.classList.add('stack-next-1');
+                } else if (i >= idx + 2) {
+                    vc.classList.add('stack-next-2');
+                }
+            });
+        };
 
-                steps.forEach((step, i) => {
-                    step.classList.toggle('active', i === activeIdx);
-                });
-                vcards.forEach((vc, i) => {
-                    vc.classList.toggle('active', i === activeIdx);
-                });
-            }
+        // Initialize state
+        updateStack(0);
+
+        // Individual ScrollTriggers for each text step
+        steps.forEach((step, i) => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: "top 60%",
+                end: "bottom 40%",
+                onEnter: () => updateStack(i),
+                onEnterBack: () => updateStack(i),
+            });
         });
     }
+
 
     /* ════════════════════════════════════════════════════════════
        9. HORIZONTAL SCROLL — Roles Gallery
