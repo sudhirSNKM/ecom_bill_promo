@@ -5020,7 +5020,10 @@ body {
 .btn-uiverse:hover .btn-uiverse-text { padding-left: 1.1rem; padding-right: 3.8rem; color: #000; }
 
 
-/* --- 8. STICKY STORYTELLING (DESKTOP) --- */
+
+/* ============================================================
+   8. STICKY STORYTELLING (DESKTOP)
+   ============================================================ */
 .sticky-story-sec { position: relative; background: var(--black); padding: 100px 0; }
 .sticky-story-container { display: flex; gap: 80px; max-width: 1200px; margin: 0 auto; align-items: flex-start; }
 .ss-left { flex: 1; display: flex; flex-direction: column; gap: 40vh; padding-bottom: 20vh; }
@@ -5038,201 +5041,102 @@ body {
 .story-visual-card.stack-next-2 { opacity: 0.2; transform: translateY(60px) scale(0.9); z-index: 1; }
 .story-visual-card.stack-past { opacity: 0; transform: translateY(-100px) scale(1.1); z-index: 10; }
 
-
 /* ============================================================
-   COMPLETE MOBILE RE-DESIGN (View-Based Logic)
+   9. SECURITY PHONE STYLES (DESKTOP)
    ============================================================ */
-
-  
-  /* Reduction of fonts */
-  h1, h2, .section-title { font-size: 28px !important; line-height: 1.2 !important; letter-spacing: -1px !important; }
-  p, .section-sub, .hero-sub { font-size: 14px !important; line-height: 1.6 !important; }
-
-  /* Nav Fix */
-  .nav { backdrop-filter: none !important; background: rgba(0,0,0,0.9) !important; padding: 10px 0 !important; }
-  .nav-inner { padding: 0 16px !important; }
-  .logo-text { font-size: 18px !important; }
-  .nav-links, .nav-cta { display: none !important; }
-  .hamburger { display: flex !important; margin-left: auto !important; }
-
-  /* Hero Fix */
-  .hero { padding-top: 100px !important; padding-bottom: 40px !important; text-align: center; }
-  .hero-headline { margin-bottom: 12px !important; }
-  .hero-actions { flex-direction: column !important; gap: 12px !important; align-items: center !important; }
-  
-  /* Button fix (Fixed SCALE and ARROW) */
-  .btn-uiverse { 
-    width: 240px !important; min-width: 240px !important; 
-    height: 50px !important; min-height: 50px !important; 
-    justify-content: center !important; padding: 0 !important;
-  }
-  .btn-uiverse-bg { width: 100% !important; justify-content: flex-start !important; padding: 0 10px !important; }
-  .btn-uiverse-circle { width: 30px !important; height: 30px !important; }
-  .btn-uiverse-icon { width: 14px !important; height: 14px !important; }
-  .btn-uiverse-text { padding: 0 !important; margin-left: 40px !important; font-size: 14px !important; }
-
-  /* Roles Fix (No blank space) */
-  .roles-scroll-container { height: auto !important; }
-  .roles-sticky-wrapper { position: relative !important; height: auto !important; padding: 40px 16px !important; }
-  .roles-gallery { flex-direction: column !important; transform: none !important; gap: 20px !important; }
-  .role-hcard { width: 100% !important; min-height: auto !important; padding: 24px !important; }
-
-  /* Analytics Fix */
-  .sticky-story-container { flex-direction: column !important; gap: 40px !important; padding: 40px 16px !important; }
-  .ss-left { padding: 0 !important; gap: 40px !important; }
-  .story-step { opacity: 1 !important; min-height: auto !important; }
-  .ss-right { position: relative !important; height: auto !important; width: 100% !important; }
-  .ss-visual-stack { height: auto !important; display: flex !important; flex-direction: column !important; gap: 15px !important; }
-  .story-visual-card { position: relative !important; opacity: 1 !important; transform: none !important; display: block !important; padding: 20px !important; }
-
-  /* Security Pixels (Restore Missing Phones) */
-  .sec-phones-wrap { transform: scale(0.7) !important; margin: 20px 0 !important; }
-  
-  /* Footer */
-  .footer-inner { padding: 40px 16px !important; }
-  .footer-links { grid-template-columns: 1fr 1fr !important; text-align: left !important; }
-}
-
-
-/* --- Security Phone Styles --- */
-.sec-phones {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  perspective: 1000px;
-  margin-top: 60px;
-  padding-bottom: 80px;
-}
-
-.sec-phone {
-  position: relative;
-  width: 260px;
-  height: 520px;
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: pointer;
-}
-
-.sec-phone-shell {
-  position: absolute;
-  inset: 0;
-  background: #111;
-  border-radius: 40px;
-  border: 4px solid #333;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-  overflow: hidden;
-  z-index: 1;
-}
-
-.phone-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 24px;
-  background: #333;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  z-index: 10;
-}
-
-.sec-phone-screen {
-  position: absolute;
-  inset: 8px;
-  border-radius: 32px;
-  background: #000;
-  overflow: hidden;
-}
-
-.sec-default-view, .sec-hover-view {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  text-align: center;
-  transition: all 0.6s ease;
-}
-
-.sec-hover-view {
-  opacity: 0;
-  transform: translateY(20px);
-  background: rgba(20, 20, 20, 0.95);
-  backdrop-filter: blur(10px);
-}
-
+.sec-phones { display: flex; justify-content: center; gap: 32px; perspective: 1000px; margin-top: 60px; padding-bottom: 80px; }
+.sec-phone { position: relative; width: 260px; height: 520px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); cursor: pointer; }
+.sec-phone-shell { position: absolute; inset: 0; background: #111; border-radius: 40px; border: 4px solid #333; box-shadow: 0 40px 100px rgba(0,0,0,0.8); overflow: hidden; z-index: 1; }
+.phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 24px; background: #333; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 10; }
+.sec-phone-screen { position: absolute; inset: 8px; border-radius: 32px; background: #000; overflow: hidden; }
+.sec-default-view, .sec-hover-view { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; transition: all 0.6s ease; }
+.sec-hover-view { opacity: 0; transform: translateY(20px); background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); }
 .sec-phone:hover .sec-default-view { opacity: 0; transform: translateY(-20px); }
 .sec-phone:hover .sec-hover-view { opacity: 1; transform: translateY(0); }
-
-/* Stagger heights on Desktop */
 #sec-phone-2 { transform: translateY(-30px); }
 #sec-phone-3 { transform: translateY(30px); }
 
 
+/* ============================================================
+   10. ULTIMATE MOBILE POLISH (FINAL)
+   ============================================================ */
 @media (max-width: 768px) {
-  /* 0. GENERAL */
   body, html { overflow-x: hidden !important; width: 100% !important; }
-  .section-title { font-size: 26px !important; }
-  .section-sub { font-size: 14px !important; }
 
-  /* 1. HEADER (Fixed Mixing Color) */
+  /* --- Header / Logo --- */
   .nav { 
     backdrop-filter: blur(20px) !important; 
-    background: rgba(0,0,0,0.95) !important; /* Solid dark background to prevent mixing */
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    top: 10px !important;
-    margin: 0 10px !important;
-    width: calc(100% - 20px) !important;
+    background: #000 !important; 
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    top: 15px !important;
+    margin: 0 12px !important;
+    width: calc(100% - 24px) !important;
+    border-radius: 999px !important;
+    height: 60px !important;
   }
-  .nav-inner { padding: 0 15px !important; }
-  .logo-text, .pricing-label { display: none !important; }
-  .hamburger span { background: #fff !important; }
+  .nav-inner { height: 100% !important; padding: 0 16px !important; }
+  .logo-text { display: block !important; font-size: 16px !important; color: #fff !important; font-weight: 800 !important; }
+  .nav-links, .nav-cta, .pricing-label { display: none !important; }
 
-  /* 2. HERO BUTTON Visibility */
+  /* --- Hero & Button --- */
+  .hero { padding-top: 110px !important; text-align: center !important; }
+  .hero-headline { font-size: 32px !important; margin-bottom: 12px !important; }
+  .hero-actions { flex-direction: column !important; align-items: center !important; gap: 16px !important; }
+  
   .btn-uiverse { 
-    background: var(--lime) !important; /* Make it solid lime on mobile for visibility */
-    box-shadow: 0 10px 30px rgba(208, 232, 77, 0.3) !important;
+    width: 260px !important; height: 56px !important; 
+    background: var(--lime) !important; 
+    border-radius: 999px !important;
+    justify-content: flex-start !important;
+    padding: 0 8px !important;
+    box-shadow: 0 10px 30px rgba(208, 232, 77, 0.4) !important;
   }
-  .btn-uiverse-text { color: #000 !important; font-weight: 800 !important; }
-  .btn-uiverse-circle { background: #000 !important; }
-  .btn-uiverse-icon { color: var(--lime) !important; }
+  .btn-uiverse-bg { position: absolute !important; inset: 0 !important; background: transparent !important; }
+  .btn-uiverse-circle { 
+    width: 40px !important; height: 40px !important; 
+    background: #000 !important; 
+    flex-shrink: 0 !important;
+    z-index: 5 !important;
+    position: relative !important;
+  }
+  .btn-uiverse-icon { width: 16px !important; height: 16px !important; color: var(--lime) !important; }
+  .btn-uiverse-text { 
+    padding-left: 12px !important; 
+    font-size: 15px !important; 
+    font-weight: 900 !important; 
+    color: #000 !important; 
+    z-index: 5 !important;
+    position: relative !important;
+  }
 
-  /* 3. ROLES (Vertical Stacking) */
+  /* --- Role-Based Access (Fix Overlay) --- */
   .roles-scroll-container { height: auto !important; }
-  .roles-sticky-wrapper { position: relative !important; height: auto !important; padding: 40px 15px !important; top: 0 !important; }
-  .roles-gallery { flex-direction: column !important; transform: none !important; width: 100% !important; }
-  .role-hcard { width: 100% !important; margin-bottom: 20px !important; }
+  .roles-sticky-wrapper { 
+    position: relative !important; top: 0 !important; height: auto !important; 
+    padding: 20px 15px !important; display: block !important; overflow: visible !important;
+  }
+  .roles-gallery { 
+    display: flex !important; flex-direction: column !important; 
+    transform: none !important; gap: 24px !important; padding: 0 !important; width: 100% !important;
+  }
+  .role-hcard { 
+    position: relative !important; width: 100% !important; margin: 0 !important; 
+    min-height: auto !important; padding: 32px 24px !important; background: #161613 !important;
+    border-radius: 20px !important; display: flex !important; flex-direction: column !important;
+  }
+  .roles-progress-bar { display: none !important; }
 
-  /* 4. ANALYTICS (Fixed Color Visibility) */
+  /* --- Analytics (Contrast) --- */
+  .sticky-story-container { flex-direction: column !important; padding: 40px 15px !important; }
+  .ss-right { position: relative !important; height: auto !important; margin-top: 30px !important; }
+  .ss-visual-stack { display: flex !important; flex-direction: column !important; height: auto !important; gap: 20px !important; }
   .story-visual-card { 
     position: relative !important; opacity: 1 !important; transform: none !important; 
-    display: block !important; background: #222 !important; margin-bottom: 25px !important;
-    border: 1px solid rgba(255,255,255,0.05) !important;
+    display: block !important; background: #1a1a17 !important; padding: 24px !important;
   }
-  .story-visual-card * { color: #fff !important; } /* Force everything to white */
-  .svc-header { color: var(--lime) !important; }
-  .bg-lime { background: var(--lime) !important; height: 12px !important; }
+  .story-visual-card * { color: #fff !important; }
 
-  /* 5. SECURITY PHONES (Fixed Missing Frames) */
-  .sec-phones { 
-    flex-direction: column !important; 
-    align-items: center !important; 
-    gap: 40px !important; 
-    perspective: none !important;
-  }
-  .sec-phone { 
-    width: 230px !important; 
-    height: 440px !important; 
-    transform: none !important; 
-    position: relative !important;
-    top: 0 !important;
-  }
-  .sec-phone-shell { border-width: 3px !important; }
-  .sec-phone-label-tag { bottom: -25px !important; font-size: 10px !important; opacity: 0.5 !important; }
-  
-  /* Disable Hover on Mobile */
-  .sec-phone:hover .sec-default-view { opacity: 1 !important; transform: none !important; }
-  .sec-phone:hover .sec-hover-view { opacity: 0 !important; }
+  /* --- Security Phones --- */
+  .sec-phones { flex-direction: column !important; align-items: center !important; gap: 40px !important; }
+  .sec-phone { width: 230px !important; height: 460px !important; transform: none !important; top: 0 !important; }
 }
