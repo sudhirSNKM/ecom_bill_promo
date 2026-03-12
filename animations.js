@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     if (q('.hero-content')) {
         gsap.to('.hero-content', {
-            y: -100, opacity: 0, scale: 0.95, filter: 'blur(10px)',
+            y: -100, opacity: 0, scale: 0.95, 
             scrollTrigger: { trigger: '.hero', start: 'top top', end: '80% top', scrub: 1 }
         });
     }
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.fromTo('.hero-vid-shell',
             { scale: 1.25, transformOrigin: 'top center' },
             {
-                scale: 0.9, y: 50, opacity: 0, filter: 'blur(10px)',
+                scale: 0.9, y: 50, opacity: 0, 
                 scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
             }
         );
