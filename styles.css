@@ -1,3 +1,19 @@
+
+/* --- Global Mobile Safety --- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw;
+    position: relative;
+  }
+  .container, .s-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+}
+
 /* ============================================================
    MARSCART — Landing Page Styles
    Primary: #D0E84D | Background: #F2F2F2 | Text: #000000
@@ -4906,775 +4922,67 @@ body {
 }
 
 .story-visual-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-  pointer-events: none;
-}
-
-.story-visual-card.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.bar-chart-v {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  height: 180px;
-  margin-top: 30px;
-}
-
-.bv-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.bv-bar {
-  width: 100%;
-  background: #D0E84D;
-  border-radius: 6px 6px 0 0;
-  min-height: 20px;
-}
-
-.bv-col span {
-  font-size: 11px;
-  color: #666;
-  font-weight: 700;
-}
-
-.viz-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 0;
-}
-
-.vl-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 14px;
-  color: white;
-}
-
-.viz-price {
-  font-size: 32px;
-  font-weight: 900;
-  color: #D0E84D;
-  margin-top: 0;
-}
-
-.viz-price .up {
-  font-size: 14px;
-  color: #4ade80;
-  margin-left: 10px;
-}
-
-@media (max-width: 991px) {
-  .sticky-story-container {
-    flex-direction: column;
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 30px !important;
+    height: auto !important;
+    min-height: 150px !important;
+    display: block !important;
+    pointer-events: auto !important;
+    z-index: 1 !important;
+  }
+  .ss-visual-stack {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  /* On mobile, we hide the stack logic and just show normal flow */
+  
+  .story-visual-card.stack-active {
+    display: block !important;
   }
 
-  .story-left {
-    position: relative;
-    top: 0;
+  /* ─── 4. SECURITY PHONES (STAIRCASE) ─── */
+  .sec-phones-wrap {
+    transform: scale(0.85) !important;
+    margin-top: -30px !important;
+    margin-bottom: 50px !important;
   }
-
-  .story-visual-wrap {
-    position: relative;
-    top: 0;
-    height: 320px;
+  .sec-phone {
+    width: 180px !important;
+    height: 320px !important;
   }
-
-  .module-card-stack .mcs-inner {
-    flex-direction: column;
+  /* Reduce staircase depth for small screens */
+  #sec-phone-2 { transform: translateY(40px) !important; }
+  #sec-phone-3 { transform: translateY(80px) !important; }
+  
+  /* Hover reset for mobile (no hover on touch) */
+  #sec-phone-1:hover, #sec-phone-2:hover, #sec-phone-3:hover {
+    transform: none !important;
   }
+}
 
-  .module-card-stack .mcs-visual {
-    height: 260px;
-    width: 100%;
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 28px !important;
+  }
+  .sec-phones-wrap {
+    transform: scale(0.65) !important;
   }
 }
 
 
-
-/* 3. Footer Parallax Background */
-.footer {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 60px;
-}
-
-.footer-parallax {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background: radial-gradient(circle at 50% 100%, #1a1a1a 0%, #0d0d0b 80%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Fix for Analytics Story Visuals */
-.viz-row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 12px 0;
-}
-
-.viz-row span {
-  color: white;
-  font-size: 14px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* Bold Staircase Effect (Step Structure) */
-.tech-cards-col {
-  padding-left: 0;
-  display: flex !important;
-  flex-direction: column;
-  gap: 32px;
-}
-
-#tech-firebase {
-  margin-left: 0px;
-}
-
-#tech-genkit {
-  margin-left: 120px;
-}
-
-#tech-cloud {
-  margin-left: 240px;
-}
-
-/* Refined step indicators */
-.tech-card[data-step] {
-  position: relative;
-}
-
-.tech-card[data-step]::before {
-  content: "STEP " attr(data-step);
-  position: absolute;
-  top: -12px;
-  left: 24px;
-  background: var(--lime);
-  color: #000;
-  font-size: 10px;
-  font-weight: 900;
-  padding: 4px 10px;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.tech-card {
-  max-width: 440px !important;
-  transform: none !important;
-  /* Let margins do the work */
-}
-
-
-
-/* --- Definitive Security Callout Fix --- */
-.sec-callout {
-  margin-top: 140px !important;
-  /* Huge gap to prevent ANY overlay */
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 24px !important;
-  padding: 40px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 32px !important;
-  position: relative !important;
-  z-index: 20 !important;
-  max-width: 1000px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  clear: both !important;
-}
-
-.sec-callout-text strong {
-  color: #D0E84D !important;
-  font-size: 22px !important;
-  margin-bottom: 12px !important;
-}
-
-.sec-callout-text p {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-
-/* Ensure phones don't overlap labels */
-.sec-phone-label-tag {
-  bottom: -55px !important;
-  /* Give more room below phones */
-}
-
-.sec-phones {
-  margin-bottom: 100px !important;
-}
-
-
-
-/* --- Vertical Phone Staircase (Step Structure) --- */
-
-
-
-
-/* Ensure the container has enough height to allow the staggered layout */
-
-
-/* Redefine hover to preserve the step position but add lift */
-#sec-phone-1:hover {
-  transform: translateY(-10px) scale(1.05);
-}
-
-#sec-phone-2:hover {
-  transform: translateY(70px) scale(1.05);
-}
-
-#sec-phone-3:hover {
-  transform: translateY(150px) scale(1.05);
-}
-
-/* Hide old featured transform that breaks the logic */
-
-
-
-
-/* Larger Phone Internal Visibility */
-.sec-icon-box {
-  width: 70px !important;
-  height: 70px !important;
-  margin-bottom: 30px !important;
-}
-
-.sec-icon-box svg {
-  width: 36px !important;
-  height: 36px !important;
-}
-
-.sec-d-title {
-  font-size: 18px !important;
-  margin-bottom: 12px !important;
-}
-
-.sec-d-sub {
-  font-size: 14px !important;
-}
-
-.sec-h-title {
-  font-size: 18px !important;
-}
-
-.sec-h-desc {
-  font-size: 13px !important;
-}
-
-.sec-h-list {
-  font-size: 12px !important;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-
-/* --- Unified Premium Security Phones --- */
-#security {
-  padding-top: 100px !important;
-  padding-bottom: 120px !important;
-  background: var(--black);
-}
-
-
-
-
-
-
-
-.sec-phone-screen {
-  position: absolute;
-  inset: 0 !important;
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  z-index: 1;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 24px 16px !important;
-}
-
-.phone-notch {
-  width: 100px;
-  height: 10px;
-  background: #000;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-}
-
-.phone-btn-top,
-.phone-btn-bottom {
-  position: absolute;
-  right: -8px;
-  background: #000;
-  width: 8px;
-  border-radius: 0 4px 4px 0;
-  z-index: 5;
-}
-
-.phone-btn-top {
-  top: 70px;
-  height: 30px;
-}
-
-.phone-btn-bottom {
-  bottom: 180px;
-  height: 45px;
-}
-
-/* Staircase positions */
-
-
-
-
-/* Hover with staircase preservation */
-#sec-phone-1:hover {
-  transform: translateY(-10px) scale(1.02);
-}
-
-#sec-phone-2:hover {
-  transform: translateY(70px) scale(1.02);
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 140px !important; /* Ensure nav doesn't overlap text */
+    padding-bottom: 60px !important;
+  }
 }
 
-#sec-phone-3:hover {
-  transform: translateY(150px) scale(1.02);
-}
-
-/* Labels */
-.sec-phone-label-tag {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #666;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-
-
-/* --- Uiverse Premium Button --- */
-.btn-uiverse {
-  cursor: pointer;
-  position: relative;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 10px 0;
-  border-radius: 9999px;
-  min-width: 12rem;
-  min-height: 3.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  transition: all 0.8s cubic-bezier(0.51, 0.026, 0.368, 1.016);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  overflow: hidden;
-  text-decoration: none;
-  z-index: 10;
-}
-
-.btn-uiverse-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  padding: 4px;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.btn-uiverse-circle {
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 50%;
-  background: var(--lime);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
-  box-shadow: inset 1px -1px 3px 0 black;
-  flex-shrink: 0;
-}
-
-.btn-uiverse-icon {
-  width: 0.8rem;
-  height: 0.8rem;
-  color: #000;
-  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
-}
-
-.btn-uiverse-text {
-  padding-left: 3.8rem;
-  padding-right: 1.1rem;
-  color: #fff;
-  font-weight: 600;
-  transition: all 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
-  white-space: nowrap;
-  z-index: 2;
-}
-
-/* Hover Effects */
-.btn-uiverse:hover {
-  background: var(--lime);
-}
-
-.btn-uiverse:hover .btn-uiverse-circle {
-  width: calc(100% - 8px);
-  background: #000;
-  border-radius: 9999px;
-}
-
-.btn-uiverse:hover .btn-uiverse-icon {
-  color: #fff;
-  transform: rotate(-45deg);
-}
-
-.btn-uiverse:hover .btn-uiverse-text {
-  padding-left: 1.1rem;
-  padding-right: 3.4rem;
-  color: #000;
-}
-
-
-
-/* --- Unified LARGE Security Phones --- */
-.sec-phones {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  gap: 50px !important;
-  min-height: 650px !important;
-  margin-top: 60px !important;
-  margin-bottom: 100px !important;
-}
-
-.sec-phone {
-  width: 250px !important;
-  height: 450px !important;
-  position: relative !important;
-  flex-shrink: 0 !important;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.sec-phone-shell {
-  width: 100% !important;
-  height: 100% !important;
-  background: #f9fafb !important;
-  border-radius: 24px !important;
-  border: 5px solid #000 !important;
-  position: relative !important;
-  overflow: visible !important;
-  box-shadow: 6px 6px 3px 8px rgb(209, 218, 218) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.sec-phone-screen {
-  position: absolute !important;
-  inset: 0 !important;
-  background: #ffffff !important;
-  border-radius: 18px !important;
-  overflow: hidden !important;
-  z-index: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 30px 20px !important;
-}
-
-/* STAIRCASE POSITIONS */
-#sec-phone-1 {
-  transform: translateY(0) !important;
-}
-
-#sec-phone-2 {
-  transform: translateY(90px) !important;
-}
-
-#sec-phone-3 {
-  transform: translateY(180px) !important;
-}
-
-/* Proper Hover preserves the step and adds lift */
-#sec-phone-1:hover {
-  transform: translateY(-15px) scale(1.02) !important;
-}
-
-#sec-phone-2:hover {
-  transform: translateY(75px) scale(1.02) !important;
-}
-
-#sec-phone-3:hover {
-  transform: translateY(165px) scale(1.02) !important;
-}
-
-.phone-notch {
-  width: 120px;
-  height: 12px;
-  background: #000;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
-  position: absolute;
-  top: -1px;
-  z-index: 20;
-}
-
-.phone-btn-top,
-.phone-btn-bottom {
-  position: absolute !important;
-  right: -10px !important;
-  background: #000 !important;
-  width: 10px !important;
-  border-radius: 0 5px 5px 0 !important;
-  z-index: 5 !important;
-}
-
-.phone-btn-top {
-  top: 80px !important;
-  height: 35px !important;
-}
-
-.phone-btn-bottom {
-  bottom: 200px !important;
-  height: 55px !important;
-}
-
-/* Labels */
-.sec-phone-label-tag {
-  position: absolute !important;
-  bottom: -50px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  color: #888 !important;
-  letter-spacing: 1.5px !important;
-}
-
-/* Internal content scaling for big screens */
-.sec-icon-box {
-  width: 80px !important;
-  height: 80px !important;
-  background: rgba(208, 232, 77, 0.1) !important;
-  border-radius: 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin-bottom: 30px !important;
-}
-
-.sec-icon-box svg {
-  width: 44px !important;
-  height: 44px !important;
-  stroke: #000 !important;
-}
-
-.sec-d-title {
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  color: #000 !important;
-  margin-bottom: 12px !important;
-  text-transform: uppercase;
-}
-
-.sec-d-sub {
-  font-size: 16px !important;
-  color: #666 !important;
-  font-weight: 600;
-}
-
-
-
-
-/* --- 8. STICKY STORYTELLING --- */
-.sticky-story-sec {
-  position: relative;
-  background: var(--black);
-}
-
-.sticky-story-container {
-  display: flex;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: flex-start;
-}
-
-.ss-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 10vh 0 30vh 0; /* Proper spacing so items scroll through center */
-  gap: 30vh; 
-}
-
-.story-step {
-  opacity: 0.2;
-  transition: opacity 0.5s ease;
-  display: block !important;
-  scroll-snap-align: center;
-}
-
-.story-step.active {
-  opacity: 1;
-}
-
-.ss-right {
-  flex: 1;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.ss-visual-stack {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: 400px;
-  perspective: 1000px;
-}
-
-.story-visual-card {
-  position: absolute;
-  inset: 0;
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 40px;
-  opacity: 0;
-  transform: translateY(40px) scale(0.9);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-  transform-origin: top center;
-}
-
-/* We will control the classes via JS to morph them */
-.story-visual-card.stack-active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  z-index: 10;
-  pointer-events: auto;
-}
-
-.story-visual-card.stack-next-1 {
-  opacity: 0.6;
-  transform: translateY(30px) scale(0.95);
-  z-index: 5;
-}
-
-.story-visual-card.stack-next-2 {
-  opacity: 0.3;
-  transform: translateY(60px) scale(0.9);
-  z-index: 1;
-}
-
-.story-visual-card.stack-past {
-  opacity: 0;
-  transform: translateY(-80px) scale(1.05); /* Lifts up and disappears */
-  z-index: 10;
-}
-
-/* Internal Visual Card Styling */
-.svc-header {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.svc-big-num {
-  font-size: 42px;
-  color: #fff;
-  font-weight: 800;
-  margin-bottom: 30px;
-}
-
-.svc-big-num .up {
-  font-size: 16px;
-  color: #D0E84D;
-  margin-left: 12px;
-}
-
-.svc-bar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.span-label {
-  color: #fff;
-  width: 100px;
-  font-size: 14px;
-}
-
-.bar {
-  height: 12px;
-  border-radius: 6px;
-}
-
-.bg-lime { background: #D0E84D; }
-.bg-blue { background: #60a5fa; }
-.bg-pink { background: #f472b6; }
-
-.svc-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  color: #fff;
-}
-.svc-item:last-child {
-  border-bottom: none;
+@media (max-width: 768px) {
+  #security, #analytics, #roles, .hero {
+    overflow: hidden !important;
+  }
 }

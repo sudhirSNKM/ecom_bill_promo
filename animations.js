@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     const q = (sel) => document.querySelector(sel);
     const qa = (sel) => [...document.querySelectorAll(sel)];
+    const isMobile = window.innerWidth <= 768;
 
     /* ════════════════════════════════════════════════════════════
        1. NAVBAR — liquid glass tightens on scroll
@@ -233,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ════════════════════════════════════════════════════════════
        8. ANALYTICS — Sticky Storytelling (Morphing Stack)
     ════════════════════════════════════════════════════════════ */
-    if (q('.sticky-story-sec')) {
+    if (q('.sticky-story-sec') && !isMobile) {
         const steps = qa('.story-step');
         const vcards = qa('.story-visual-card');
 
@@ -280,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = q('#rolesScrollContainer');
         const gallery = q('#rolesGallery');
         const fill = q('#rolesProgressFill');
-        if (!container || !gallery) return;
+        if (!container || !gallery || isMobile) return;
 
         const cards = qa('.role-hcard');
         const cardW = cards[0]?.offsetWidth || 460;
