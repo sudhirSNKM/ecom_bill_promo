@@ -2211,15 +2211,7 @@ body {
    Clean, unified design with hover reveals
    ============================================================ */
 
-.sec-phones {
-  min-height: 340px; /* Accommodate the 300px phones + stagger */
-  margin-bottom: 80px; /* Space for the callout */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 32px;
-  margin-bottom: 64px;
-}
+
 
 
 
@@ -2365,13 +2357,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  .sec-phones {
-  min-height: 340px; /* Accommodate the 300px phones + stagger */
-  margin-bottom: 80px; /* Space for the callout */
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
+  
   
   .sec-phone-label-tag { bottom: -28px; }
   
@@ -4834,17 +4820,12 @@ body {
 
 
 /* --- Vertical Phone Staircase (Step Structure) --- */
-#sec-phone-1 { transform: translateY(0); }
-#sec-phone-2 { transform: translateY(80px); }
-#sec-phone-3 { transform: translateY(160px); }
+
+
+
 
 /* Ensure the container has enough height to allow the staggered layout */
-.sec-phones {
-  min-height: 600px !important;
-  margin-bottom: 160px !important; 
-  align-items: flex-start !important; /* Start from top to allow staggered push down */
-  padding-top: 60px;
-}
+
 
 /* Redefine hover to preserve the step position but add lift */
 #sec-phone-1:hover { transform: translateY(-10px) scale(1.05); }
@@ -4901,38 +4882,11 @@ body {
   background: var(--black);
 }
 
-.sec-phones {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  min-height: 580px;
-  margin-top: 40px;
-  margin-bottom: 80px !important;
-}
 
-.sec-phone {
-  width: 220px !important;
-  height: 400px !important;
-  position: relative;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  flex-shrink: 0;
-}
 
-.sec-phone-shell {
-  width: 100% !important;
-  height: 100% !important;
-  background: #f9fafb !important;
-  border-radius: 20px !important;
-  border: 4px solid #000 !important;
-  position: relative;
-  overflow: visible !important;
-  box-shadow: 5px 5px 2.5px 6px rgb(209, 218, 218) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
+
+
+
 
 .sec-phone-screen {
   position: absolute;
@@ -4972,9 +4926,9 @@ body {
 .phone-btn-bottom { bottom: 180px; height: 45px; }
 
 /* Staircase positions */
-#sec-phone-1 { transform: translateY(0); }
-#sec-phone-2 { transform: translateY(80px); }
-#sec-phone-3 { transform: translateY(160px); }
+
+
+
 
 /* Hover with staircase preservation */
 #sec-phone-1:hover { transform: translateY(-10px) scale(1.02); }
@@ -5075,4 +5029,131 @@ body {
   padding-left: 1.1rem;
   padding-right: 3.4rem;
   color: #000;
+}
+
+
+
+/* --- Unified LARGE Security Phones --- */
+.sec-phones {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 50px !important;
+  min-height: 650px !important;
+  margin-top: 60px !important;
+  margin-bottom: 100px !important;
+}
+
+.sec-phone {
+  width: 250px !important; 
+  height: 450px !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sec-phone-shell {
+  width: 100% !important;
+  height: 100% !important;
+  background: #f9fafb !important;
+  border-radius: 24px !important;
+  border: 5px solid #000 !important;
+  position: relative !important;
+  overflow: visible !important;
+  box-shadow: 6px 6px 3px 8px rgb(209, 218, 218) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.sec-phone-screen {
+  position: absolute !important;
+  inset: 0 !important;
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 30px 20px !important;
+}
+
+/* STAIRCASE POSITIONS */
+#sec-phone-1 { transform: translateY(0) !important; }
+#sec-phone-2 { transform: translateY(90px) !important; }
+#sec-phone-3 { transform: translateY(180px) !important; }
+
+/* Proper Hover preserves the step and adds lift */
+#sec-phone-1:hover { transform: translateY(-15px) scale(1.02) !important; }
+#sec-phone-2:hover { transform: translateY(75px) scale(1.02) !important; }
+#sec-phone-3:hover { transform: translateY(165px) scale(1.02) !important; }
+
+.phone-notch {
+  width: 120px;
+  height: 12px;
+  background: #000;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  position: absolute;
+  top: -1px;
+  z-index: 20;
+}
+
+.phone-btn-top, .phone-btn-bottom {
+  position: absolute !important;
+  right: -10px !important;
+  background: #000 !important;
+  width: 10px !important;
+  border-radius: 0 5px 5px 0 !important;
+  z-index: 5 !important;
+}
+
+.phone-btn-top { top: 80px !important; height: 35px !important; }
+.phone-btn-bottom { bottom: 200px !important; height: 55px !important; }
+
+/* Labels */
+.sec-phone-label-tag {
+  position: absolute !important;
+  bottom: -50px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #888 !important;
+  letter-spacing: 1.5px !important;
+}
+
+/* Internal content scaling for big screens */
+.sec-icon-box {
+  width: 80px !important;
+  height: 80px !important;
+  background: rgba(208, 232, 77, 0.1) !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 30px !important;
+}
+
+.sec-icon-box svg {
+  width: 44px !important;
+  height: 44px !important;
+  stroke: #000 !important;
+}
+
+.sec-d-title {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+  margin-bottom: 12px !important;
+  text-transform: uppercase;
+}
+
+.sec-d-sub {
+  font-size: 16px !important;
+  color: #666 !important;
+  font-weight: 600;
 }

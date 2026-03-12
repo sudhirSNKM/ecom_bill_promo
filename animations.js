@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Security Phone Reveals (Slow Staircase Steps)
     if (q('.sec-phones')) {
         gsap.from('.sec-phone', {
-            y: 200,
+            y: 250,
             opacity: 0,
             scale: 0.8,
             duration: 1.8,
