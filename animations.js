@@ -395,31 +395,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     
-    /* ── SECURITY — phone mockups staggered layout handled in GSAP (Race Condition Fix) ── */
+    
+    /* ── SECURITY — phone mockups Step-by-Step (Staircase) Layout ── */
     if (q('.sec-phone')) {
-        gsap.fromTo('.sec-phone', 
-            { y: 120, opacity: 0, scale: 0.9 }, 
-            { 
-                y: (i) => (i === 1 ? -30 : (i === 2 ? 30 : 0)),
-                opacity: 1, 
-                scale: 1,
-                stagger: 0.15,
-                duration: 1.5,
-                ease: 'back.out(1.4)',
-                scrollTrigger: { 
-                    trigger: '.sec-phones', 
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
+        const phones = qa('.sec-phone');
+        
+        // Immediate position set to prevent flash of unaligned content
+        if (!isMobile) {
+            phones.forEach((p, i) => {
+                gsap.set(p, { y: (i * 45) - 45 }); // Staircase: -45, 0, 45
+            });
+        }
+
+        gsap.from(phones, {
+            y: (i) => ((i * 45) - 45) + 100, // Entrance from 100px lower than final pos
+            opacity: 0,
+            scale: 0.9,
+            stagger: 0.2,
+            duration: 1.2,
+            ease: 'power4.out',
+            scrollTrigger: {
+                trigger: '.sec-phones',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
             }
-        );
+        });
+
         if (q('.sec-callout')) {
             gsap.from('.sec-callout', {
-                y: 32, opacity: 0, duration: 0.7, ease: 'power2.out',
-                scrollTrigger: { trigger: '.sec-callout', start: 'top 92%', toggleActions: 'play none none none' }
+                y: 30, opacity: 0, duration: 1, ease: 'power2.out',
+                scrollTrigger: { trigger: '.sec-callout', start: 'top 92%' }
             });
         }
     }
+
 
 
     /* ════════════════════════════════════════════════════════════
