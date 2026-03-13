@@ -5344,9 +5344,9 @@ body {
 }
 
 /* 1. Global Visibility Guards (Dark vs Light) */
-/* Black Background Sections (Security, Roles, Analytics, Story) */
-.section-dark, .section-dark *, 
-#roles, #roles *, .roles-scroll-container, .roles-scroll-container *, 
+/* Black Background Sections (Security, Roles, Analytics, Story, Reviews) */
+.section-dark, .section-dark *, #reviews, #reviews *,
+#roles, #roles *, .roles-scroll-container, .roles-scroll-container *,
 .sticky-story-sec, .sticky-story-sec *,
 .hero, .hero * {
   color: #ffffff !important;
@@ -5354,16 +5354,14 @@ body {
 .section-dark .section-title, .section-dark .section-sub, .section-dark p { color: #ffffff !important; }
 .section-dark .section-label { color: var(--lime) !important; border-color: rgba(255,255,255,0.2) !important; }
 
-/* White Background Sections (Platform Overview, Reviews, Tech Stack, Footer) */
-.section:not(.section-dark):not(.roles-section-outer), 
-.section:not(.section-dark) *, 
-#reviews, #reviews *,
+/* White Background Sections (Platform Overview, Tech Stack, Footer) */
+.section:not(.section-dark):not(.roles-section-outer),
+.section:not(.section-dark) *,
 #platform, #platform *,
 footer, footer * {
   color: #000000 !important;
 }
 .section:not(.section-dark) .section-title, .section:not(.section-dark) .section-sub, .section:not(.section-dark) p { color: #000000 !important; }
-
 /* Exception for Highlight Text */
 .highlight { color: var(--lime) !important; }
 
