@@ -4947,8 +4947,8 @@ body {
     height: 320px !important;
   }
   /* Reduce staircase depth for small screens */
-  #sec-phone-2 { transform: translateY(40px) !important; }
-  #sec-phone-3 { transform: translateY(80px) !important; }
+  /* Handled by JS */
+  /* Handled by JS */
   
   /* Hover reset for mobile (no hover on touch) */
   #sec-phone-1:hover, #sec-phone-2:hover, #sec-phone-3:hover {
@@ -5115,8 +5115,8 @@ body {
 .sec-hover-view { opacity: 0; transform: translateY(20px); background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); }
 .sec-phone:hover .sec-default-view { opacity: 0; transform: translateY(-20px); }
 .sec-phone:hover .sec-hover-view { opacity: 1; transform: translateY(0); }
-#sec-phone-2 { transform: translateY(-30px); }
-#sec-phone-3 { transform: translateY(30px); }
+/* Handled by JS */
+/* Handled by JS */
 
 
 /* ============================================================

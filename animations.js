@@ -393,12 +393,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /* ── SECURITY — phone mockups stagger up ── */
+    
+    
+    /* ── SECURITY — phone mockups staggered layout handled in GSAP (Race Condition Fix) ── */
     if (q('.sec-phone')) {
-        gsap.from('.sec-phone', {
-            y: 80, opacity: 0, duration: 0.9, stagger: 0.15, ease: 'back.out(1.4)',
-            scrollTrigger: { trigger: '.sec-phones', start: 'top 85%', toggleActions: 'play none none none' }
-        });
+        gsap.fromTo('.sec-phone', 
+            { y: 120, opacity: 0, scale: 0.9 }, 
+            { 
+                y: (i) => (i === 1 ? -30 : (i === 2 ? 30 : 0)),
+                opacity: 1, 
+                scale: 1,
+                stagger: 0.15,
+                duration: 1.5,
+                ease: 'back.out(1.4)',
+                scrollTrigger: { 
+                    trigger: '.sec-phones', 
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
         if (q('.sec-callout')) {
             gsap.from('.sec-callout', {
                 y: 32, opacity: 0, duration: 0.7, ease: 'power2.out',
@@ -406,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
 
     /* ════════════════════════════════════════════════════════════
        15. REVIEWS — summary boxes + cards stagger
