@@ -498,4 +498,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+    /* ════════════════════════════════════════════════════════════
+       20. ROTATING TEXT PILL — Vanilla GSAP implementation
+    ════════════════════════════════════════════════════════════ */
+    (function initRotatingText() {
+        const wrapper = document.querySelector('#rotating-text-wrapper');
+        if (!wrapper) return;
+
+        const texts = ['Business', 'Growth', 'Retail', 'Empire', 'Future'];
+        let currentIdx = 0;
+
+        function animateIn(text) {
+            wrapper.innerHTML = '';
+            // Split text into characters
+            const chars = text.split('').map(char => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? ' ' : char;
+                wrapper.appendChild(span);
+                return span;
+            });
+
+            // Entrance: Stagger from last (as requested)
+            gsap.from(chars, {
+                y: '100%',
+                opacity: 0,
+                duration: 0.6,
+                stagger: { each: 0.03, from: 'end' },
+                ease: 'back.out(1.5)',
+                onComplete: () => {
+                    // Wait 2 seconds then exit
+                    gsap.delayedCall(2, () => animateOut(chars));
+                }
+            });
+        }
+
+        function animateOut(chars) {
+            // Exit: Stagger to top
+            gsap.to(chars, {
+                y: '-120%',
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.02,
+                ease: 'power2.in',
+                onComplete: () => {
+                    currentIdx = (currentIdx + 1) % texts.length;
+                    animateIn(texts[currentIdx]);
+                }
+            });
+        }
+
+        animateIn(texts[currentIdx]);
+    })();
+
 });

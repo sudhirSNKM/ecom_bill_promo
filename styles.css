@@ -5448,3 +5448,45 @@ footer, footer * {
     .logo-text { color: #000 !important; font-weight: 900 !important; }
     .hamburger span { background: #000 !important; }
 }
+
+/* ── ROTATING TEXT PILL ── */
+.hero-rotator {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.rotating-text-wrapper, .rotating-text-wrapper * {
+  color: #000 !important;
+}
+.rotating-text-wrapper {
+  display: inline-flex;
+  background: var(--lime);
+  color: #000 !important;
+  padding: 0px 24px;
+  border-radius: 100px;
+  overflow: hidden;
+  height: 58px;
+  line-height: 58px;
+  position: relative;
+  vertical-align: middle;
+  box-shadow: 0 10px 30px rgba(191, 255, 0, 0.3);
+  font-weight: 800;
+  min-width: 200px;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .rotating-text-wrapper, .rotating-text-wrapper * {
+  color: #000 !important;
+}
+.rotating-text-wrapper {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 16px;
+    min-width: 150px;
+    font-size: 0.9em;
+  }
+}
+.rotating-text-wrapper span {
+  display: inline-block;
+  white-space: pre;
+}
