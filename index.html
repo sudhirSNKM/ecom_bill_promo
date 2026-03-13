@@ -78,6 +78,8 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-bg-grid"></div>
+    <!-- Light Rays Background -->
+    <div id="light-rays-container" class="light-rays-hero"></div>
     <div class="hero-orb hero-orb-1 mouse-parallax" data-depth="0.04"></div>
     <div class="hero-orb hero-orb-2 mouse-parallax" data-depth="0.06"></div>
     <div class="hero-orb hero-orb-3 mouse-parallax" data-depth="0.09"></div>
@@ -91,18 +93,14 @@
         POS • Billing • Inventory • Ecommerce. Built for brands that demand excellence.
       </p>
       <div class="hero-actions">
-        <a href="contact.html" class="btn-uiverse" id="cta-trial-btn">
-          <div class="btn-uiverse-bg">
-            <div class="btn-uiverse-circle">
-              <div class="btn-uiverse-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" height="100%" width="100%">
-                  <path fill="currentColor" d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z">
-                  </path>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="btn-uiverse-text" data-i18n="ctaStart">Get Started</div>
+        <a href="contact.html" class="btn-premium" id="cta-trial-btn">
+          <span class="btn-shine"></span>
+          <span class="btn-text">Get Started Free</span>
+          <span class="btn-icon">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor" />
+            </svg>
+          </span>
         </a>
         <div class="hero-price-wrap">
           <span class="price-from" data-i18n="ctaSlogan">Plans Starting At</span>
@@ -1193,9 +1191,10 @@
     </div>
   </footer>
 
-  <!-- 3D Engine -->
+  <!-- 3D & Effects Engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ogl@0.0.122/dist/ogl.umd.js"></script>
 
   <script src="app.js"></script>
   <script src="animations.js"></script>

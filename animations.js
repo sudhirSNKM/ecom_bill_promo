@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     if (q('.hero-content')) {
         gsap.to('.hero-content', {
-            y: -100, opacity: 0, scale: 0.95, 
+            y: -100, opacity: 0, scale: 0.95,
             scrollTrigger: { trigger: '.hero', start: 'top top', end: '80% top', scrub: 1 }
         });
     }
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.fromTo('.hero-vid-shell',
             { scale: 1.25, transformOrigin: 'top center' },
             {
-                scale: 0.9, y: 50, opacity: 0, 
+                scale: 0.9, y: 50, opacity: 0,
                 scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
             }
         );
@@ -84,16 +84,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-        /* ════════════════════════════════════════════════════════════
-       4. HERO ENTRANCE — staggered text rise on load
-    ════════════════════════════════════════════════════════════ */
+    /* ════════════════════════════════════════════════════════════
+   4. HERO ENTRANCE — staggered text rise on load
+════════════════════════════════════════════════════════════ */
     gsap.timeline({ defaults: { ease: 'power4.out' } })
         .from('.hero-badge', { y: 30, opacity: 0, duration: 1 }, 0.1)
-        .from('.hero-headline > span', { 
-            y: 80, opacity: 0, duration: 1.2, filter: 'blur(8px)', stagger: 0.15 
+        .from('.hero-headline > span', {
+            y: 80, opacity: 0, duration: 1.2, filter: 'blur(8px)', stagger: 0.15
         }, 0.2)
         .from('.hero-sub', { y: 40, opacity: 0, duration: 1 }, 0.4)
-        .from('.hero-actions .btn, .hero-actions .btn-uiverse', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
+        .from('.hero-actions .btn, .hero-actions .btn-premium', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
         .from('.hero-stats', { y: 20, opacity: 0, duration: 0.8 }, 0.8)
         .from('.hero-visual', { y: 80, opacity: 0, duration: 1.2, filter: 'blur(10px)' }, 0.4);
 
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
+
     /* ════════════════════════════════════════════════════════════
        8. ANALYTICS — Sticky Storytelling (Morphing Stack)
     ════════════════════════════════════════════════════════════ */
@@ -241,10 +241,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Set initial classes for the morphing stack
         const updateStack = (idx) => {
             steps.forEach((step, i) => step.classList.toggle('active', i === idx));
-            
+
             vcards.forEach((vc, i) => {
                 vc.classList.remove('stack-active', 'stack-next-1', 'stack-next-2', 'stack-past', 'active');
-                
+
                 if (i < idx) {
                     vc.classList.add('stack-past');
                 } else if (i === idx) {
@@ -393,13 +393,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    
-    
-    
+
+
+
     /* ── SECURITY — phone mockups Step-by-Step (Staircase) Layout ── */
     if (q('.sec-phone')) {
         const phones = qa('.sec-phone');
-        
+
         // Immediate position set to prevent flash of unaligned content
         if (!isMobile) {
             phones.forEach((p, i) => {
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
 
 
-    
+
     /* ════════════════════════════════════════════════════════════
        21. THREE.JS HERO — Optimized & Faster Loading
     ════════════════════════════════════════════════════════════ */
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!container || typeof THREE === 'undefined') return;
 
         const loader = document.querySelector('#three-loader');
-        
+
         // Scene Setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Abstract Primitive (Instant Fallback/Background)
         const geometry = new THREE.TorusKnotGeometry(0.5, 0.15, 150, 20);
-        const material = new THREE.MeshPhysicalMaterial({ 
+        const material = new THREE.MeshPhysicalMaterial({
             color: 0x111111,
             metalness: 0.9,
             roughness: 0.1,
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const modelUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/SheenChair/glTF-Binary/SheenChair.glb';
 
         let modelLoaded = false;
-        
+
         // Timeout handler
         const loadTimeout = setTimeout(() => {
             if (!modelLoaded) {
@@ -618,20 +618,20 @@ document.addEventListener('DOMContentLoaded', function () {
         gltfLoader.load(modelUrl, (gltf) => {
             modelLoaded = true;
             clearTimeout(loadTimeout);
-            
+
             const model = gltf.scene;
             const box = new THREE.Box3().setFromObject(model);
             const size = box.getSize(new THREE.Vector3());
             const scale = 1.4 / Math.max(size.x, size.y, size.z);
             model.scale.setScalar(scale);
             model.position.y = -0.3; // Slight adjustment
-            
+
             scene.add(model);
             hideLoader();
 
             // Entrance
             gsap.from(model.scale, { x: 0, y: 0, z: 0, duration: 1.2, ease: 'back.out(1.7)' });
-            
+
             // Interaction logic
             animate(model);
         }, undefined, (err) => {
@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', function () {
             animate(torus);
         });
 
-        
+
         function animate(obj) {
             let time = 0;
             function frame() {
@@ -652,7 +652,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // 180 degrees = Math.PI radians
                     // Sweep from -Math.PI/2 to +Math.PI/2
                     obj.rotation.y = Math.sin(time) * (Math.PI / 2);
-                    
+
                     // Subtle tilting for depth
                     obj.rotation.x = Math.cos(time * 0.5) * 0.15;
                 }
@@ -670,5 +670,137 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     })();
 
+
+
+    /* ════════════════════════════════════════════════════════════
+       22. LIGHT RAYS ENGINE — Vanilla OGL implementation
+    ════════════════════════════════════════════════════════════ */
+    (function initLightRays() {
+        const container = document.querySelector('#light-rays-container');
+        if (!container || typeof ogl === 'undefined') return;
+
+        const { Renderer, Program, Triangle, Mesh } = ogl;
+
+        const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio, 2), alpha: true });
+        const gl = renderer.gl;
+        container.appendChild(gl.canvas);
+
+        const vert = `
+            attribute vec2 position;
+            varying vec2 vUv;
+            void main() {
+                vUv = position * 0.5 + 0.5;
+                gl_Position = vec4(position, 0.0, 1.0);
+            }
+        `;
+
+        const frag = `
+            precision highp float;
+            uniform float iTime;
+            uniform vec2 iResolution;
+            uniform vec2 rayPos;
+            uniform vec2 rayDir;
+            uniform vec3 raysColor;
+            uniform float raysSpeed;
+            uniform float lightSpread;
+            uniform float rayLength;
+            uniform float fadeDistance;
+            uniform vec2 mousePos;
+            uniform float mouseInfluence;
+
+            varying vec2 vUv;
+
+            float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord, float seedA, float seedB, float speed) {
+                vec2 sourceToCoord = coord - raySource;
+                vec2 dirNorm = normalize(sourceToCoord);
+                float cosAngle = dot(dirNorm, rayRefDirection);
+                float spreadFactor = pow(max(cosAngle, 0.0), 1.0 / max(lightSpread, 0.001));
+                float distance = length(sourceToCoord);
+                float maxDistance = iResolution.x * rayLength;
+                float lengthFalloff = clamp((maxDistance - distance) / maxDistance, 0.0, 1.0);
+                float baseStrength = clamp(
+                    (0.45 + 0.15 * sin(cosAngle * seedA + iTime * speed)) +
+                    (0.3 + 0.2 * cos(-cosAngle * seedB + iTime * speed)),
+                    0.0, 1.0
+                );
+                return baseStrength * lengthFalloff * spreadFactor;
+            }
+
+            void main() {
+                vec2 fragCoord = gl_FragCoord.xy;
+                vec2 coord = vec2(fragCoord.x, iResolution.y - fragCoord.y);
+                
+                vec2 finalRayDir = rayDir;
+                if (mouseInfluence > 0.0) {
+                    vec2 mouseScreenPos = mousePos * iResolution.xy;
+                    vec2 mouseDirection = normalize(mouseScreenPos - rayPos);
+                    finalRayDir = normalize(mix(rayDir, mouseDirection, mouseInfluence));
+                }
+
+                float r1 = rayStrength(rayPos, finalRayDir, coord, 36.2214, 21.11349, 1.2 * raysSpeed);
+                float r2 = rayStrength(rayPos, finalRayDir, coord, 22.3991, 18.0234, 0.9 * raysSpeed);
+
+                vec3 color = raysColor * (r1 * 0.5 + r2 * 0.4);
+                
+                // Vertical gradient fade
+                float brightness = 1.0 - (coord.y / iResolution.y);
+                color *= (0.2 + brightness * 0.8);
+                
+                gl_FragColor = vec4(color, color.r * 0.5); // Using red channel for alpha
+            }
+        `;
+
+        const hexToRgb = hex => {
+            const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
+        };
+
+        const uniforms = {
+            iTime: { value: 0 },
+            iResolution: { value: [gl.canvas.width, gl.canvas.height] },
+            rayPos: { value: [0, 0] },
+            rayDir: { value: [0, 1] },
+            raysColor: { value: hexToRgb('#BFFF00') }, // MarsCart Lime
+            raysSpeed: { value: 0.8 },
+            lightSpread: { value: 0.6 },
+            rayLength: { value: 2.5 },
+            fadeDistance: { value: 1.0 },
+            mousePos: { value: [0.5, 0.5] },
+            mouseInfluence: { value: 0.15 }
+        };
+
+        const geometry = new Triangle(gl);
+        const program = new Program(gl, { vertex: vert, fragment: frag, uniforms, transparent: true });
+        const mesh = new Mesh(gl, { geometry, program });
+
+        function resize() {
+            const w = container.offsetWidth;
+            const h = container.offsetHeight;
+            renderer.setSize(w, h);
+            uniforms.iResolution.value = [gl.canvas.width, gl.canvas.height];
+            uniforms.rayPos.value = [gl.canvas.width * 0.5, -gl.canvas.height * 0.1]; // top-center
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        let mouse = { x: 0.5, y: 0.5 };
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX / window.innerWidth;
+            mouse.y = e.clientY / window.innerHeight;
+        });
+
+        function update(t) {
+            requestAnimationFrame(update);
+            uniforms.iTime.value = t * 0.001;
+            
+            // Smooth mouse
+            uniforms.mousePos.value[0] += (mouse.x - uniforms.mousePos.value[0]) * 0.05;
+            uniforms.mousePos.value[1] += (mouse.y - uniforms.mousePos.value[1]) * 0.05;
+
+            renderer.render({ scene: mesh });
+        }
+        update(0);
+    })();
 
 });
