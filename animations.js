@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             y: 80, opacity: 0, duration: 1.2, filter: 'blur(8px)', stagger: 0.15
         }, 0.2)
         .from('.hero-sub', { y: 40, opacity: 0, duration: 1 }, 0.4)
-        .from('.hero-actions .btn, .hero-actions .btn-premium', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
+        .from('.hero-actions .btn-premium', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
         .from('.hero-stats', { y: 20, opacity: 0, duration: 0.8 }, 0.8)
         .from('.hero-visual', { y: 80, opacity: 0, duration: 1.2, filter: 'blur(10px)' }, 0.4);
 
@@ -677,13 +677,20 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     (function initLightRays() {
         const container = document.querySelector('#light-rays-container');
-        if (!container || typeof ogl === 'undefined') return;
+        console.log('[LightRays] Container found:', !!container);
+        if (!container) { console.warn('[LightRays] No container found.'); return; }
+        if (typeof ogl === 'undefined') { console.error('[LightRays] OGL library not found.'); return; }
 
         const { Renderer, Program, Triangle, Mesh } = ogl;
 
         const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio, 2), alpha: true });
         const gl = renderer.gl;
         container.appendChild(gl.canvas);
+        gl.canvas.style.position = 'absolute';
+        gl.canvas.style.top = '0';
+        gl.canvas.style.left = '0';
+        gl.canvas.style.width = '100%';
+        gl.canvas.style.height = '100%';
 
         const vert = `
             attribute vec2 position;
@@ -774,6 +781,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const mesh = new Mesh(gl, { geometry, program });
 
         function resize() {
+            console.log('[LightRays] Resizing canvas to:', container.offsetWidth, 'x', container.offsetHeight);
             const w = container.offsetWidth;
             const h = container.offsetHeight;
             renderer.setSize(w, h);
@@ -793,7 +801,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function update(t) {
             requestAnimationFrame(update);
             uniforms.iTime.value = t * 0.001;
-            
+
             // Smooth mouse
             uniforms.mousePos.value[0] += (mouse.x - uniforms.mousePos.value[0]) * 0.05;
             uniforms.mousePos.value[1] += (mouse.y - uniforms.mousePos.value[1]) * 0.05;
