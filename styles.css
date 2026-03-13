@@ -1,4 +1,13 @@
 
+/* --- Global Text Visibility Fix --- */
+.section-title, .hero-headline, .hero-sub, .section-sub {
+  color: #fff !important;
+}
+.section:not(.section-dark) .section-title, .section:not(.section-dark) .section-sub, .section:not(.section-dark) p, .section:not(.section-dark) .tech-name, .section:not(.section-dark) .tech-desc { color: #000 !important; }
+.nav-links a:hover {
+  color: var(--lime) !important;
+}
+
 /* --- Global Mobile Safety --- */
 
   .container, .s-container {
@@ -74,7 +83,7 @@ html {
 body {
   font-family: var(--font);
   background: var(--offwhite);
-  color: var(--black);
+  color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -105,7 +114,7 @@ body {
 
 .btn-primary {
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
 }
 
 .btn-primary:hover {
@@ -116,7 +125,7 @@ body {
 
 .btn-ghost {
   background: transparent;
-  color: var(--black);
+  color: #fff;
   border: 1.5px solid var(--gray-300);
 }
 
@@ -138,7 +147,7 @@ body {
 
 .btn-outline-light {
   background: transparent;
-  color: var(--black);
+  color: #fff;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -162,10 +171,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 100px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -187,11 +196,12 @@ body {
 }
 
 .logo {
+  color: #fff !important;
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--black);
+  color: #fff;
   flex-shrink: 0;
 }
 
@@ -223,6 +233,7 @@ body {
 }
 
 .nav-links a {
+  color: rgba(255, 255, 255, 0.7) !important;
   text-decoration: none;
   color: var(--gray-500);
   font-size: 14px;
@@ -233,8 +244,8 @@ body {
 }
 
 .nav-links a:hover {
-  color: var(--black);
-  background: var(--gray-200);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-cta {
@@ -245,12 +256,13 @@ body {
 }
 
 .pricing-label {
+  color: rgba(255, 255, 255, 0.6) !important;
   font-size: 13px;
   color: var(--gray-500);
 }
 
 .pricing-label strong {
-  color: var(--black);
+  color: #fff;
   font-weight: 800;
 }
 
@@ -541,7 +553,7 @@ body {
   width: 28px;
   height: 28px;
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -925,7 +937,7 @@ body {
 
 .role-tab.active {
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
   border-color: var(--lime);
 }
 
@@ -1116,7 +1128,7 @@ body {
 .pos-btn {
   margin: 14px 16px;
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
   text-align: center;
   padding: 12px;
   border-radius: 8px;
@@ -1343,7 +1355,7 @@ body {
 
 .sfh-btn {
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 8px 20px;
   border-radius: 6px;
@@ -1405,7 +1417,7 @@ body {
 .sfp-price {
   font-size: 14px;
   font-weight: 700;
-  color: var(--black);
+  color: #fff;
 }
 
 
@@ -1666,7 +1678,7 @@ body {
 }
 
 .tech-card:hover {
-  border-color: var(--black);
+  border-color: #fff;
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
@@ -1882,6 +1894,7 @@ body {
 }
 
 .footer-brand .logo {
+  color: #fff !important;
   margin-bottom: 16px;
 }
 
@@ -2055,7 +2068,7 @@ body {
 }
 
 .scroll-step-item.step-active .journey-title {
-  color: var(--black);
+  color: #fff;
 }
 
 /* ---- HERO PARALLAX smoothing ---- */
@@ -2610,7 +2623,7 @@ body {
 }
 
 .blog-card:hover {
-  border-color: var(--black);
+  border-color: #fff;
   transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
 }
@@ -2674,7 +2687,7 @@ body {
   top: 16px;
   left: 16px;
   background: var(--lime);
-  color: var(--black);
+  color: #fff;
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
@@ -2740,7 +2753,7 @@ body {
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -0.4px;
-  color: var(--black);
+  color: #fff;
 }
 
 .blog-featured .blog-title {
@@ -2774,7 +2787,7 @@ body {
   align-items: center;
   font-size: 14px;
   font-weight: 700;
-  color: var(--black);
+  color: #fff;
   text-decoration: none;
   border-bottom: 2px solid var(--lime);
   padding-bottom: 2px;
@@ -5041,11 +5054,59 @@ body {
 .story-visual-card.stack-next-2 { opacity: 0.2; transform: translateY(60px) scale(0.9); z-index: 1; }
 .story-visual-card.stack-past { opacity: 0; transform: translateY(-100px) scale(1.1); z-index: 10; }
 
+/* --- Analytics Card Desktop Fix (Visibility) --- */
+.story-visual-card {
+  color: #fff !important;
+}
+.svc-header {
+  color: var(--lime) !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 20px !important;
+}
+.svc-big-num {
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+}
+.svc-amount {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+}
+.svc-item, .svc-bar {
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 14px !important;
+}
+.svc-item span, .svc-bar span {
+  color: #fff !important;
+}
+.span-label {
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+
 /* ============================================================
    9. SECURITY PHONE STYLES (DESKTOP)
    ============================================================ */
 .sec-phones { display: flex; justify-content: center; gap: 32px; perspective: 1000px; margin-top: 60px; padding-bottom: 80px; }
 .sec-phone { position: relative; width: 260px; height: 520px; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); cursor: pointer; }
+
+.sec-phones { 
+  display: flex !important; 
+  visibility: visible !important; 
+  opacity: 1 !important; 
+  height: 520px !important; 
+}
+.sec-phone { 
+  display: block !important; 
+  visibility: visible !important; 
+  opacity: 1 !important; 
+}
+
 .sec-phone-shell { position: absolute; inset: 0; background: #111; border-radius: 40px; border: 4px solid #333; box-shadow: 0 40px 100px rgba(0,0,0,0.8); overflow: hidden; z-index: 1; }
 .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 24px; background: #333; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 10; }
 .sec-phone-screen { position: absolute; inset: 8px; border-radius: 32px; background: #000; overflow: hidden; }
@@ -5066,8 +5127,8 @@ body {
   /* --- Header / Logo --- */
   .nav { 
     backdrop-filter: blur(20px) !important; 
-    background: #000 !important; 
-    border: 1px solid rgba(255,255,255,0.2) !important;
+    background: #fff !important; 
+    border: 1px solid rgba(0,0,0,0.1) !important;
     top: 15px !important;
     margin: 0 12px !important;
     width: calc(100% - 24px) !important;
@@ -5075,19 +5136,20 @@ body {
     height: 60px !important;
   }
   .nav-inner { height: 100% !important; padding: 0 16px !important; }
-  .logo-text { display: block !important; font-size: 16px !important; color: #fff !important; font-weight: 800 !important; }
-  .nav-links, .nav-cta, .pricing-label { display: none !important; }
+  .logo-text { display: block !important; font-size: 16px !important; color: #000 !important; font-weight: 800 !important; }
+  .nav-links, .nav-cta, .pricing-label {
+  color: rgba(255, 255, 255, 0.6) !important; display: none !important; }
 
   /* --- Hero & Button --- */
   .hero { padding-top: 110px !important; text-align: center !important; }
   .hero-headline { font-size: 32px !important; margin-bottom: 12px !important; }
-  .hero-actions { flex-direction: column !important; align-items: center !important; gap: 16px !important; }
+  .hero-actions { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 16px !important; width: 100% !important; }
   
   .btn-uiverse { 
-    width: 260px !important; height: 56px !important; 
+    width: 260px !important; margin: 0 auto !important; height: 56px !important; 
     background: var(--lime) !important; 
     border-radius: 999px !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     padding: 0 8px !important;
     box-shadow: 0 10px 30px rgba(208, 232, 77, 0.4) !important;
   }
@@ -5136,7 +5198,137 @@ body {
   }
   .story-visual-card * { color: #fff !important; }
 
+  
+  .tech-layout { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+  .tech-left { width: 100% !important; margin-bottom: 40px !important; }
+  .tech-right { width: 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+  .tech-card { width: 100% !important; max-width: 320px !important; margin: 10px auto !important; }
+
+  
+  footer, .footer { display: block !important; opacity: 1 !important; visibility: visible !important; height: auto !important; padding: 40px 20px !important; }
+  .footer-inner { flex-direction: column !important; gap: 40px !important; text-align: center !important; }
+  .footer-links { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+
   /* --- Security Phones --- */
   .sec-phones { flex-direction: column !important; align-items: center !important; gap: 40px !important; }
   .sec-phone { width: 230px !important; height: 460px !important; transform: none !important; top: 0 !important; }
+}
+
+
+/* --- 11. DEFINITIVE DESKTOP POLISH --- */
+.story-visual-card { 
+    background: #111 !important; 
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #fff !important;
+    opacity: 0;
+}
+.story-visual-card.stack-active { opacity: 1 !important; }
+.story-visual-card * { color: #fff !important; }
+.svc-header { color: var(--lime) !important; font-weight: 800 !important; }
+.bg-lime { background: var(--lime) !important; }
+
+/* Security Phones Desktop Fix */
+.sec-phones { 
+    display: flex !important; 
+    justify-content: center !important; 
+    gap: 40px !important; 
+    height: 600px !important; 
+    margin-top: 80px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.sec-phone { 
+    display: block !important; 
+    opacity: 1 !important; 
+    visibility: visible !important;
+    position: relative !important;
+}
+.sec-phone-shell { 
+    background: #000 !important; 
+    border: 4px solid #333 !important; 
+    border-radius: 40px !important;
+}
+.sec-phone-screen { background: #000 !important; }
+.sec-default-view { opacity: 1 !important; }
+.sec-hover-view { opacity: 0; }
+.sec-phone:hover .sec-hover-view { opacity: 1 !important; }
+
+/* Footer Desktop */
+.footer { background: #000 !important; color: #fff !important; display: block !important; }
+.footer * { color: #fff !important; }
+.footer-links a { color: #aaa !important; }
+.footer-links a:hover { color: var(--lime) !important; }
+
+
+/* --- 12. DEFINITIVE MOBILE POLISH (FINAL) --- */
+@media (max-width: 768px) {
+  /* Global Centering */
+  .section, .container { text-align: center !important; align-items: center !important; }
+  .section-label { margin-left: auto !important; margin-right: auto !important; }
+  .section-title { font-size: 28px !important; margin-left: auto !important; margin-right: auto !important; }
+  .section-sub { font-size: 14px !important; margin-left: auto !important; margin-right: auto !important; }
+
+  /* 1. HEADER (White Background) */
+  .nav { 
+    background: #ffffff !important; 
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    top: 15px !important;
+    margin: 0 12px !important;
+    width: calc(100% - 24px) !important;
+    border-radius: 999px !important;
+    height: 60px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+  }
+  .nav-inner { padding: 0 16px !important; }
+  .logo-text { display: block !important; color: #000 !important; font-weight: 800 !important; font-size: 18px !important; }
+  .logo-icon { width: 28px !important; height: 28px !important; font-size: 14px !important; }
+  .hamburger span { background: #000 !important; } /* Center text fix */
+  .nav-links, .nav-cta, .pricing-label { display: none !important; }
+
+  /* 2. HERO BUTTON (Centered) */
+  .hero { padding-top: 120px !important; }
+  .hero-actions { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    width: 100% !important; 
+    gap: 16px !important; 
+    margin-top: 24px !important;
+  }
+  .btn-uiverse { 
+    width: 260px !important; 
+    margin: 0 auto !important; 
+    justify-content: center !important; 
+    background: var(--lime) !important; 
+    box-shadow: 0 10px 30px rgba(208, 232, 77, 0.4) !important;
+    border: none !important;
+  }
+  .btn-uiverse-text { color: #000 !important; font-weight: 800 !important; margin-left: 12px !important; }
+  .btn-uiverse-circle { background: #000 !important; margin: 0 !important; }
+  .btn-uiverse-icon { color: var(--lime) !important; }
+
+  /* 3. ROLES (Stacked & Balanced) */
+  .roles-scroll-container { height: auto !important; }
+  .roles-sticky-wrapper { position: relative !important; top: 0 !important; height: auto !important; padding: 40px 16px !important; }
+  .roles-gallery { flex-direction: column !important; transform: none !important; gap: 20px !important; width: 100% !important; align-items: center !important; }
+  .role-hcard { width: 100% !important; max-width: 400px !important; margin: 0 auto !important; min-height: auto !important; padding: 32px 24px !important; }
+
+  /* 4. TECH / E-COMMERCE (Centered) */
+  #tech { padding: 60px 16px !important; }
+  .tech-layout { flex-direction: column !important; gap: 40px !important; align-items: center !important; text-align: center !important; }
+  .tech-left { width: 100% !important; align-items: center !important; display: flex !important; flex-direction: column !important; }
+  .tech-right { width: 100% !important; }
+  .tech-cards-col { align-items: center !important; display: flex !important; flex-direction: column !important; gap: 20px !important; width: 100% !important; }
+  .tech-card { width: 100% !important; max-width: 320px !important; margin: 0 auto !important; text-align: left !important; }
+
+  /* 5. FOOTER (Balanced) */
+  .footer { display: block !important; padding: 60px 16px 40px !important; background: #fff !important; color: #000 !important; }
+  .footer-inner { flex-direction: column !important; gap: 40px !important; align-items: center !important; text-align: center !important; }
+  .footer-links { grid-template-columns: 1fr 1fr !important; width: 100% !important; text-align: left !important; gap: 30px !important; }
+  .footer-brand p { margin: 10px auto !important; color: #666 !important; }
+  .footer-col .fc-title { color: #000 !important; }
+  .footer-col a { color: #444 !important; }
+  .footer-bottom { border-top: 1px solid #eee !important; margin-top: 40px !important; padding-top: 20px !important; color: #888 !important; }
 }
