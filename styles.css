@@ -5413,3 +5413,122 @@ body {
   .footer * { color: #000 !important; }
   .footer-links { grid-template-columns: 1fr 1fr !important; }
 }
+
+
+/* ============================================================
+   14. SEPARATE MOBILE CODEBASE (V8 - FINAL POLISH)
+   ============================================================ */
+@media (max-width: 768px) {
+    /* Global Overrides to prevent overflow */
+    *, *::before, *::after { box-sizing: border-box !important; }
+    html, body { overflow-x: hidden !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    .container, .s-container { width: 100% !important; max-width: 100vw !important; padding-left: 15px !important; padding-right: 15px !important; margin: 0 auto !important; }
+
+    /* --- 1. THE "GAP" FIX (Customer Experience & Roles) --- */
+    #cx-cards, .cx-stack-container, .roles-scroll-container, .platform-stacked-sec {
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    
+    .cx-stack-container, .modules-stack { 
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    /* --- 2. ROLES OVERFLOW FIX (Fixed in Screen) --- */
+    .roles-sticky-wrapper {
+        position: relative !important;
+        top: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        padding: 0 !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+    
+    .roles-gallery {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        transform: none !important;
+        gap: 20px !important;
+        padding: 20px 0 !important;
+        align-items: center !important;
+    }
+    
+    /* Ensuring cards don't cross the right side */
+    .role-hcard, .module-card-stack, .cx-card-wrap, .cx-card {
+        width: calc(100% - 30px) !important; /* Subtracting standard side padding */
+        max-width: 380px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        min-height: auto !important;
+        flex-shrink: 0 !important;
+    }
+
+    .cx-card-inner {
+        padding: 30px 20px !important;
+    }
+
+    /* --- 3. ALIGNMENT & SPACING --- */
+    .section-label { 
+        display: inline-block !important; 
+        margin: 0 auto 15px !important;
+        float: none !important;
+    }
+    
+    .section-title { 
+        padding: 0 10px !important;
+    }
+
+    /* Fixing the Branch Admin lists from crossing the right */
+    .rhc-list li {
+        text-align: left !important;
+        font-size: 14px !important;
+        word-break: break-word !important;
+    }
+
+    /* --- 4. HEADER FIX --- */
+    .nav { position: fixed !important; } /* Keep it sticky */
+    .logo-text { font-size: 18px !important; }
+}
+
+@media (max-width: 768px) {
+    /* Tighten up the roles gallery to prevent any horizontal slip */
+    .roles-gallery {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+        overflow: hidden !important; /* Contain the cards */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .role-hcard {
+        width: 100% !important;
+        max-width: 360px !important; /* Safety width */
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        margin-bottom: 24px !important;
+    }
+
+    /* Remove any lingering transitions that might cause 'overlay' flickers */
+    .role-hcard, .cx-card, .module-card-stack {
+        transition: none !important;
+    }
+}
