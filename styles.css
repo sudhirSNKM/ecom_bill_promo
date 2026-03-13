@@ -181,6 +181,23 @@ body {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+
+/* --- Nav Scrolled Theme Fix --- */
+.nav.scrolled .logo, .nav.scrolled .logo-text, 
+.nav.scrolled .nav-links a, 
+.nav.scrolled .pricing-label,
+.nav.scrolled .pricing-label strong {
+  color: #000000 !important;
+}
+.nav.scrolled .nav-links a:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--lime) !important;
+}
+.nav.scrolled .logo-icon {
+  background: #000 !important;
+  color: var(--lime) !important;
+}
+
 .nav.scrolled {
   top: 10px;
   background: rgba(255, 255, 255, 0.85);
@@ -2852,6 +2869,23 @@ body {
    ============================================================ */
 
 /* ── NAV scrolled state ───────────────────────────────────── */
+
+/* --- Nav Scrolled Theme Fix --- */
+.nav.scrolled .logo, .nav.scrolled .logo-text, 
+.nav.scrolled .nav-links a, 
+.nav.scrolled .pricing-label,
+.nav.scrolled .pricing-label strong {
+  color: #000000 !important;
+}
+.nav.scrolled .nav-links a:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--lime) !important;
+}
+.nav.scrolled .logo-icon {
+  background: #000 !important;
+  color: var(--lime) !important;
+}
+
 .nav.scrolled {
   top: 8px;
   background: rgba(255, 255, 255, 0.95);
@@ -3483,6 +3517,23 @@ body {
 .nav-inner {
   position: relative;
   z-index: 1;
+}
+
+
+/* --- Nav Scrolled Theme Fix --- */
+.nav.scrolled .logo, .nav.scrolled .logo-text, 
+.nav.scrolled .nav-links a, 
+.nav.scrolled .pricing-label,
+.nav.scrolled .pricing-label strong {
+  color: #000000 !important;
+}
+.nav.scrolled .nav-links a:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--lime) !important;
+}
+.nav.scrolled .logo-icon {
+  background: #000 !important;
+  color: var(--lime) !important;
 }
 
 .nav.scrolled {
