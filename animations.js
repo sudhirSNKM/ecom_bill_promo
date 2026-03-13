@@ -641,17 +641,26 @@ document.addEventListener('DOMContentLoaded', function () {
             animate(torus);
         });
 
+        
         function animate(obj) {
+            let time = 0;
             function frame() {
                 requestAnimationFrame(frame);
                 if (obj) {
-                    obj.rotation.y += 0.008;
-                    obj.rotation.z += 0.002;
+                    time += 0.012;
+                    // Math.sin oscillates between -1 and 1
+                    // 180 degrees = Math.PI radians
+                    // Sweep from -Math.PI/2 to +Math.PI/2
+                    obj.rotation.y = Math.sin(time) * (Math.PI / 2);
+                    
+                    // Subtle tilting for depth
+                    obj.rotation.x = Math.cos(time * 0.5) * 0.15;
                 }
                 renderer.render(scene, camera);
             }
             frame();
         }
+
 
         // Resize
         window.addEventListener('resize', () => {
