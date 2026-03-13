@@ -551,4 +551,111 @@ document.addEventListener('DOMContentLoaded', function () {
         animateIn(texts[currentIdx]);
     })();
 
+
+    /* ════════════════════════════════════════════════════════════
+       21. THREE.JS HERO — 3D Model Showcase
+    ════════════════════════════════════════════════════════════ */
+    (function initHero3D() {
+        const container = document.querySelector('#three-canvas-container');
+        if (!container || typeof THREE === 'undefined') return;
+
+        const loader = document.querySelector('#three-loader');
+        
+        // Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+        camera.position.set(0, 0, 3);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        container.appendChild(renderer.domElement);
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        mainLight.position.set(5, 5, 5);
+        scene.add(mainLight);
+
+        const rimLight = new THREE.DirectionalLight(0xBFFF00, 0.5); // Lime rim light
+        rimLight.position.set(-5, 2, -5);
+        scene.add(rimLight);
+
+        // Load Model
+        let model;
+        const gltfLoader = new THREE.GLTFLoader();
+        const modelUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/SheenChair/glTF-Binary/SheenChair.glb';
+
+        gltfLoader.load(modelUrl, (gltf) => {
+            model = gltf.scene;
+            
+            // Center and Scale
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            const size = box.getSize(new THREE.Vector3());
+            
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 1.5 / maxDim;
+            model.scale.setScalar(scale);
+            model.position.sub(center.multiplyScalar(scale));
+            
+            scene.add(model);
+            
+            // Fade out loader
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 800);
+            }
+
+            // Initial Entrance
+            gsap.from(model.rotation, { y: Math.PI * 2, duration: 2, ease: 'power3.out' });
+            gsap.from(model.scale, { x: 0, y: 0, z: 0, duration: 1.5, ease: 'back.out(1.7)' });
+        }, 
+        (xhr) => { /* progress */ },
+        (error) => { console.error('Error loading 3D model:', error); });
+
+        // Mouse Parallax & Interaction
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+            targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (model) {
+                // Auto Rotate
+                model.rotation.y += 0.005;
+
+                // Mouse Smoothing
+                currentX += (targetX - currentX) * 0.05;
+                currentY += (targetY - currentY) * 0.05;
+
+                model.rotation.y += currentX * 0.5;
+                model.rotation.x += currentY * 0.3;
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize Handling
+        window.addEventListener('resize', () => {
+            camera.aspect = container.offsetWidth / container.offsetHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+        });
+    })();
+
 });

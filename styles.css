@@ -5490,3 +5490,59 @@ footer, footer * {
   display: inline-block;
   white-space: pre;
 }
+
+/* ── THREE.JS HERO CANVAS ── */
+.three-canvas-container {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background: radial-gradient(circle at center, rgba(191,255,0,0.05) 0%, transparent 70%);
+  border-radius: 40px;
+  overflow: hidden;
+  cursor: grab;
+}
+.three-canvas-container:active { cursor: grabbing; }
+
+.three-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 5;
+  color: var(--lime);
+  gap: 20px;
+  transition: opacity 0.8s ease;
+}
+.three-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(191,255,0,0.1);
+  border-top-color: var(--lime);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spec-bubble {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.spec-icon { font-size: 1.2em; }
+.spec-text { font-size: 14px; font-weight: 600; color: #fff; }
+
+@media (max-width: 768px) {
+  .three-canvas-container { height: 400px; }
+  .spec-bubble { display: none; }
+}

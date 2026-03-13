@@ -120,20 +120,23 @@
 
 
     <div class="hero-visual">
-      <div class="hero-vid-shell">
-        <div class="vid-bar">
-          <div class="vid-dots"><span></span><span></span><span></span></div>
-          <div class="vid-address">marscart.ai/analytics</div>
+      <div id="three-canvas-container" class="three-canvas-container">
+        <!-- Three.js will inject canvas here -->
+        <div class="three-loading-overlay" id="three-loader">
+          <div class="three-spinner"></div>
+          <span>Loading 3D Experience...</span>
         </div>
-        <div class="vid-body">
-          <video class="hero-video" autoplay loop muted playsinline poster="hero_poster.png">
-            <source src="https://cdn.pixabay.com/video/2016/10/26/6190-189182315_tiny.mp4" type="video/mp4">
-          </video>
-          <div class="vid-overlay">
-            <div class="vo-label">REAL-TIME SALES</div>
-            <div class="vo-price">₹1,24,500</div>
-            <div class="vo-trend">↑ 12% today</div>
-          </div>
+      </div>
+
+      <!-- Floating Specs (Replacing the video shell UI) -->
+      <div class="floating-specs">
+        <div class="spec-bubble floating-card" style="top: 10%; right: 10%;">
+          <span class="spec-icon">✨</span>
+          <span class="spec-text">Premium Textures</span>
+        </div>
+        <div class="spec-bubble floating-card" style="bottom: 10%; left: 10%;">
+          <span class="spec-icon">⚡</span>
+          <span class="spec-text">WebGPU Ready</span>
         </div>
       </div>
     </div>
@@ -1189,6 +1192,10 @@
       </div>
     </div>
   </footer>
+
+  <!-- 3D Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
 
   <script src="app.js"></script>
   <script src="animations.js"></script>
