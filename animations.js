@@ -13,7 +13,23 @@ document.addEventListener('DOMContentLoaded', function () {
        0. LENIS SMOOTH SCROLL — Initializing momentum scroll
     ════════════════════════════════════════════════════════════ */
     const lenis = new Lenis({ duration: 1.3, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    lenis.on('scroll', ScrollTrigger.update);
+
+    let lastScrollY = 0;
+    lenis.on('scroll', (e) => {
+        ScrollTrigger.update();
+        const currentScrollY = e.animatedScroll;
+        const nav = document.querySelector('#navbar');
+
+        if (currentScrollY > lastScrollY && currentScrollY > 150) {
+            // Scrolling Down
+            nav?.classList.add('nav-hidden');
+        } else {
+            // Scrolling Up
+            nav?.classList.remove('nav-hidden');
+        }
+        lastScrollY = currentScrollY;
+    });
+
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
 

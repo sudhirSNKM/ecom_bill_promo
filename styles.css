@@ -2353,42 +2353,17 @@ body {
 
 
 
-.sec-callout-icon {
-  font-size: 32px;
-}
 
-.sec-callout-text {
-  flex: 1;
-}
 
-.sec-callout-text strong {
-  display: block;
-  font-size: 17px;
-  color: #fff;
-  margin-bottom: 6px;
-}
 
-.sec-callout-text p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.5;
-  margin: 0;
-}
 
-.sec-callout-badges {
-  display: flex;
-  gap: 10px;
-}
 
-.sec-callout-badges span {
-  font-size: 10px;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 50px;
-  background: rgba(59, 130, 246, 0.1);
-  color: #3B82F6;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
+
+
+
+
+
+
 
 @media (max-width: 900px) {
 
@@ -4177,47 +4152,19 @@ body {
 /* ── Privacy callout ── */
 
 
-.sec-callout-icon {
-  font-size: 28px;
-  flex-shrink: 0;
-}
-
-.sec-callout-text {
-  flex: 1;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.65;
-}
-
-.sec-callout-text strong {
-  color: #fff;
-  font-weight: 800;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.sec-callout-badges {
-  display: flex;
-  gap: 10px;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-}
-
-.sec-callout-badges span {
-  font-size: 11px;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 50px;
-  background: rgba(59, 130, 246, 0.1);
-  color: #3B82F6;
-  border: 1px solid rgba(59, 130, 246, 0.22);
-}
 
 
 
-.sec-callout-badges {
-  justify-content: center;
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ============================================================
    HERO VIDEO WINDOW — Liquid Glass Floating Frame
@@ -5072,14 +5019,14 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 40vh;
+  gap: 10vh;
   padding-bottom: 20vh;
 }
 
 .story-step {
   opacity: 0.15;
   transition: all 0.6s ease;
-  min-height: 40vh;
+  min-height: auto;
   display: block !important;
 }
 
@@ -5888,7 +5835,6 @@ footer * {
 .section-title,
 .section-sub,
 .hero-content,
-.story-step,
 .btn-premium {
   z-index: 100 !important;
   opacity: 1 !important;
@@ -6021,6 +5967,21 @@ footer * {
   cursor: grabbing;
 }
 
+.nav.nav-hidden {
+  transform: translateY(-110%) !important;
+}
+
+.nav.scrolled {
+  top: 10px !important;
+  width: 90% !important;
+  background: rgba(15, 23, 42, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.nav {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, top 0.4s ease, width 0.4s ease !important;
+}
+
 .three-loading-overlay {
   position: absolute;
   inset: 0;
@@ -6092,7 +6053,7 @@ footer * {
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  background: var(--lime)!important;
+  background: var(--lime) !important;
   color: #000 !important;
   padding: 12px 12px 12px 32px !important;
   border-radius: 100px;
@@ -6100,14 +6061,15 @@ footer * {
   font-weight: 800;
   font-size: 18px !important;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
   overflow: hidden;
   z-index: 100;
   animation: btn-pulse 2s infinite;
 }
 
-.btn-premium .btn-text, .hero .btn-premium .btn-text {
+.btn-premium .btn-text,
+.hero .btn-premium .btn-text {
   transition: all 0.3s ease;
   color: #000 !important;
   position: relative;
@@ -6137,11 +6099,12 @@ footer * {
 .btn-premium:hover {
   background: #ffffff !important;
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2), 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2), 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .btn-premium:hover .btn-text {
-  color: #000 !important; /* Force black on white background */
+  color: #000 !important;
+  /* Force black on white background */
 }
 
 .btn-premium:hover .btn-icon {
@@ -6166,13 +6129,23 @@ footer * {
 }
 
 @keyframes shine {
-  100% { left: 200%; }
+  100% {
+    left: 200%;
+  }
 }
 
 @keyframes btn-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4), 0 15px 35px rgba(59, 130, 246, 0.2); }
-  70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0), 0 15px 35px rgba(59, 130, 246, 0.2); }
-  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0), 0 15px 35px rgba(59, 130, 246, 0.2); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4), 0 15px 35px rgba(59, 130, 246, 0.2);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0), 0 15px 35px rgba(59, 130, 246, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0), 0 15px 35px rgba(59, 130, 246, 0.2);
+  }
 }
 
 /* ── LIGHT RAYS BACKGROUND ── */
@@ -6183,7 +6156,35 @@ footer * {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2; /* Ensure it's above the grid */
-  opacity: 0.8 !important; /* Increased visibility */
+  z-index: 2;
+  /* Ensure it's above the grid */
+  opacity: 0.8 !important;
+  /* Increased visibility */
   overflow: hidden;
 }
+/* ── CONSOLIDATED SECURITY CALLOUT ── */
+.sec-callout {
+  display: flex !important;
+  align-items: center !important;
+  gap: 32px !important;
+  max-width: 900px !important;
+  margin: 40px auto 0 !important;
+  padding: 24px 32px !important;
+  background: rgba(15, 23, 42, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  text-align: left !important;
+}
+.sec-callout-icon { font-size: 32px; flex-shrink: 0; }
+.sec-callout-text { flex: 1; }
+.sec-callout-text strong { display: block; font-size: 18px; color: #fff; margin-bottom: 4px; font-weight: 800; }
+.sec-callout-text p { font-size: 14px; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.5; }
+.sec-callout-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.sec-callout-badges span { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 50px; background: rgba(59, 130, 246, 0.1); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.2); }
+
+/* --- Analytics Scrollytelling Gap Fix --- */
+.ss-left { gap: 60px !important; }
+.story-step { min-height: auto !important; margin-bottom: 20px; }
+
+/* --- Global Section Spacing Fix --- */
+.section { padding: 100px 0 !important; }
