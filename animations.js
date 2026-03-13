@@ -4,7 +4,39 @@
    Liquid Glass · Spring Cards · Horizontal Scroll
    ============================================================ */
 
+
 document.addEventListener('DOMContentLoaded', function () {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // MOBILE ONLY ANIMATIONS (Very simple fade ins)
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.section-title, .section-sub, .hero-actions, .platform-stacked-sec, #security, #tech, footer').forEach(el => {
+            gsap.from(el, {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+        
+        // Mobile Link active states handle
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('open');
+            });
+        });
+
+        console.log('[MarsCart] Mobile animations initialized.');
+        return; // EXIT - DO NOT RUN DESKTOP ANIMATIONS
+    }
+
 
     if (typeof gsap === 'undefined') { console.warn('[MarsCart] GSAP not loaded.'); return; }
     gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +55,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const q = (sel) => document.querySelector(sel);
     const qa = (sel) => [...document.querySelectorAll(sel)];
     const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+        qa('.section-title, .section-sub, .hero-content, .btn-uiverse').forEach(el => {
+            gsap.from(el, { opacity: 0, y: 20, duration: 1, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+        });
+        return; // Skip complex desktop animations
+    }
+
 
     /* ════════════════════════════════════════════════════════════
        1. NAVBAR — liquid glass tightens on scroll
@@ -56,13 +96,13 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ════════════════════════════════════════════════════════════
        3. CINEMATIC HERO SCROLL — zoom + parallax + fade
     ════════════════════════════════════════════════════════════ */
-    if (q('.hero-content')) {
+    if (q('.hero-content') && !isMobile) {
         gsap.to('.hero-content', {
             y: -100, opacity: 0, scale: 0.95, 
             scrollTrigger: { trigger: '.hero', start: 'top top', end: '80% top', scrub: 1 }
         });
     }
-    if (q('.hero-vid-shell')) {
+    if (q('.hero-vid-shell') && !isMobile) {
         gsap.fromTo('.hero-vid-shell',
             { scale: 1.25, transformOrigin: 'top center' },
             {
@@ -90,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.timeline({ defaults: { ease: 'power4.out' } })
         .from('.hero-badge', { y: 30, opacity: 0, duration: 1 }, 0.1)
         .from('.hero-headline > span', { 
-            y: 80, opacity: 0, duration: 1.2, filter: 'blur(8px)', stagger: 0.15 
+            y: 30, opacity: 0, duration: 0.8, stagger: 0.1 
         }, 0.2)
         .from('.hero-sub', { y: 40, opacity: 0, duration: 1 }, 0.4)
         .from('.hero-actions .btn, .hero-actions .btn-uiverse', { scale: 0.8, opacity: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.6)
@@ -130,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
 
     // Tech Stack Reveal (Staircase Entrance)
-    if (q('.tech-cards-col')) {
+    if (q('.tech-cards-col') && !isMobile) {
         gsap.from('.tech-card', {
             y: 40, opacity: 0, duration: 1.2, stagger: 0.3, ease: 'power3.out',
             scrollTrigger: { trigger: '.tech-cards-col', start: 'top 80%' }
@@ -142,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Security Phone Reveals (Slow Staircase Steps)
-    if (q('.sec-phones')) {
+    if (q('.sec-phones') && !isMobile) {
         gsap.from('.sec-phone', {
             y: 250,
             opacity: 0,
