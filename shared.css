@@ -12,8 +12,8 @@
 }
 
 :root {
-    --lime: #D0E84D;
-    --lime-dark: #b8d030;
+    --lime: #3B82F6;
+    --lime-dark: #2563EB;
     --black: #000000;
     --white: #ffffff;
     --offwhite: #F8F8F5;
@@ -373,9 +373,9 @@ img {
 }
 
 .s-badge-lime {
-    background: rgba(208, 232, 77, 0.15);
+    background: rgba(59, 130, 246, 0.15);
     color: #4a6200;
-    border: 1px solid rgba(208, 232, 77, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 /* ---- DIVIDER ---- */
