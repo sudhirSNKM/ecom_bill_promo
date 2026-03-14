@@ -17,16 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let lastScrollY = 0;
     lenis.on('scroll', (e) => {
         ScrollTrigger.update();
-        const currentScrollY = e.animatedScroll;
+        const currentScrollY = e.scroll;
         const nav = document.querySelector('#navbar');
 
-        if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
             // Scrolling Down
             nav?.classList.add('nav-hidden');
         } else {
-            // Scrolling Up
+            // Scrolling Up or reached top
             nav?.classList.remove('nav-hidden');
         }
+
+        // Ensure nav is visible at the very top
+        if (currentScrollY < 10) {
+            nav?.classList.remove('nav-hidden');
+        }
+
         lastScrollY = currentScrollY;
     });
 
