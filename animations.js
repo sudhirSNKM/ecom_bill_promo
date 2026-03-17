@@ -600,35 +600,9 @@ document.addEventListener('DOMContentLoaded', function () {
         pLight.position.set(2, 2, 2);
         scene.add(pLight);
 
-        // Abstract Primitive (Instant Fallback/Background)
-        const geometry = new THREE.TorusKnotGeometry(0.5, 0.15, 150, 20);
-        const material = new THREE.MeshPhysicalMaterial({
-            color: 0x111111,
-            metalness: 0.9,
-            roughness: 0.1,
-            emissive: 0xBFFF00,
-            emissiveIntensity: 0.2,
-        });
-        const torus = new THREE.Mesh(geometry, material);
-        torus.visible = false; // Only show if model fails or is slow
-        scene.add(torus);
-
         // High-Speed Loader for a lighter model
-        // Using a much smaller sample model (Box) to test speed, or keeping chair but adding timeout
         const gltfLoader = new THREE.GLTFLoader();
         const modelUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/SheenChair/glTF-Binary/SheenChair.glb';
-
-        let modelLoaded = false;
-
-        // Timeout handler
-        const loadTimeout = setTimeout(() => {
-            if (!modelLoaded) {
-                console.warn("3D Model taking too long. Falling back to abstract geometry.");
-                hideLoader();
-                torus.visible = true;
-                gsap.from(torus.scale, { x: 0, y: 0, z: 0, duration: 1, ease: 'back.out' });
-            }
-        }, 6000); // 6 seconds before fallback
 
         function hideLoader() {
             if (loader) {
@@ -638,9 +612,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         gltfLoader.load(modelUrl, (gltf) => {
-            modelLoaded = true;
-            clearTimeout(loadTimeout);
-
             const model = gltf.scene;
             const box = new THREE.Box3().setFromObject(model);
             const size = box.getSize(new THREE.Vector3());
@@ -659,8 +630,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, undefined, (err) => {
             console.error("3D Load Error:", err);
             hideLoader();
-            torus.visible = true;
-            animate(torus);
         });
 
 
