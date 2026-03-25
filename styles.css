@@ -5870,20 +5870,20 @@ footer * {
   }
 }
 
-/* 4. Disable Hidden Reveals for visibility assurance */
-.reveal,
-.section-title,
-.section-sub,
-.hero-content,
-.btn-premium {
-  z-index: 100 !important;
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-}
-
 /* 5. Mobile Final Polish (Tighten) */
 @media (max-width: 768px) {
+
+  /* Disable Hidden Reveals for visibility assurance on mobile */
+  .reveal,
+  .section-title,
+  .section-sub,
+  .hero-content,
+  .btn-premium {
+    z-index: 100 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
 
   .roles-scroll-container,
   .platform-stacked-sec,

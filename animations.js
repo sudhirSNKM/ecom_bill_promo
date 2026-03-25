@@ -394,23 +394,39 @@ document.addEventListener('DOMContentLoaded', function () {
        Note: tech-cards live inside .journey-flow in #tech
     ════════════════════════════════════════════════════════════ */
     if (q('#tech .tech-card')) {
+        const techEntryStart = isMobile ? 'top 92%' : 'top 82%';
+        const techDuration = isMobile ? 0.5 : 0.85;
+        const techStagger = isMobile ? 0.08 : 0.12;
+
         // Left column: heading + buy card animate together
         if (q('.floating-buy-card')) {
             gsap.from('.floating-buy-card', {
-                y: 50, opacity: 0, duration: 0.85, ease: 'back.out(1.2)',
-                scrollTrigger: { trigger: '.tech-left', start: 'top 82%', toggleActions: 'play none none none' }
+                y: isMobile ? 30 : 50,
+                opacity: 0,
+                duration: techDuration,
+                ease: 'back.out(1.2)',
+                scrollTrigger: { trigger: '.tech-left', start: techEntryStart, toggleActions: 'play none none none' }
             });
         }
         // Right column: tech cards stagger in
         gsap.from('#tech .tech-card', {
-            y: 48, opacity: 0, duration: 0.65, stagger: 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.tech-cards-col', start: 'top 82%', toggleActions: 'play none none none' }
+            y: isMobile ? 30 : 48,
+            opacity: 0,
+            duration: isMobile ? 0.45 : 0.65,
+            stagger: techStagger,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: '.tech-cards-col', start: techEntryStart, toggleActions: 'play none none none' }
         });
         // Badges pop in last
         if (q('.tech-badge')) {
             gsap.from('.tech-badge', {
-                y: 16, opacity: 0, scale: 0.88, duration: 0.45, stagger: 0.07, ease: 'back.out(1.5)',
-                scrollTrigger: { trigger: '.tech-badges', start: 'top 88%', toggleActions: 'play none none none' }
+                y: 16,
+                opacity: 0,
+                scale: 0.88,
+                duration: isMobile ? 0.35 : 0.45,
+                stagger: 0.07,
+                ease: 'back.out(1.5)',
+                scrollTrigger: { trigger: '.tech-badges', start: isMobile ? 'top 95%' : 'top 88%', toggleActions: 'play none none none' }
             });
         }
     }
@@ -458,14 +474,22 @@ document.addEventListener('DOMContentLoaded', function () {
     ════════════════════════════════════════════════════════════ */
     if (q('.reviews-summary')) {
         gsap.from('.reviews-summary > *', {
-            y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.reviews-summary', start: 'top 84%', toggleActions: 'play none none none' }
+            y: isMobile ? 25 : 40,
+            opacity: 0,
+            duration: isMobile ? 0.45 : 0.7,
+            stagger: isMobile ? 0.06 : 0.1,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: '.reviews-summary', start: isMobile ? 'top 92%' : 'top 84%', toggleActions: 'play none none none' }
         });
     }
     if (q('.review-card')) {
         gsap.from('.review-card', {
-            y: 55, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out',
-            scrollTrigger: { trigger: '.reviews-grid', start: 'top 82%', toggleActions: 'play none none none' }
+            y: isMobile ? 30 : 55,
+            opacity: 0,
+            duration: isMobile ? 0.5 : 0.7,
+            stagger: isMobile ? 0.05 : 0.08,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: '.reviews-grid', start: isMobile ? 'top 92%' : 'top 82%', toggleActions: 'play none none none' }
         });
     }
 

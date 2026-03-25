@@ -10,18 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
-            const spans = hamburger.querySelectorAll('span');
-            const isOpen = mobileMenu.classList.contains('open');
-            spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px,5px)' : '';
-            spans[1].style.opacity = isOpen ? '0' : '';
-            spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
+            hamburger.classList.toggle('active');
         });
         mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
             mobileMenu.classList.remove('open');
-            hamburger.querySelectorAll('span').forEach(s => {
-                s.style.transform = '';
-                s.style.opacity = '';
-            });
+            hamburger.classList.remove('active');
         }));
     }
 
